@@ -1,0 +1,17 @@
+<mat-nav-list>
+  <h3 matSubheader>Empresas</h3>
+  <a mat-list-item *ngFor="let formaDeP of formaDePagoList">
+    <mat-icon matListIcon>receipt</mat-icon>
+    <h3 matLine> ID: {{formaDeP.Id}} </h3>
+    <p matLine class="demo-2"> Nombre: {{formaDeP.Nombre}} </p>
+    <div fxLayout="row" fxLayoutGap="20px">
+      <button mat-icon-button>
+        <mat-icon (click)="openDialogEdit()">edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon (click)="delete()">delete</mat-icon>
+      </button>
+    </div>
+  </a>
+  <mat-divider></mat-divider>
+</mat-nav-list>
