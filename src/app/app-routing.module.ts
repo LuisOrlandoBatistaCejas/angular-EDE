@@ -27,7 +27,7 @@ const routes: Routes = [
     ]
   },
   { path: 'signup', component: LoginComponent },
-  { path: '**', component: LoginComponent }
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
