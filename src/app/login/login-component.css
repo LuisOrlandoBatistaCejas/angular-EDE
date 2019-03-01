@@ -1,0 +1,33 @@
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+}
+.content {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-name {
+  margin-top: 0px;
+  padding-bottom: 10px;
+  font-size: 32px;
+}
+.login-form {
+  padding: 40px;
+  background: #fff;
+  width: 500px;
+  box-shadow: 0 0 10px #ddd;
+}
+.text-center {
+  text-align: center;
+}
+.w-100 {
+  width: 100%;
+}
+.m-t-100 {
+  margin-top: 100px;
+}

@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MatSidenavModule, MatListModule, MatSelectModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
+import { MatCardModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatSelectModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 //Components
@@ -30,10 +30,14 @@ import {VehiculoPersonaService} from './service/vehiculoPersona';
 import {VehiculoPersonaListComponent} from './component/vehiculoPersona/vehiculoPersona-list/vehiculoPersona-list-component';
 import {FormaDePagoListComponent} from './component/formaDePago/formaDePago-list/fromaDePago-list-component';
 import {FormaDePagoService} from './service/formaDePago-service';
+import {LoginComponent} from './login/login-component';
+import {HomeComponent} from './home/home-component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    HomeComponent,
     IdentificationTypeListComponent,
     PersonaListComponent,
     EmpresaListComponent,
@@ -61,7 +65,8 @@ import {FormaDePagoService} from './service/formaDePago-service';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
   ],
   entryComponents: [],
   providers: [
