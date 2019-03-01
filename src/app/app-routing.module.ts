@@ -13,7 +13,7 @@ import {LoginComponent} from './login/login-component';
 import {HomeComponent} from './home/home-component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/signup', pathMatch: 'full' },
+  { path: '', redirectTo: '/app/usuarios', pathMatch: 'full' },
   { path: 'app', component: HomeComponent, children: [
       { path: 'identification-types', component: IdentificationTypeListComponent },
       { path: 'personas', component: PersonaListComponent },
