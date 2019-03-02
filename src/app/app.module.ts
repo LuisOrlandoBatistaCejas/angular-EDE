@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatSelectModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
+import { MatCardModule, MatTooltipModule, MatChipsModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatSelectModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 //Components
@@ -32,6 +32,7 @@ import {FormaDePagoListComponent} from './component/formaDePago/formaDePago-list
 import {FormaDePagoService} from './service/formaDePago-service';
 import {LoginComponent} from './login/login-component';
 import {HomeComponent} from './home/home-component';
+import {PersonaCreateDialogComponent} from './dialog/persona/persona-create/persona-create-dialog';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import {HomeComponent} from './home/home-component';
     ItemListComponent,
     VehiculoListComponent,
     VehiculoPersonaListComponent,
-    FormaDePagoListComponent
+    FormaDePagoListComponent,
+    //dialogs
+    PersonaCreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -66,9 +69,13 @@ import {HomeComponent} from './home/home-component';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatChipsModule,
+    MatTooltipModule
   ],
-  entryComponents: [],
+  entryComponents: [
+    PersonaCreateDialogComponent
+  ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
     IdentificationTypeService,

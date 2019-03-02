@@ -1,17 +1,23 @@
-<mat-nav-list>
-  <h3 matSubheader>Tipos de identificacion</h3>
-  <a mat-list-item *ngFor="let item of identificationTypeList">
-    <mat-icon matListIcon>receipt</mat-icon>
-    <h3 matLine> Id: {{item.Id}} </h3>
-    <p matLine class="demo-2"> Tipo: {{item.Tipo}} </p>
-    <div fxLayout="row" fxLayoutGap="20px">
-      <button mat-icon-button>
-        <mat-icon (click)="openDialogEdit()">edit</mat-icon>
-      </button>
-      <button mat-icon-button>
-        <mat-icon (click)="delete()">delete</mat-icon>
-      </button>
-    </div>
-  </a>
-  <mat-divider></mat-divider>
-</mat-nav-list>
+<div class="p-l-r-20">
+  <mat-nav-list>
+    <h3 matSubheader>Tipos de identificacion</h3>
+    <a mat-list-item *ngFor="let item of identificationTypeList">
+      <mat-icon matListIcon>fingerprint</mat-icon>
+      <h3 matLine> Id: {{item.Id}} </h3>
+      <p matLine class="demo-2"> Tipo: {{item.Tipo}} </p>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <button mat-icon-button>
+          <mat-icon (click)="openDialogEdit()">edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon (click)="delete()">delete</mat-icon>
+        </button>
+      </div>
+    </a>
+    <mat-divider></mat-divider>
+  </mat-nav-list>
+
+  <div fxLayout="row" fxLayoutAlign="end center" class="button-add">
+    <button (click)="openDialogCreate()" mat-raised-button color="primary">Adicionar</button>
+  </div>
+</div>

@@ -5,7 +5,7 @@ import { UsuarioDetaModel } from '../model/usuarioDeta-model';
 
 @Injectable()
 export class UsuarioDetaService implements OnInit {
-  urlUsuarioDeta: 'http://code.rociosoft.com:8000/api/usuario-deta';
+  urlUsuarioDeta = 'http://code.rociosoft.com:8000/api/usuario-deta';
   constructor(private http: HttpClient) {}
   ngOnInit() {
 

@@ -14,4 +14,7 @@ export class PersonaService implements OnInit {
   getPersonas() {
     return this.http.get<[]>(this.urlPersonas);
   }
+  createPersona(persona) {
+    return this.http.post(this.urlPersonas, persona);
+  }
 }

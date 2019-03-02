@@ -5,3 +5,11 @@
 body {
   margin: 0px;
 }
+.p-l-r-20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.button-add {
+  margin-top: 20px;
+  margin-right: 20px;
+}
