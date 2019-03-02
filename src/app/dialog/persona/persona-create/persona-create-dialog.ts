@@ -44,7 +44,4 @@ export class PersonaCreateDialogComponent {
       return [];
     }
   }
-  addPlaca() {
-    this.Placa.push(this.form.PlacaModel);
-  }
 }

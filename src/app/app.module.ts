@@ -7,7 +7,9 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MatTooltipModule, MatChipsModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatSelectModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
+//Material
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { MaterialModule } from './app.material.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 //Components
@@ -59,19 +61,7 @@ import {PersonaCreateDialogComponent} from './dialog/persona/persona-create/pers
     HttpClientModule,
     BrowserAnimationsModule,
     // Material
-    MatCardModule,
-    MatSidenavModule,
-    MatSelectModule,
-    MatListModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatTooltipModule
+    MaterialModule
   ],
   entryComponents: [
     PersonaCreateDialogComponent

@@ -11,7 +11,7 @@ import {PersonaCreateDialogComponent} from '../../../dialog/persona/persona-crea
   styleUrls: ['./persona-list-component.css']
 })
 export class PersonaListComponent implements OnInit {
-  personaList: [];
+  personaList: any[];
   personaDialogEdit: MatDialogRef<PersonaCreateDialogComponent>;
   personaDialogCreate: MatDialogRef<PersonaCreateDialogComponent>;
   constructor(private personaService: PersonaService, public dialog: MatDialog) {}
