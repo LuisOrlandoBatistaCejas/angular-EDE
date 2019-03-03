@@ -38,6 +38,7 @@ import {HomeComponent} from './home/home-component';
 import {PersonaCreateDialogComponent} from './dialog/persona/persona-create/persona-create-dialog';
 import {EmpresaCreateDialogComponent} from './dialog/empresa/empresa-create/empresa-create-dialog';
 import {UsuarioCreateDialogComponent} from './dialog/usuario/usuario-create/usuario-create-dialog';
+import {UsuarioDetaCreateDialogComponent} from './dialog/usuarioDeta/usuarioDeta-create/usuarioDeta-create-dialog';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {UsuarioCreateDialogComponent} from './dialog/usuario/usuario-create/usua
     //dialogs
     PersonaCreateDialogComponent,
     EmpresaCreateDialogComponent,
-    UsuarioCreateDialogComponent
+    UsuarioCreateDialogComponent,
+    UsuarioDetaCreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ import {UsuarioCreateDialogComponent} from './dialog/usuario/usuario-create/usua
   entryComponents: [
     PersonaCreateDialogComponent,
     EmpresaCreateDialogComponent,
-    UsuarioCreateDialogComponent
+    UsuarioCreateDialogComponent,
+    UsuarioDetaCreateDialogComponent
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},

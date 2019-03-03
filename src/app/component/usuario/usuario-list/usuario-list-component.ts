@@ -24,7 +24,8 @@ export class UsuarioListComponent implements OnInit {
   openDialogCreate() {
     this.usuarioDialogCreate = this.dialog.open(UsuarioCreateDialogComponent, {
       height: '350px',
-      width: '450px'
+      width: '450px',
+      disableClose: true
     });
     this.usuarioDialogCreate
       .afterClosed()

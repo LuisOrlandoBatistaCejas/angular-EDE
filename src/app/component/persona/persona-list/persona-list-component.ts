@@ -23,7 +23,8 @@ export class PersonaListComponent implements OnInit {
   openDialogCreate() {
     this.personaDialogCreate = this.dialog.open(PersonaCreateDialogComponent, {
       height: '550px',
-      width: '650px'
+      width: '650px',
+      disableClose: true
     });
     this.personaDialogCreate
       .afterClosed()

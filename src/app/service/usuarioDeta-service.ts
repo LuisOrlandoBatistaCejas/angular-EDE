@@ -13,4 +13,7 @@ export class UsuarioDetaService implements OnInit {
   getUsuariosDeta() {
     return this.http.get<[]>(this.urlUsuarioDeta);
   }
+  createUsuarioDeta(usuarioDeta) {
+    return this.http.post(this.urlUsuarioDeta, usuarioDeta);
+  }
 }
