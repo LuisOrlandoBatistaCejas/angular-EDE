@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EmpresaModel } from '../../../model/empresa-model';
+import { filter } from 'rxjs/operators';
 import { EmpresaService } from '../../../service/empresa-service';
-// import { HttpClient } from '@angular/common/http';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import {EmpresaCreateDialogComponent} from '../../../dialog/empresa/empresa-create/empresa-create-dialog';
 
 @Component({
   selector: 'app-empresa-list-component',
@@ -9,13 +10,28 @@ import { EmpresaService } from '../../../service/empresa-service';
   styleUrls: ['./empresa-list-component.css']
 })
 export class EmpresaListComponent implements OnInit {
-  empresaList: [];
-  constructor(private empresaService: EmpresaService) {}
+  empresaList: any[];
+  empresaDialogEdit: MatDialogRef<EmpresaCreateDialogComponent>;
+  empresaDialogCreate: MatDialogRef<EmpresaCreateDialogComponent>;
+  constructor(private empresaService: EmpresaService, public dialog: MatDialog) {}
   ngOnInit() {
     this.empresaService.getEmpresas().subscribe(
       res => {
         this.empresaList = res;
       }
     );
+  }
+  openDialogCreate() {
+    this.empresaDialogCreate = this.dialog.open(EmpresaCreateDialogComponent, {
+      height: '500px',
+      width: '650px'
+    });
+    this.empresaDialogCreate
+      .afterClosed()
+      .pipe(filter(name => name))
+      .subscribe(empresa => {
+        // comprobante.id = this.asigId();
+        this.empresaList.push(empresa);
+      });
   }
 }

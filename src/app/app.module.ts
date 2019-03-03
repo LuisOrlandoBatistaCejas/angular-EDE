@@ -34,7 +34,9 @@ import {FormaDePagoListComponent} from './component/formaDePago/formaDePago-list
 import {FormaDePagoService} from './service/formaDePago-service';
 import {LoginComponent} from './login/login-component';
 import {HomeComponent} from './home/home-component';
+
 import {PersonaCreateDialogComponent} from './dialog/persona/persona-create/persona-create-dialog';
+import {EmpresaCreateDialogComponent} from './dialog/empresa/empresa-create/empresa-create-dialog';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import {PersonaCreateDialogComponent} from './dialog/persona/persona-create/pers
     VehiculoPersonaListComponent,
     FormaDePagoListComponent,
     //dialogs
-    PersonaCreateDialogComponent
+    PersonaCreateDialogComponent,
+    EmpresaCreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import {PersonaCreateDialogComponent} from './dialog/persona/persona-create/pers
     MaterialModule
   ],
   entryComponents: [
-    PersonaCreateDialogComponent
+    PersonaCreateDialogComponent,
+    EmpresaCreateDialogComponent
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},

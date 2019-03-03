@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {MatChipInputEvent} from '@angular/material';
 import {PersonaService} from '../../../service/persona-service';
 
 @Component({

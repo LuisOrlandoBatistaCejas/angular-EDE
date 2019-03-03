@@ -1,0 +1,74 @@
+<h2 mat-dialog-title>Crear Empresa</h2>
+<mat-dialog-content>
+  <form #f="ngForm" class="example-form">
+    <div fxLayout="column">
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput ngModel #TipoIdenId="ngModel" name="TipoIdenId" id="TipoIdenId" placeholder="Id del Tipo de Identificacion" required>
+          <mat-error *ngIf="!TipoIdenId.valid && TipoIdenId.touched">
+            The content field is required
+          </mat-error>
+        </mat-form-field>
+
+        <div class="align-center">
+          <mat-checkbox fxFlex="50" [checked]="activo" [(ngModel)]="activo">Activo</mat-checkbox>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput ngModel #Identificacion="ngModel" name="Identificacion" id="Identificacion" placeholder="Identificacion" required>
+          <mat-error *ngIf="!Identificacion.valid && Identificacion.touched">
+            The content field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput ngModel #FormaCancelacionId="ngModel" name="FormaCancelacionId" id="FormaCancelacionId" placeholder="FormaCancelacionId" required>
+          <mat-error *ngIf="!FormaCancelacionId.valid && FormaCancelacionId.touched">
+            The content field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput ngModel #Direccion="ngModel" name="Direccion" id="Direccion" placeholder="Dirección" required>
+        <mat-error *ngIf="!Direccion.valid && Direccion.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput ngModel #RazonSocial="ngModel" name="RazonSocial" id="RazonSocial" placeholder="Razón Social" required>
+          <mat-error *ngIf="!RazonSocial.valid && RazonSocial.touched">
+            The from field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput ngModel #NombreComercial="ngModel" name="NombreComercial" id="NombreComercial" placeholder="Nombre Comercial" required>
+          <mat-error *ngIf="!NombreComercial.valid && NombreComercial.touched">
+            The content field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput ngModel #Telefonos="ngModel" name="Telefonos" id="Telefonos" placeholder="Teléfono">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput ngModel #Email="ngModel" name="Email" id="Email" placeholder="Email">
+        </mat-form-field>
+      </div>
+
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]>Cancelar</button>
+  <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>
+</mat-dialog-actions>

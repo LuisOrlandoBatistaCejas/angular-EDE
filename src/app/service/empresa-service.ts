@@ -13,4 +13,7 @@ export class EmpresaService implements OnInit {
   getEmpresas() {
     return this.http.get<[]>(this.urlEmpresa);
   }
+  createEmpresa(empresa) {
+    return this.http.post(this.urlEmpresa, empresa);
+  }
 }
