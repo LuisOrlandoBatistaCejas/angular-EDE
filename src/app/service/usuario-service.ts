@@ -21,4 +21,7 @@ export class UsuarioService implements OnInit {
   getUsers() {
     return this.http.get<[]>(this.urlUser);
   }
+  createUsuario(usuario) {
+    return this.http.post(this.urlUser, usuario);
+  }
 }
