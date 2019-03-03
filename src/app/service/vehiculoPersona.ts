@@ -13,4 +13,7 @@ export class VehiculoPersonaService implements OnInit {
   getVehiculoPersona() {
     return this.http.get<[]>(this.urlVehiculoPersona);
   }
+  createVehiculoPersona(vehiculoPersona) {
+    return this.http.post(this.urlVehiculoPersona, vehiculoPersona);
+  }
 }

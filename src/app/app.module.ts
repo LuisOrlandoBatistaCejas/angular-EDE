@@ -41,6 +41,7 @@ import {UsuarioCreateDialogComponent} from './dialog/usuario/usuario-create/usua
 import {UsuarioDetaCreateDialogComponent} from './dialog/usuarioDeta/usuarioDeta-create/usuarioDeta-create-dialog';
 import {ItemCreateDialogComponent} from './dialog/item/item-create/item-create-dialog';
 import {VehiculoCreateDialogComponent} from './dialog/vehiculo/vehiculo-create/vehiculo-create-dialog';
+import {VehiculoPersonaCreateDialogComponent} from './dialog/vehiculoPersona/vehiculoPersona-create/vehiculoPersona-create-dialog';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {VehiculoCreateDialogComponent} from './dialog/vehiculo/vehiculo-create/v
     UsuarioCreateDialogComponent,
     UsuarioDetaCreateDialogComponent,
     ItemCreateDialogComponent,
-    VehiculoCreateDialogComponent
+    VehiculoCreateDialogComponent,
+    VehiculoPersonaCreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import {VehiculoCreateDialogComponent} from './dialog/vehiculo/vehiculo-create/v
     UsuarioCreateDialogComponent,
     UsuarioDetaCreateDialogComponent,
     ItemCreateDialogComponent,
-    VehiculoCreateDialogComponent
+    VehiculoCreateDialogComponent,
+    VehiculoPersonaCreateDialogComponent
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
