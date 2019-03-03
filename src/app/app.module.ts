@@ -40,6 +40,7 @@ import {EmpresaCreateDialogComponent} from './dialog/empresa/empresa-create/empr
 import {UsuarioCreateDialogComponent} from './dialog/usuario/usuario-create/usuario-create-dialog';
 import {UsuarioDetaCreateDialogComponent} from './dialog/usuarioDeta/usuarioDeta-create/usuarioDeta-create-dialog';
 import {ItemCreateDialogComponent} from './dialog/item/item-create/item-create-dialog';
+import {VehiculoCreateDialogComponent} from './dialog/vehiculo/vehiculo-create/vehiculo-create-dialog';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import {ItemCreateDialogComponent} from './dialog/item/item-create/item-create-d
     EmpresaCreateDialogComponent,
     UsuarioCreateDialogComponent,
     UsuarioDetaCreateDialogComponent,
-    ItemCreateDialogComponent
+    ItemCreateDialogComponent,
+    VehiculoCreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,8 @@ import {ItemCreateDialogComponent} from './dialog/item/item-create/item-create-d
     EmpresaCreateDialogComponent,
     UsuarioCreateDialogComponent,
     UsuarioDetaCreateDialogComponent,
-    ItemCreateDialogComponent
+    ItemCreateDialogComponent,
+    VehiculoCreateDialogComponent
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},

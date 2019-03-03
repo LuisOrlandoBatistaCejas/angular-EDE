@@ -12,4 +12,7 @@ export class VehiculoService implements OnInit {
   getVehiculos() {
     return this.http.get<[]>(this.urlVehiculos);
   }
+  createVehiculo(vehiculo) {
+    return this.http.post(this.urlVehiculos, vehiculo);
+  }
 }
