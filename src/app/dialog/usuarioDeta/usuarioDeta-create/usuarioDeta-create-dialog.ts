@@ -18,8 +18,7 @@ export class UsuarioDetaCreateDialogComponent {
   onSubmit() {
     this.usuarioDeta = this.form.value;
     this.usuarioDetaService.createUsuarioDeta(this.usuarioDeta).subscribe(res => {
-      console.log(res);
-      this.dialogRef.close(this.usuarioDeta);
+      this.dialogRef.close(res);
     }, (error) => {
       console.log(error.message);
     });

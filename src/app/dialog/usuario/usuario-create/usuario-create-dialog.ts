@@ -22,8 +22,7 @@ export class UsuarioCreateDialogComponent {
     this.usuario = this.form.value;
     // this.usuario.Activo = this.activo;
     this.usuarioService.createUsuario(this.usuario).subscribe(res => {
-      console.log(res);
-      this.dialogRef.close(this.usuario);
+      this.dialogRef.close(res);
     }, (error) => {
       console.log(error.message);
     });

@@ -24,8 +24,7 @@ export class PersonaCreateDialogComponent {
     this.persona.Activo = this.activo;
     this.persona.Placa = this.transformPlaca(this.persona.Placa);
     this.personaService.createPersona(this.persona).subscribe(res => {
-      console.log(res);
-      this.dialogRef.close(this.persona);
+      this.dialogRef.close(res);
     });
   }
   close() {

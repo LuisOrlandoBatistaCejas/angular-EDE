@@ -22,8 +22,7 @@ export class EmpresaCreateDialogComponent {
     this.empresa = this.form.value;
     this.empresa.Activo = this.activo;
     this.empresaService.createEmpresa(this.empresa).subscribe(res => {
-      console.log(res);
-      this.dialogRef.close(this.empresa);
+      this.dialogRef.close(res);
     });
   }
   close() {

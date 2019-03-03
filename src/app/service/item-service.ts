@@ -13,4 +13,7 @@ export class ItemService implements OnInit {
   getItems() {
     return this.http.get<[]>(this.urlItem);
   }
+  createItem(item) {
+    return this.http.post(this.urlItem, item);
+  }
 }

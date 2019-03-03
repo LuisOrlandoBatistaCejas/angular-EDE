@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioDetaService } from '../../../service/usuarioDeta-service';
-import { MatDialog, MatDialogRef } from '@angular/material';
 import {UsuarioDetaCreateDialogComponent} from '../../../dialog/usuarioDeta/usuarioDeta-create/usuarioDeta-create-dialog';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -21,7 +21,7 @@ export class UsuarioDetaListComponent implements OnInit {
   }
   openDialogCreate() {
     this.usuarioDetaDialogCreate = this.dialog.open(UsuarioDetaCreateDialogComponent, {
-      height: '450px',
+      height: '350px',
       width: '450px',
       disableClose: true
     });
