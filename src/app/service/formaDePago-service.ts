@@ -13,4 +13,7 @@ export class FormaDePagoService implements OnInit {
   getFormaDePagos() {
     return this.http.get<[]>(this.urlFromaDePago);
   }
+  createFormaDePago(formaDePago) {
+    return this.http.post(this.urlFromaDePago, formaDePago);
+  }
 }

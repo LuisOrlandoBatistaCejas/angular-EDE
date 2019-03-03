@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Crear Forma de Pago</h2>
+<mat-dialog-content>
+  <form #f="ngForm" class="example-form">
+    <div fxLayout="column">
+
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput ngModel #Id="ngModel" name="Id" id="Id" placeholder="Id" required>
+        <mat-error *ngIf="!Id.valid && Id.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput ngModel #Nombre="ngModel" name="Nombre" id="Nombre" placeholder="Nombre" required>
+        <mat-error *ngIf="!Nombre.valid && Nombre.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]>Cancelar</button>
+  <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>
+</mat-dialog-actions>
+
+
