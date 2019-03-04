@@ -19,4 +19,7 @@ export class IdentificationTypeService implements OnInit {
   getTipoIdentificacion() {
     return this.http.get<[]>(this.urlIdenType);
   }
+  createIdentificationType(identificationType) {
+    return this.http.post(this.urlIdenType, identificationType);
+  }
 }
