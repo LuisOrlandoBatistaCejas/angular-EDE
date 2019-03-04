@@ -10,15 +10,15 @@ import {PersonaService} from '../../../service/persona-service';
 })
 export class PersonaCreateDialogComponent {
   @ViewChild('f') form: NgForm;
-  activo: boolean;
+  activo = true;
   persona: any;
-  Placa: any[];
+  placas: any[];
+  placa = '';
+  identificacion = 'ident';
   constructor(
     private dialogRef: MatDialogRef<PersonaCreateDialogComponent>,
     private personaService: PersonaService
-  ) {
-    this.activo = true;
-  }
+  ) {}
   onSubmit() {
     this.persona = this.form.value;
     this.persona.Activo = this.activo;
