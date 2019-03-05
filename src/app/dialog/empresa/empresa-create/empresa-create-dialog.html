@@ -5,31 +5,14 @@
 
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #TipoIdenId="ngModel" name="TipoIdenId" id="TipoIdenId" placeholder="Id del Tipo de Identificacion" required>
-          <mat-error *ngIf="!TipoIdenId.valid && TipoIdenId.touched">
-            The content field is required
-          </mat-error>
-        </mat-form-field>
-
-        <div class="align-center">
-          <mat-checkbox fxFlex="50" [checked]="activo" [(ngModel)]="activo"
-                        (change)="valueChange()">Activo</mat-checkbox>
-        </div>
-      </div>
-
-      <div fxLayout="row" fxLayoutGap="10px">
-        <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #Identificacion="ngModel" name="Identificacion" id="Identificacion" placeholder="Identificacion" required>
-          <mat-error *ngIf="!Identificacion.valid && Identificacion.touched">
+          <input matInput ngModel #Ruc="ngModel" name="Ruc" id="Ruc" placeholder="Registro Único de Contribuyentes" required>
+          <mat-error *ngIf="!Ruc.valid && Ruc.touched">
             The content field is required
           </mat-error>
         </mat-form-field>
 
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #FormaCancelacionId="ngModel" name="FormaCancelacionId" id="FormaCancelacionId" placeholder="FormaCancelacionId" required>
-          <mat-error *ngIf="!FormaCancelacionId.valid && FormaCancelacionId.touched">
-            The content field is required
-          </mat-error>
+          <input matInput ngModel #CodigoContribuyenteEspecial="ngModel" name="CodigoContribuyenteEspecial" id="CodigoContribuyenteEspecial" placeholder="Codigo Contribuyente Especial" required>
         </mat-form-field>
       </div>
 
@@ -58,7 +41,7 @@
 
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #Telefonos="ngModel" name="Telefonos" id="Telefonos" placeholder="Teléfono">
+          <input matInput ngModel #Telefonos="ngModel" name="Telefonos" id="Telefonos" placeholder="Teléfonos">
         </mat-form-field>
 
         <mat-form-field fxFlex="50" class="example-full-width">
@@ -66,10 +49,23 @@
         </mat-form-field>
       </div>
 
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-checkbox fxFlex="50" [checked]="contaObligado" [(ngModel)]="activo"
+                      (change)="changeContaObligado()">Contabilidad Obligado</mat-checkbox>
+
+        <div class="align-center">
+          <mat-checkbox fxFlex="50" [checked]="activo" [(ngModel)]="activo"
+                        (change)="valueChange()">Activo</mat-checkbox>
+        </div>
+      </div>
+      <div fxLayout="row" class="m-t-10" fxLayoutGap="10px" fxLayoutAlign="end center">
+        <button mat-button [mat-dialog-close]>Cancelar</button>
+        <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>
+      </div>
     </div>
   </form>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]>Cancelar</button>
-  <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>
-</mat-dialog-actions>
+<!--<mat-dialog-actions align="end">-->
+  <!--<button mat-button [mat-dialog-close]>Cancelar</button>-->
+  <!--<button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>-->
+<!--</mat-dialog-actions>-->

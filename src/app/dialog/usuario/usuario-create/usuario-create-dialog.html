@@ -24,6 +24,13 @@
         </mat-error>
       </mat-form-field>
 
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput ngModel #Clave="ngModel" name="Clave" id="Clave" placeholder="Clave" required>
+        <mat-error *ngIf="!Clave.valid && Clave.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
     </div>
   </form>
 </mat-dialog-content>

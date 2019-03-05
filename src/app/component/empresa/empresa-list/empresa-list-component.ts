@@ -23,7 +23,7 @@ export class EmpresaListComponent implements OnInit {
   }
   openDialogCreate() {
     this.empresaDialogCreate = this.dialog.open(EmpresaCreateDialogComponent, {
-      height: '500px',
+      height: '450px',
       width: '650px',
       disableClose: true
     });
