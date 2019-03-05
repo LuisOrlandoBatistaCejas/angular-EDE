@@ -30,6 +30,9 @@ export class PersonaCreateDialogComponent {
   close() {
     this.dialogRef.close();
   }
+  valueChange() {
+    this.activo = !this.activo;
+  }
   transformPlaca(text) {
     if (text) {
       const result = [];

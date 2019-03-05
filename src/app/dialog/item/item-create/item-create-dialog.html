@@ -42,11 +42,13 @@
 
       <div fxLayout="row" fxLayoutGap="10px">
         <div class="align-center">
-          <mat-checkbox fxFlex="50" [checked]="venta" [(ngModel)]="venta">Venta</mat-checkbox>
+          <mat-checkbox fxFlex="50" [checked]="venta" [(ngModel)]="venta"
+                        (change)="changeVenta()">Venta</mat-checkbox>
         </div>
 
         <div class="align-center">
-          <mat-checkbox fxFlex="50" [checked]="compra" [(ngModel)]="compra">Compra</mat-checkbox>
+          <mat-checkbox fxFlex="50" [checked]="compra" [(ngModel)]="compra"
+                        (change)="changeCompra()">Compra</mat-checkbox>
         </div>
       </div>
 

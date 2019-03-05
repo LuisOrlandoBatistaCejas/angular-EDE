@@ -10,8 +10,8 @@ import {ItemService} from '../../../service/item-service';
 })
 export class ItemCreateDialogComponent {
   @ViewChild('f') form: NgForm;
-  venta: boolean;
-  compra: boolean;
+  venta = true;
+  compra = true;
   item: any;
   constructor(
     private dialogRef: MatDialogRef<ItemCreateDialogComponent>,
@@ -19,6 +19,12 @@ export class ItemCreateDialogComponent {
   ) {
     this.venta = true;
     this.compra = true;
+  }
+  changeVenta() {
+    this.venta = !this.venta;
+  }
+  changeCompra() {
+    this.compra = !this.compra;
   }
   onSubmit() {
     this.item = this.form.value;

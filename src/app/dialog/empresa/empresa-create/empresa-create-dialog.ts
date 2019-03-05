@@ -25,6 +25,9 @@ export class EmpresaCreateDialogComponent {
       this.dialogRef.close(res);
     });
   }
+  valueChange() {
+    this.activo = !this.activo;
+  }
   close() {
     this.dialogRef.close();
   }
