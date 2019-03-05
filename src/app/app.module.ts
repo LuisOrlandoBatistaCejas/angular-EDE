@@ -44,6 +44,8 @@ import {VehiculoCreateDialogComponent} from './dialog/vehiculo/vehiculo-create/v
 import {VehiculoPersonaCreateDialogComponent} from './dialog/vehiculoPersona/vehiculoPersona-create/vehiculoPersona-create-dialog';
 import {FormaDePagoCreateDialogComponent} from './dialog/formaDePago/formaDePago-create/formaDePago-create-dialog';
 import {IdentificationTypeCreateDialogComponent} from './dialog/identificationType/identificationType-create/identificationType-create-dialog';
+import {DocumentoListComponent} from './component/documento/documento-list/documento-list-component';
+import {DocumentoService} from './service/documento-service';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import {IdentificationTypeCreateDialogComponent} from './dialog/identificationTy
     VehiculoListComponent,
     VehiculoPersonaListComponent,
     FormaDePagoListComponent,
+    DocumentoListComponent,
     //dialogs
     PersonaCreateDialogComponent,
     EmpresaCreateDialogComponent,
@@ -101,7 +104,8 @@ import {IdentificationTypeCreateDialogComponent} from './dialog/identificationTy
     ItemService,
     VehiculoService,
     VehiculoPersonaService,
-    FormaDePagoService
+    FormaDePagoService,
+    DocumentoService
   ],
   bootstrap: [AppComponent]
 })

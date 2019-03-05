@@ -11,6 +11,7 @@ import {VehiculoPersonaListComponent} from './component/vehiculoPersona/vehiculo
 import {FormaDePagoListComponent} from './component/formaDePago/formaDePago-list/fromaDePago-list-component';
 import {LoginComponent} from './login/login-component';
 import {HomeComponent} from './home/home-component';
+import {DocumentoListComponent} from './component/documento/documento-list/documento-list-component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/app/identification-types', pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routes: Routes = [
       { path: 'items', component: ItemListComponent },
       { path: 'vehiculos', component: VehiculoListComponent },
       { path: 'vehiculo-personas', component: VehiculoPersonaListComponent },
-      { path: 'forma-de-pagos', component: FormaDePagoListComponent }
+      { path: 'forma-de-pagos', component: FormaDePagoListComponent },
+      { path: 'documentos', component: DocumentoListComponent }
     ]
   },
   { path: 'signup', component: LoginComponent },
