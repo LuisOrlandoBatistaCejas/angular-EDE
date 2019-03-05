@@ -46,6 +46,8 @@ import {FormaDePagoCreateDialogComponent} from './dialog/formaDePago/formaDePago
 import {IdentificationTypeCreateDialogComponent} from './dialog/identificationType/identificationType-create/identificationType-create-dialog';
 import {DocumentoListComponent} from './component/documento/documento-list/documento-list-component';
 import {DocumentoService} from './service/documento-service';
+import {CancelacionListComponent} from './component/cancelacion/cancelacion-list/cancelacion-list-component';
+import {CancelacionService} from './service/cancelacion-service';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import {DocumentoService} from './service/documento-service';
     VehiculoPersonaListComponent,
     FormaDePagoListComponent,
     DocumentoListComponent,
+    CancelacionListComponent,
     //dialogs
     PersonaCreateDialogComponent,
     EmpresaCreateDialogComponent,
@@ -105,7 +108,8 @@ import {DocumentoService} from './service/documento-service';
     VehiculoService,
     VehiculoPersonaService,
     FormaDePagoService,
-    DocumentoService
+    DocumentoService,
+    CancelacionService
   ],
   bootstrap: [AppComponent]
 })

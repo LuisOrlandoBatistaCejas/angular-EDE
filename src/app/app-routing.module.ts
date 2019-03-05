@@ -12,6 +12,7 @@ import {FormaDePagoListComponent} from './component/formaDePago/formaDePago-list
 import {LoginComponent} from './login/login-component';
 import {HomeComponent} from './home/home-component';
 import {DocumentoListComponent} from './component/documento/documento-list/documento-list-component';
+import {CancelacionListComponent} from './component/cancelacion/cancelacion-list/cancelacion-list-component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/app/identification-types', pathMatch: 'full' },
@@ -25,7 +26,8 @@ const routes: Routes = [
       { path: 'vehiculos', component: VehiculoListComponent },
       { path: 'vehiculo-personas', component: VehiculoPersonaListComponent },
       { path: 'forma-de-pagos', component: FormaDePagoListComponent },
-      { path: 'documentos', component: DocumentoListComponent }
+      { path: 'documentos', component: DocumentoListComponent },
+      { path: 'formas-cancelacion', component: CancelacionListComponent }
     ]
   },
   { path: 'signup', component: LoginComponent },
