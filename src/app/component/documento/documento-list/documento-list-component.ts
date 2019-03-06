@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import {DocumentoService} from '../../../service/documento-service';
+import {DocumentoCreateDialogComponent} from '../../../dialog/documento/documento-create/documento-create-dialog';
 
 @Component({
   selector: 'app-documento-list-component',
@@ -10,8 +11,8 @@ import {DocumentoService} from '../../../service/documento-service';
 })
 export class DocumentoListComponent implements OnInit {
   documentoList: any[];
-  // empresaDialogEdit: MatDialogRef<EmpresaCreateDialogComponent>;
-  // empresaDialogCreate: MatDialogRef<EmpresaCreateDialogComponent>;
+  empresaDialogEdit: MatDialogRef<DocumentoCreateDialogComponent>;
+  empresaDialogCreate: MatDialogRef<DocumentoCreateDialogComponent>;
   constructor(private documentoService: DocumentoService, public dialog: MatDialog) {}
   ngOnInit() {
     this.documentoService.getDocumento().subscribe(
@@ -19,5 +20,18 @@ export class DocumentoListComponent implements OnInit {
         this.documentoList = res;
       }
     );
+  }
+  openDialogCreate() {
+    this.empresaDialogCreate = this.dialog.open(DocumentoCreateDialogComponent, {
+      height: '250px',
+      width: '400px',
+      disableClose: true
+    });
+    this.empresaDialogCreate
+      .afterClosed()
+      .pipe(filter(name => name))
+      .subscribe(documento => {
+        this.documentoList.push(documento);
+      });
   }
 }
