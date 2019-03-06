@@ -4,14 +4,14 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #Placa="ngModel" name="Placa" type="number" id="Placa" placeholder="Placa" required>
+        <input matInput ngModel #Placa="ngModel" name="Placa" type="number" id="Placa" placeholder="Placa (select)" required>
         <mat-error *ngIf="!Placa.valid && Placa.touched">
           The content field is required
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #PersonaId="ngModel" name="PersonaId" id="PersonaId" placeholder="Id de la persona" required>
+        <input matInput ngModel #PersonaId="ngModel" name="PersonaId" id="PersonaId" placeholder="Id de la persona (select)" required>
         <mat-error *ngIf="!PersonaId.valid && PersonaId.touched">
           The content field is required
         </mat-error>

@@ -22,8 +22,8 @@ export class IdentificationTypeListComponent implements OnInit {
   }
   openDialogCreate() {
     this.identificationTypeDialogCreate = this.dialog.open(IdentificationTypeCreateDialogComponent, {
-      height: '300px',
-      width: '450px',
+      height: '250px',
+      width: '400px',
       disableClose: true
     });
     this.identificationTypeDialogCreate

@@ -33,7 +33,7 @@
         </mat-form-field>
 
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #FormaCancId="ngModel" type="number" name="FormaCancId" id="FormaCancId" placeholder="FormaCancId" required>
+          <input matInput ngModel #FormaCancId="ngModel" type="number" name="FormaCancId" id="FormaCancId" placeholder="FormaCancId (select)" required>
           <mat-error *ngIf="!FormaCancId.valid && FormaCancId.touched">
             The content field is required
           </mat-error>
@@ -81,11 +81,11 @@
 
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #Telfonos="ngModel" name="Telfonos" id="Telfonos" placeholder="Teléfono">
+          <input matInput ngModel #Telfonos="ngModel" name="Telfonos" id="Telfonos" placeholder="Teléfonos">
         </mat-form-field>
 
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #TipoIdenId="ngModel" name="TipoIdenId" id="TipoIdenId" placeholder="TipoIdenId">
+          <input matInput ngModel #TipoIdenId="ngModel" name="TipoIdenId" id="TipoIdenId" placeholder="TipoIdenId (select)" required>
         </mat-form-field>
       </div>
 

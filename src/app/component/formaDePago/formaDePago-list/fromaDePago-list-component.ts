@@ -23,8 +23,8 @@ export class FormaDePagoListComponent implements OnInit {
   }
   openDialogCreate() {
     this.formaDePagoDialogCreate = this.dialog.open(FormaDePagoCreateDialogComponent, {
-      height: '300px',
-      width: '450px',
+      height: '250px',
+      width: '400px',
       disableClose: true
     });
     this.formaDePagoDialogCreate

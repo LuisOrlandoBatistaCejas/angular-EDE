@@ -11,21 +11,21 @@
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #EmpresaRuc="ngModel" name="EmpresaRuc" id="EmpresaRuc" placeholder="Empresa Ruc" required>
+        <input matInput ngModel #EmpresaRuc="ngModel" name="EmpresaRuc" id="EmpresaRuc" placeholder="Empresa Ruc (select)" required>
         <mat-error *ngIf="!EmpresaRuc.valid && EmpresaRuc.touched">
           The content field is required
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #UsuarioId="ngModel" name="UsuarioId" id="UsuarioId" placeholder="Id del Usuario" required>
+        <input matInput ngModel #UsuarioId="ngModel" name="UsuarioId" id="UsuarioId" placeholder="Id del Usuario (select)" required>
         <mat-error *ngIf="!UsuarioId.valid && UsuarioId.touched">
           The content field is required
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #TipoCompId="ngModel" name="TipoCompId" id="TipoCompId" placeholder="Tipo Comp Id" required>
+        <input matInput ngModel #TipoCompId="ngModel" name="TipoCompId" id="TipoCompId" placeholder="Tipo Comp Id (select)" required>
         <mat-error *ngIf="!TipoCompId.valid && TipoCompId.touched">
           The content field is required
         </mat-error>
