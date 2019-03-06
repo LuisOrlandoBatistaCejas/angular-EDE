@@ -10,10 +10,10 @@ export class CancelacionService implements OnInit {
   ngOnInit() {
 
   }
-  getDocumento() {
+  getCancelaciones() {
     return this.http.get<[]>(this.urlCancelacion);
   }
-  createDocumento(cancelacion) {
+  createCancelacion(cancelacion) {
     return this.http.post(this.urlCancelacion, cancelacion);
   }
 }

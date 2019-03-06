@@ -49,6 +49,7 @@ import {DocumentoService} from './service/documento-service';
 import {CancelacionListComponent} from './component/cancelacion/cancelacion-list/cancelacion-list-component';
 import {CancelacionService} from './service/cancelacion-service';
 import {DocumentoCreateDialogComponent} from './dialog/documento/documento-create/documento-create-dialog';
+import {CancelacionCreateDialogComponent} from './dialog/cancelacion/cancelacion-create/cancelacion-create-dialog';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import {DocumentoCreateDialogComponent} from './dialog/documento/documento-creat
     VehiculoPersonaCreateDialogComponent,
     FormaDePagoCreateDialogComponent,
     IdentificationTypeCreateDialogComponent,
-    DocumentoCreateDialogComponent
+    DocumentoCreateDialogComponent,
+    CancelacionCreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,8 @@ import {DocumentoCreateDialogComponent} from './dialog/documento/documento-creat
     VehiculoPersonaCreateDialogComponent,
     FormaDePagoCreateDialogComponent,
     IdentificationTypeCreateDialogComponent,
-    DocumentoCreateDialogComponent
+    DocumentoCreateDialogComponent,
+    CancelacionCreateDialogComponent
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
