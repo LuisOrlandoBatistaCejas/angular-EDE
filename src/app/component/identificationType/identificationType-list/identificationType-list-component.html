@@ -1,5 +1,5 @@
 <div class="p-l-r-20">
-  <mat-nav-list>
+  <mat-nav-list *ngIf="!loading">
     <h3 matSubheader>Tipos de identificacion</h3>
     <a mat-list-item *ngFor="let item of identificationTypeList">
       <mat-icon matListIcon>fingerprint</mat-icon>
@@ -16,6 +16,10 @@
     </a>
     <mat-divider></mat-divider>
   </mat-nav-list>
+
+  <div *ngIf="loading" class="m-t-10-p" fxLayoutAlign="center center">
+    <mat-spinner strokeWidth="3" [diameter]="50"></mat-spinner>
+  </div>
 
   <div fxLayout="row" fxLayoutAlign="end center" class="button-add">
     <button (click)="openDialogCreate()" mat-raised-button color="primary">Adicionar</button>

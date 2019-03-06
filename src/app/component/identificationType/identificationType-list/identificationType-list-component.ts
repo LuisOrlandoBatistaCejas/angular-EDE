@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IdentificationTypeService } from '../../../service/identificationType-service';
 import {IdentificationTypeCreateDialogComponent} from '../../../dialog/identificationType/identificationType-create/identificationType-create-dialog';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -10,15 +10,22 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./identificationType-list-component.css']
 })
 export class IdentificationTypeListComponent implements OnInit {
+  loading = true;
   identificationTypeList: any[];
   identificationTypeDialogEdit: MatDialogRef<IdentificationTypeCreateDialogComponent>;
   identificationTypeDialogCreate: MatDialogRef<IdentificationTypeCreateDialogComponent>;
-  constructor(private idenTypeService: IdentificationTypeService, public dialog: MatDialog) {}
+  constructor(private snackBar: MatSnackBar, private idenTypeService: IdentificationTypeService, public dialog: MatDialog) {}
   ngOnInit() {
     this.idenTypeService.getTipoIdentificacion()
-      .subscribe(res => {
+      .subscribe(
+        res => {
         this.identificationTypeList = res;
-      });
+        this.loading = false;
+      },
+        (error) => {
+          this.loading = false;
+          this.snackBar.open(error, 'Cancelar');
+        });
   }
   openDialogCreate() {
     this.identificationTypeDialogCreate = this.dialog.open(IdentificationTypeCreateDialogComponent, {

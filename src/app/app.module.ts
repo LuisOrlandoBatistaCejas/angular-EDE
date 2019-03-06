@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Material
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 import { MaterialModule } from './app.material.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -104,6 +104,11 @@ import {CancelacionCreateDialogComponent} from './dialog/cancelacion/cancelacion
     CancelacionCreateDialogComponent
   ],
   providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'end',
+    }},
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
     IdentificationTypeService,
     PersonaService,
