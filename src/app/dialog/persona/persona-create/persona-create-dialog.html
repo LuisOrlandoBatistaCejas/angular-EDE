@@ -1,8 +1,10 @@
 <h2 mat-dialog-title>Crear Persona</h2>
+<!--<div *ngIf="loading" class="m-t-10-p" fxLayoutAlign="center center">
+  <mat-spinner strokeWidth="3" [diameter]="50"></mat-spinner>
+</div>-->
 <mat-dialog-content>
   <form #f="ngForm" class="example-form">
     <div fxLayout="column">
-
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="50" class="example-full-width">
           <input matInput ngModel #Identificacion="ngModel" name="Identificacion" id="Identificacion" placeholder="Identificacion" required>
@@ -32,7 +34,11 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field fxFlex="50" class="example-full-width">
+        <div fxFlex="50" *ngIf="loadingCancelacionIds" fxLayoutAlign="center center">
+          <mat-spinner strokeWidth="3" [diameter]="30"></mat-spinner>
+        </div>
+
+        <mat-form-field *ngIf="!loadingCancelacionIds" fxFlex="50" class="example-full-width">
           <input matInput ngModel #FormaCancId="ngModel" type="number" name="FormaCancId" id="FormaCancId" placeholder="FormaCancId (select)" required>
           <mat-error *ngIf="!FormaCancId.valid && FormaCancId.touched">
             The content field is required
@@ -84,16 +90,16 @@
           <input matInput ngModel #Telfonos="ngModel" name="Telfonos" id="Telfonos" placeholder="Teléfonos">
         </mat-form-field>
 
-        <mat-form-field fxFlex="50" class="example-full-width">
+        <div fxFlex="50" *ngIf="loadingIdenTypeIds" fxLayoutAlign="center center">
+          <mat-spinner strokeWidth="3" [diameter]="30"></mat-spinner>
+        </div>
+
+        <mat-form-field *ngIf="!loadingIdenTypeIds" fxFlex="50" class="example-full-width">
           <input matInput ngModel #TipoIdenId="ngModel" name="TipoIdenId" id="TipoIdenId" placeholder="TipoIdenId (select)" required>
         </mat-form-field>
       </div>
-
     </div>
-    <!--<div fxLayout="row" class="m-t-10" fxLayoutGap="10px" fxLayoutAlign="end center">-->
-      <!--<button mat-button [mat-dialog-close]>Cancelar</button>-->
-      <!--<button mat-raised-button color="primary" [disabled]="!f.valid" type="submit">Adicionar</button>-->
-    <!--</div>-->
+
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

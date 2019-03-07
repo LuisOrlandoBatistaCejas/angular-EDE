@@ -1,24 +1,48 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import {PersonaService} from '../../../service/persona-service';
+import {CancelacionService} from '../../../service/cancelacion-service';
+import {IdentificationTypeService} from '../../../service/identificationType-service';
 
 @Component({
   selector: 'app-persona-create-dialog',
   templateUrl: './persona-create-dialog.html',
   styleUrls: ['./persona-create-dialog.css']
 })
-export class PersonaCreateDialogComponent {
+export class PersonaCreateDialogComponent implements OnInit{
   @ViewChild('f') form: NgForm;
+  cancelacionIds: any[];
+  idenTypeIds: any[];
+  loadingCancelacionIds = true;
+  loadingIdenTypeIds = true;
   activo = true;
   persona: any;
   placas: any[];
   placa = '';
   identificacion = 'ident';
   constructor(
+    private idenTypeService: IdentificationTypeService,
+    private cancelacionService: CancelacionService,
     private dialogRef: MatDialogRef<PersonaCreateDialogComponent>,
     private personaService: PersonaService
   ) {}
+  ngOnInit() {
+    this.cancelacionService.getCancelaciones().subscribe(
+      res => {
+        // for (const it of res) {
+        //   this.cancelacionIds.push(it.id);
+        // }
+        this.loadingCancelacionIds = false;
+      });
+    this.idenTypeService.getTipoIdentificacion().subscribe(
+      res => {
+        // for (const it of res) {
+        //   this.idenTypeIds.push(it.id);
+        // }
+        this.loadingIdenTypeIds = false;
+      });
+  }
   onSubmit() {
     this.persona = this.form.value;
     this.persona.Activo = this.activo;
