@@ -33,13 +33,12 @@ export class PersonaCreateDialogComponent implements OnInit{
         // for (const it of res) {
         //   this.cancelacionIds.push(it.id);
         // }
+        this.cancelacionIds = res;
         this.loadingCancelacionIds = false;
       });
     this.idenTypeService.getTipoIdentificacion().subscribe(
       res => {
-        // for (const it of res) {
-        //   this.idenTypeIds.push(it.id);
-        // }
+        this.idenTypeIds = res;
         this.loadingIdenTypeIds = false;
       });
   }

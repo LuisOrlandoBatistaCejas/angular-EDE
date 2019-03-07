@@ -94,6 +94,14 @@
           <mat-spinner strokeWidth="3" [diameter]="30"></mat-spinner>
         </div>
 
+        <!--<mat-form-field *ngIf="!loadingIdenTypeIds" fxFlex="50">
+          <mat-select placeholder="Favorite food" name="TipoIdenId" id="TipoIdenId">
+            <mat-option *ngFor="let cancId of (loadingIdenTypeIds | async)" value="cancId.id">
+              {{cancId.id}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>-->
+
         <mat-form-field *ngIf="!loadingIdenTypeIds" fxFlex="50" class="example-full-width">
           <input matInput ngModel #TipoIdenId="ngModel" name="TipoIdenId" id="TipoIdenId" placeholder="TipoIdenId (select)" required>
         </mat-form-field>

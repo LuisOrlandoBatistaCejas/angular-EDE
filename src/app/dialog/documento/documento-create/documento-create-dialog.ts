@@ -10,7 +10,7 @@ import {DocumentoService} from '../../../service/documento-service';
 })
 export class DocumentoCreateDialogComponent {
   @ViewChild('f') form: NgForm;
-  empresa: any;
+  documento: any;
   venta = true;
   compra = true;
   constructor(
@@ -18,8 +18,10 @@ export class DocumentoCreateDialogComponent {
     private documentoService: DocumentoService
   ) {}
   onSubmit() {
-    this.empresa = this.form.value;
-    this.documentoService.createDocumento(this.empresa).subscribe(res => {
+    this.documento = this.form.value;
+    this.documento.Venta = this.venta;
+    this.documento.Compra = this.compra;
+    this.documentoService.createDocumento(this.documento).subscribe(res => {
       this.dialogRef.close(res);
     });
   }

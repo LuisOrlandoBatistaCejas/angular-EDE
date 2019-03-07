@@ -26,7 +26,7 @@ export class DocumentoListComponent implements OnInit {
   }
   openDialogCreate() {
     this.empresaDialogCreate = this.dialog.open(DocumentoCreateDialogComponent, {
-      height: '250px',
+      height: '330px',
       width: '400px',
       disableClose: true
     });

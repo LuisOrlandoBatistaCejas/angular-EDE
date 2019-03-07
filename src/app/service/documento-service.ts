@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class DocumentoService implements OnInit {
   //verificar url
-  urlDocumento = 'http://code.rociosoft.com:8000/api/documento';
+  urlDocumento = 'http://code.rociosoft.com:8000/api/tipo-doc';
   constructor(private http: HttpClient) {}
   ngOnInit() {
 

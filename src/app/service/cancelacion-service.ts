@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class CancelacionService implements OnInit {
   //verificar url
-  urlCancelacion = 'http://code.rociosoft.com:8000/api/cancelacion';
+  urlCancelacion = 'http://code.rociosoft.com:8000/api/forma-canc';
   constructor(private http: HttpClient) {}
   ngOnInit() {
 

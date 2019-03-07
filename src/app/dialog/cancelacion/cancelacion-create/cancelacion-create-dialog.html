@@ -19,15 +19,15 @@
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #Unidad="ngModel" type="number" name="Unidad" id="Unidad" placeholder="Unidad" required>
+        <input matInput ngModel #Unidad="ngModel" name="Unidad" id="Unidad" placeholder="Unidad" required>
         <mat-error *ngIf="!Unidad.valid && Unidad.touched">
           The content field is required
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #FormaPagoId_id="ngModel" name="FormaPagoId_id" id="FormaPagoId_id" placeholder="FormaPagoId_id (select)" required>
-        <mat-error *ngIf="!FormaPagoId_id.valid && FormaPagoId_id.touched">
+        <input matInput ngModel #FormaPagoId="ngModel" name="FormaPagoId" id="FormaPagoId" placeholder="FormaPagoId (select)" required>
+        <mat-error *ngIf="!FormaPagoId.valid && FormaPagoId.touched">
           The content field is required
         </mat-error>
       </mat-form-field>

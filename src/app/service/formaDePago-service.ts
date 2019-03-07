@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class FormaDePagoService implements OnInit {
   //Verificar url
-  urlFromaDePago = 'http://code.rociosoft.com:8000/api/forma-de-pago';
+  urlFromaDePago = 'http://code.rociosoft.com:8000/api/forma-pago';
   constructor(private http: HttpClient) {}
   ngOnInit() {
 

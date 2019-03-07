@@ -4,6 +4,13 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput ngModel #Id="ngModel" name="Id" id="Id" placeholder="Id" required>
+        <mat-error *ngIf="!Id.valid && Id.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="50" class="example-full-width">
         <input matInput ngModel #Documento="ngModel" name="Documento" id="Documento" placeholder="Tipo de documento" required>
         <mat-error *ngIf="!Documento.valid && Documento.touched">
           The content field is required

@@ -1,10 +1,11 @@
 <div class="p-l-r-20">
   <mat-nav-list>
     <h3 matSubheader>Formas de Cancelación</h3>
-    <a mat-list-item *ngFor="let documento of documentoList">
+    <a mat-list-item *ngFor="let cancelacion of cancelacionList">
       <mat-icon matListIcon>work</mat-icon>
-      <h3 matLine>ID: {{documento.Id}} </h3>
-      <p matLine class="demo-2"> Comprobante: {{documento.Comprobante}} </p>
+      <h3 matLine>ID: {{cancelacion.id}} </h3>
+      <p matLine class="demo-2"> Nombre: {{cancelacion.Nombre}} </p>
+      <p matLine class="demo-2"> Unidad: {{cancelacion.Unidad}} </p>
       <div fxLayout="row" fxLayoutGap="20px">
         <button mat-icon-button>
           <mat-icon (click)="openDialogEdit()">edit</mat-icon>
