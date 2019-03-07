@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioDetaService } from '../../../service/usuarioDeta-service';
 import {UsuarioDetaCreateDialogComponent} from '../../../dialog/usuarioDeta/usuarioDeta-create/usuarioDeta-create-dialog';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -10,14 +10,18 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./usuarioDeta-list-component.css']
 })
 export class UsuarioDetaListComponent implements OnInit {
+  loading = true;
   usuarioDetaList: any[];
   usuarioDetaDialogEdit: MatDialogRef<UsuarioDetaCreateDialogComponent>;
   usuarioDetaDialogCreate: MatDialogRef<UsuarioDetaCreateDialogComponent>;
-  constructor(private usuarioDetaService: UsuarioDetaService, public dialog: MatDialog) {}
+  constructor(private snackBar: MatSnackBar, private usuarioDetaService: UsuarioDetaService, public dialog: MatDialog) {}
   ngOnInit() {
     this.usuarioDetaService.getUsuariosDeta().subscribe(res => {
       this.usuarioDetaList = res;
-    });
+      this.loading = false;
+    },
+      error => this.loading = false
+    );
   }
   openDialogCreate() {
     this.usuarioDetaDialogCreate = this.dialog.open(UsuarioDetaCreateDialogComponent, {
@@ -30,6 +34,7 @@ export class UsuarioDetaListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(usuarioDeta => {
         this.usuarioDetaList.push(usuarioDeta);
+        this.snackBar.open('Usuario-Deta creado');
       });
   }
 }

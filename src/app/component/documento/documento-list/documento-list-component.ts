@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import {DocumentoService} from '../../../service/documento-service';
 import {DocumentoCreateDialogComponent} from '../../../dialog/documento/documento-create/documento-create-dialog';
 
@@ -10,15 +10,18 @@ import {DocumentoCreateDialogComponent} from '../../../dialog/documento/document
   styleUrls: ['./documento-list-component.css']
 })
 export class DocumentoListComponent implements OnInit {
+  loading = true;
   documentoList: any[];
   empresaDialogEdit: MatDialogRef<DocumentoCreateDialogComponent>;
   empresaDialogCreate: MatDialogRef<DocumentoCreateDialogComponent>;
-  constructor(private documentoService: DocumentoService, public dialog: MatDialog) {}
+  constructor(private snackBar: MatSnackBar, private documentoService: DocumentoService, public dialog: MatDialog) {}
   ngOnInit() {
     this.documentoService.getDocumento().subscribe(
       res => {
         this.documentoList = res;
-      }
+        this.loading = false;
+      },
+      error => this.loading = false
     );
   }
   openDialogCreate() {
@@ -32,6 +35,7 @@ export class DocumentoListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(documento => {
         this.documentoList.push(documento);
+        this.snackBar.open('Tipo de documento creado');
       });
   }
 }

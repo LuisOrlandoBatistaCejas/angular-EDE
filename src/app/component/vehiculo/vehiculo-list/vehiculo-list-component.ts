@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VehiculoService } from '../../../service/vehiculo-service';
 import {VehiculoCreateDialogComponent} from '../../../dialog/vehiculo/vehiculo-create/vehiculo-create-dialog';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -10,14 +10,18 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./vehiculo-list-component.css']
 })
 export class VehiculoListComponent implements OnInit {
+  loading = true;
   vehiculoList: any[];
   vehiculoDialogEdit: MatDialogRef<VehiculoCreateDialogComponent>;
   vehiculoDialogCreate: MatDialogRef<VehiculoCreateDialogComponent>;
-  constructor(private vehiculoService: VehiculoService, public dialog: MatDialog) {}
+  constructor(private snackBar: MatSnackBar, private vehiculoService: VehiculoService, public dialog: MatDialog) {}
   ngOnInit() {
     this.vehiculoService.getVehiculos().subscribe(res => {
       this.vehiculoList = res;
-    });
+      this.loading = false;
+    },
+      error => this.loading = false
+    );
   }
   openDialogCreate() {
     this.vehiculoDialogCreate = this.dialog.open(VehiculoCreateDialogComponent, {
@@ -30,6 +34,7 @@ export class VehiculoListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(vehiculo => {
         this.vehiculoList.push(vehiculo);
+        this.snackBar.open('Vehículo creado');
       });
   }
 }

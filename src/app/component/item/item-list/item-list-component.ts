@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../../service/item-service';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { filter } from 'rxjs/operators';
 import {ItemCreateDialogComponent} from '../../../dialog/item/item-create/item-create-dialog';
 
@@ -10,15 +10,18 @@ import {ItemCreateDialogComponent} from '../../../dialog/item/item-create/item-c
   styleUrls: ['./item-list-component.css']
 })
 export class ItemListComponent implements OnInit {
+  loading = true;
   itemList: any[];
   itemDialogEdit: MatDialogRef<ItemCreateDialogComponent>;
   itemDialogCreate: MatDialogRef<ItemCreateDialogComponent>;
-  constructor(private itemService: ItemService, public dialog: MatDialog) {}
+  constructor(private snackBar: MatSnackBar, private itemService: ItemService, public dialog: MatDialog) {}
   ngOnInit() {
     this.itemService.getItems().subscribe(
       res => {
         this.itemList = res;
-      }
+        this.loading = false;
+      },
+      error => this.loading = false
     );
   }
   openDialogCreate() {
@@ -32,6 +35,7 @@ export class ItemListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(usuarioDeta => {
         this.itemList.push(usuarioDeta);
+        this.snackBar.open('Item creado');
       });
   }
 }

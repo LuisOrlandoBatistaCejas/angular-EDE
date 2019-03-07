@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { PersonaService } from '../../../service/persona-service';
 import {PersonaCreateDialogComponent} from '../../../dialog/persona/persona-create/persona-create-dialog';
 // import { HttpClient } from '@angular/common/http';
@@ -11,14 +11,18 @@ import {PersonaCreateDialogComponent} from '../../../dialog/persona/persona-crea
   styleUrls: ['./persona-list-component.css']
 })
 export class PersonaListComponent implements OnInit {
+  loading = true;
   personaList: any[];
   personaDialogEdit: MatDialogRef<PersonaCreateDialogComponent>;
   personaDialogCreate: MatDialogRef<PersonaCreateDialogComponent>;
-  constructor(private personaService: PersonaService, public dialog: MatDialog) {}
+  constructor(private snackBar: MatSnackBar, private personaService: PersonaService, public dialog: MatDialog) {}
   ngOnInit() {
     this.personaService.getPersonas().subscribe(res => {
       this.personaList = res;
-    });
+      this.loading = false;
+    },
+      error => this.loading = false
+    );
   }
   openDialogCreate() {
     this.personaDialogCreate = this.dialog.open(PersonaCreateDialogComponent, {
@@ -30,8 +34,8 @@ export class PersonaListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(persona => {
-        // comprobante.id = this.asigId();
         this.personaList.push(persona);
+        this.snackBar.open('Persona creada');
       });
   }
   openDialogEdit(item) {

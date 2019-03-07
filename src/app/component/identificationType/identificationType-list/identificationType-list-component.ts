@@ -22,10 +22,9 @@ export class IdentificationTypeListComponent implements OnInit {
         this.identificationTypeList = res;
         this.loading = false;
       },
-        (error) => {
-          this.loading = false;
-          this.snackBar.open(error, 'Cancelar');
-        });
+      (error) => {
+        this.loading = false;
+      });
   }
   openDialogCreate() {
     this.identificationTypeDialogCreate = this.dialog.open(IdentificationTypeCreateDialogComponent, {
@@ -38,6 +37,7 @@ export class IdentificationTypeListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(identificationType => {
         this.identificationTypeList.push(identificationType);
+        this.snackBar.open('Tipo de Identificación Creado');
       });
   }
 }

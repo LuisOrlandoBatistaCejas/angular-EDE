@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormaDePagoService} from '../../../service/formaDePago-service';
 import {FormaDePagoCreateDialogComponent} from '../../../dialog/formaDePago/formaDePago-create/formaDePago-create-dialog';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -10,15 +10,18 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./fromaDePago-list-component.css']
 })
 export class FormaDePagoListComponent implements OnInit {
+  loading = true;
   formaDePagoList: any[];
   formaDePagoDialogEdit: MatDialogRef<FormaDePagoCreateDialogComponent>;
   formaDePagoDialogCreate: MatDialogRef<FormaDePagoCreateDialogComponent>;
-  constructor(private formaDePagoService: FormaDePagoService, public dialog: MatDialog) {}
+  constructor(private snackBar: MatSnackBar, private formaDePagoService: FormaDePagoService, public dialog: MatDialog) {}
   ngOnInit() {
     this.formaDePagoService.getFormaDePagos().subscribe(
       res => {
         this.formaDePagoList = res;
-      }
+        this.loading = false;
+      },
+      error => this.loading = false
     );
   }
   openDialogCreate() {
@@ -32,6 +35,7 @@ export class FormaDePagoListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(formaDePago => {
         this.formaDePagoList.push(formaDePago);
+        this.snackBar.open('Forma de pago creada');
       });
   }
 }

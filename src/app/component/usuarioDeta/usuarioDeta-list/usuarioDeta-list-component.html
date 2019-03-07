@@ -3,9 +3,9 @@
     <h3 matSubheader>Usuarios Deta</h3>
     <a mat-list-item *ngFor="let userDeta of usuarioDetaList">
       <mat-icon matListIcon>local_library</mat-icon>
-      <h3 matLine> {{userDeta.serie}} </h3>
-      <p matLine class="demo-2"> {{userDeta.empresaRuc}} </p>
-      <p matLine class="demo-2"> {{userDeta.tipoCompId}} </p>
+      <h3 matLine> Codigo: {{userDeta.Codigo}} </h3>
+      <p matLine class="demo-2"> Empresa: {{userDeta.EmpresaRuc}} </p>
+      <p matLine class="demo-2"> Id del Tipo de Documento: {{userDeta.TipoDocId}} </p>
       <div fxLayout="row" fxLayoutGap="20px">
         <button mat-icon-button>
           <mat-icon (click)="openDialogEdit()">edit</mat-icon>

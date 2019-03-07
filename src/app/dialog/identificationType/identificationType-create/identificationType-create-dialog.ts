@@ -10,14 +10,14 @@ import {IdentificationTypeService} from '../../../service/identificationType-ser
 })
 export class IdentificationTypeCreateDialogComponent {
   @ViewChild('f') form: NgForm;
-  IdentificationType: any;
+  identificationType: any;
   constructor(
     private dialogRef: MatDialogRef<IdentificationTypeCreateDialogComponent>,
     private identificationTypeService: IdentificationTypeService
   ) {}
   onSubmit() {
-    this.IdentificationType = this.form.value;
-    this.identificationTypeService.createIdentificationType(this.IdentificationType).subscribe(res => {
+    this.identificationType = this.form.value;
+    this.identificationTypeService.createIdentificationType(this.identificationType).subscribe(res => {
       this.dialogRef.close(res);
     }, (error) => {
       console.log('Error!!', error.message);

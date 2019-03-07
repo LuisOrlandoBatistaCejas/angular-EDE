@@ -4,8 +4,8 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #Serie="ngModel" name="Serie" id="Serie" placeholder="Serie" required>
-        <mat-error *ngIf="!Serie.valid && Serie.touched">
+        <input matInput ngModel #Codigo="ngModel" name="Codigo" id="Codigo" placeholder="Código" required>
+        <mat-error *ngIf="!Codigo.valid && Codigo.touched">
           The content field is required
         </mat-error>
       </mat-form-field>
@@ -18,15 +18,15 @@
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #UsuarioId="ngModel" name="UsuarioId" id="UsuarioId" placeholder="Id del Usuario (select)" required>
+        <input matInput ngModel #UsuarioId="ngModel" type="number" name="UsuarioId" id="UsuarioId" placeholder="Id del Usuario (select)" required>
         <mat-error *ngIf="!UsuarioId.valid && UsuarioId.touched">
           The content field is required
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #TipoCompId="ngModel" name="TipoCompId" id="TipoCompId" placeholder="Tipo Comp Id (select)" required>
-        <mat-error *ngIf="!TipoCompId.valid && TipoCompId.touched">
+        <input matInput ngModel #TipoDocId="ngModel" name="TipoDocId" id="TipoDocId" placeholder="Tipo Doc Id (select)" required>
+        <mat-error *ngIf="!TipoDocId.valid && TipoDocId.touched">
           The content field is required
         </mat-error>
       </mat-form-field>
