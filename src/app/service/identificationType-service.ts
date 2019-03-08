@@ -22,4 +22,7 @@ export class IdentificationTypeService implements OnInit {
   createIdentificationType(identificationType) {
     return this.http.post(this.urlIdenType, identificationType);
   }
+  editIdentificationType(identificationType) {
+    return this.http.put(this.urlIdenType, identificationType);
+  }
 }

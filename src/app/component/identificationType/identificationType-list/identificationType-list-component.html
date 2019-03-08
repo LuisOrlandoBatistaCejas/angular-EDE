@@ -7,10 +7,10 @@
       <p matLine class="demo-2"> Tipo: {{item.Tipo}} </p>
       <div fxLayout="row" fxLayoutGap="20px">
         <button mat-icon-button>
-          <mat-icon (click)="openDialogEdit()">edit</mat-icon>
+          <mat-icon (click)="openDialogEdit(item)">edit</mat-icon>
         </button>
         <button mat-icon-button>
-          <mat-icon (click)="delete()">delete</mat-icon>
+          <mat-icon (click)="delete(item)">delete</mat-icon>
         </button>
       </div>
     </a>

@@ -50,6 +50,7 @@ import {CancelacionListComponent} from './component/cancelacion/cancelacion-list
 import {CancelacionService} from './service/cancelacion-service';
 import {DocumentoCreateDialogComponent} from './dialog/documento/documento-create/documento-create-dialog';
 import {CancelacionCreateDialogComponent} from './dialog/cancelacion/cancelacion-create/cancelacion-create-dialog';
+import {IdentificationTypeEditDialogComponent} from './dialog/identificationType/identificationType-edit/identificationType-edit-dialog';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,9 @@ import {CancelacionCreateDialogComponent} from './dialog/cancelacion/cancelacion
     FormaDePagoCreateDialogComponent,
     IdentificationTypeCreateDialogComponent,
     DocumentoCreateDialogComponent,
-    CancelacionCreateDialogComponent
+    CancelacionCreateDialogComponent,
+    //Edit
+    IdentificationTypeEditDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +104,9 @@ import {CancelacionCreateDialogComponent} from './dialog/cancelacion/cancelacion
     FormaDePagoCreateDialogComponent,
     IdentificationTypeCreateDialogComponent,
     DocumentoCreateDialogComponent,
-    CancelacionCreateDialogComponent
+    CancelacionCreateDialogComponent,
+    //Edit
+    IdentificationTypeEditDialogComponent
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {

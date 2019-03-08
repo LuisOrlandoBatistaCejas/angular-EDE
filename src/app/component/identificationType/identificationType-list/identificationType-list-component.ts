@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IdentificationTypeService } from '../../../service/identificationType-service';
 import {IdentificationTypeCreateDialogComponent} from '../../../dialog/identificationType/identificationType-create/identificationType-create-dialog';
+import {IdentificationTypeEditDialogComponent} from '../../../dialog/identificationType/identificationType-edit/identificationType-edit-dialog';
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { filter } from 'rxjs/operators';
 
@@ -12,10 +13,11 @@ import { filter } from 'rxjs/operators';
 export class IdentificationTypeListComponent implements OnInit {
   loading = true;
   identificationTypeList: any[];
-  identificationTypeDialogEdit: MatDialogRef<IdentificationTypeCreateDialogComponent>;
+  identificationTypeDialogEdit: MatDialogRef<IdentificationTypeEditDialogComponent>;
   identificationTypeDialogCreate: MatDialogRef<IdentificationTypeCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private idenTypeService: IdentificationTypeService, public dialog: MatDialog) {}
   ngOnInit() {
+    // this.identificationTypeList.push({Id: '01', Tipo: 'Tipo de Inde'});
     this.idenTypeService.getTipoIdentificacion()
       .subscribe(
         res => {
@@ -38,6 +40,21 @@ export class IdentificationTypeListComponent implements OnInit {
       .subscribe(identificationType => {
         this.identificationTypeList.push(identificationType);
         this.snackBar.open('Tipo de Identificación Creado');
+      });
+  }
+  openDialogEdit(item) {
+    this.identificationTypeDialogEdit = this.dialog.open(IdentificationTypeEditDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: item
+    });
+
+    this.identificationTypeDialogEdit
+      .afterClosed()
+      .pipe(filter(name => name))
+      .subscribe(idenType => {
+        const index = this.identificationTypeList.findIndex(object => object.Id === idenType.Id && object.Tipo === idenType.Tipo);
+        this.identificationTypeList[index] = idenType;
       });
   }
 }
