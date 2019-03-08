@@ -44,8 +44,8 @@ export class IdentificationTypeListComponent implements OnInit {
   }
   openDialogEdit(item) {
     this.identificationTypeDialogEdit = this.dialog.open(IdentificationTypeEditDialogComponent, {
-      height: '500px',
-      width: '600px',
+      height: '300px',
+      width: '400px',
       data: item
     });
 

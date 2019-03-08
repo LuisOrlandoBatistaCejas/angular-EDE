@@ -4,7 +4,7 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput [ngModel]="idenType.Id" #Id="ngModel" name="Id" id="Id" required>
+        <input matInput [ngModel]="idenType.Id" #Id="ngModel" name="Id" id="Id" placeholder="Id" required>
         <mat-error *ngIf="!Id.valid && Id.touched">
           The content field is required
         </mat-error>
