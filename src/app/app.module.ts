@@ -7,12 +7,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//Material
-import { MAT_DIALOG_DEFAULT_OPTIONS, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
+// Material
+import {MAT_DIALOG_DEFAULT_OPTIONS, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material';
 import { MaterialModule } from './app.material.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-//Components
+// Components
 import {IdentificationTypeListComponent} from './component/identificationType/identificationType-list/identificationType-list-component';
 import {PersonaListComponent} from './component/persona/persona-list/persona-list-component';
 import {EmpresaListComponent} from './component/empresa/empresa-list/empresa-list-component';
@@ -43,7 +43,9 @@ import {ItemCreateDialogComponent} from './dialog/item/item-create/item-create-d
 import {VehiculoCreateDialogComponent} from './dialog/vehiculo/vehiculo-create/vehiculo-create-dialog';
 import {VehiculoPersonaCreateDialogComponent} from './dialog/vehiculoPersona/vehiculoPersona-create/vehiculoPersona-create-dialog';
 import {FormaDePagoCreateDialogComponent} from './dialog/formaDePago/formaDePago-create/formaDePago-create-dialog';
-import {IdentificationTypeCreateDialogComponent} from './dialog/identificationType/identificationType-create/identificationType-create-dialog';
+import {
+  IdentificationTypeCreateDialogComponent
+} from './dialog/identificationType/identificationType-create/identificationType-create-dialog';
 import {DocumentoListComponent} from './component/documento/documento-list/documento-list-component';
 import {DocumentoService} from './service/documento-service';
 import {CancelacionListComponent} from './component/cancelacion/cancelacion-list/cancelacion-list-component';
@@ -68,7 +70,7 @@ import {IdentificationTypeEditDialogComponent} from './dialog/identificationType
     FormaDePagoListComponent,
     DocumentoListComponent,
     CancelacionListComponent,
-    //dialogs
+    // dialogs
     PersonaCreateDialogComponent,
     EmpresaCreateDialogComponent,
     UsuarioCreateDialogComponent,
@@ -80,7 +82,7 @@ import {IdentificationTypeEditDialogComponent} from './dialog/identificationType
     IdentificationTypeCreateDialogComponent,
     DocumentoCreateDialogComponent,
     CancelacionCreateDialogComponent,
-    //Edit
+    // Edit
     IdentificationTypeEditDialogComponent
   ],
   imports: [
@@ -105,7 +107,7 @@ import {IdentificationTypeEditDialogComponent} from './dialog/identificationType
     IdentificationTypeCreateDialogComponent,
     DocumentoCreateDialogComponent,
     CancelacionCreateDialogComponent,
-    //Edit
+    // Edit
     IdentificationTypeEditDialogComponent
   ],
   providers: [
@@ -115,6 +117,10 @@ import {IdentificationTypeEditDialogComponent} from './dialog/identificationType
       horizontalPosition: 'end',
     }},
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
+    {
+      provide: 'API_URL',
+      useValue: 'http://code.rociosoft.com:8000/'
+    },
     IdentificationTypeService,
     PersonaService,
     EmpresaService,

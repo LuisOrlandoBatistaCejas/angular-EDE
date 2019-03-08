@@ -16,7 +16,7 @@ export class VehiculoPersonaListComponent implements OnInit {
   vehiculoPersonaDialogCreate: MatDialogRef<VehiculoPersonaCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private vehiculoPersonaService: VehiculoPersonaService, public dialog: MatDialog) {}
   ngOnInit() {
-    this.vehiculoPersonaService.getVehiculoPersona().subscribe(res => {
+    this.vehiculoPersonaService.list().subscribe(res => {
       this.vehiculoPersonaList = res;
       this.loading = false;
     },

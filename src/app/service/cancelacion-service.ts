@@ -1,19 +1,14 @@
 import { Injectable, EventEmitter, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {HttpService} from './http.service';
+import {ApiService} from './api.service';
 
 @Injectable()
-export class CancelacionService implements OnInit {
-  //verificar url
-  urlCancelacion = 'http://code.rociosoft.com:8000/api/forma-canc';
-  constructor(private http: HttpClient) {}
-  ngOnInit() {
-
-  }
-  getCancelaciones() {
-    return this.http.get<[]>(this.urlCancelacion);
-  }
-  createCancelacion(cancelacion) {
-    return this.http.post(this.urlCancelacion, cancelacion);
+export class CancelacionService extends ApiService {
+  url: string;
+  constructor(protected http: HttpService) {
+    super(http);
+    this.url = 'api/cancelacion';
   }
 }

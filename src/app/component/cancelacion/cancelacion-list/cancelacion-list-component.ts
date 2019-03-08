@@ -16,7 +16,7 @@ export class CancelacionListComponent implements OnInit {
   cancelacionDialogCreate: MatDialogRef<CancelacionCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private cancelacionService: CancelacionService, public dialog: MatDialog) {}
   ngOnInit() {
-    this.cancelacionService.getCancelaciones().subscribe(
+    this.cancelacionService.list().subscribe(
       res => {
         this.cancelacionList = res;
         this.loading = false;

@@ -17,7 +17,7 @@ export class FormaDePagoCreateDialogComponent {
   ) {}
   onSubmit() {
     this.formaDePago = this.form.value;
-    this.formaDePagoService.createFormaDePago(this.formaDePago).subscribe(res => {
+    this.formaDePagoService.create(this.formaDePago).subscribe(res => {
       this.dialogRef.close(res);
     }, (error) => {
       console.log('Error!!', error.message);

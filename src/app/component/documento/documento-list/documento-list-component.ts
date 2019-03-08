@@ -16,7 +16,7 @@ export class DocumentoListComponent implements OnInit {
   empresaDialogCreate: MatDialogRef<DocumentoCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private documentoService: DocumentoService, public dialog: MatDialog) {}
   ngOnInit() {
-    this.documentoService.getDocumento().subscribe(
+    this.documentoService.list().subscribe(
       res => {
         this.documentoList = res;
         this.loading = false;

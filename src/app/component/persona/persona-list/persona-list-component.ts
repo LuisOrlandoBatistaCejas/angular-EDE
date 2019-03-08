@@ -17,7 +17,7 @@ export class PersonaListComponent implements OnInit {
   personaDialogCreate: MatDialogRef<PersonaCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private personaService: PersonaService, public dialog: MatDialog) {}
   ngOnInit() {
-    this.personaService.getPersonas().subscribe(res => {
+    this.personaService.list().subscribe(res => {
       this.personaList = res;
       this.loading = false;
     },

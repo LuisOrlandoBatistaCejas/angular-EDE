@@ -1,18 +1,14 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, EventEmitter, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {HttpService} from './http.service';
+import {ApiService} from './api.service';
 
 @Injectable()
-export class VehiculoService implements OnInit {
-  urlVehiculos = 'http://code.rociosoft.com:8000/api/vehiculo';
-  constructor(private http: HttpClient) {}
-  ngOnInit() {
-
-  }
-  getVehiculos() {
-    return this.http.get<[]>(this.urlVehiculos);
-  }
-  createVehiculo(vehiculo) {
-    return this.http.post(this.urlVehiculos, vehiculo);
+export class VehiculoService extends ApiService {
+  url: string;
+  constructor(protected http: HttpService) {
+    super(http);
+    this.url = 'api/vehiculo';
   }
 }

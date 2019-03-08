@@ -16,7 +16,7 @@ export class UsuarioDetaListComponent implements OnInit {
   usuarioDetaDialogCreate: MatDialogRef<UsuarioDetaCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private usuarioDetaService: UsuarioDetaService, public dialog: MatDialog) {}
   ngOnInit() {
-    this.usuarioDetaService.getUsuariosDeta().subscribe(res => {
+    this.usuarioDetaService.list().subscribe(res => {
       this.usuarioDetaList = res;
       this.loading = false;
     },

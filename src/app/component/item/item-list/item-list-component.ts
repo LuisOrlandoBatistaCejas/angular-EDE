@@ -16,7 +16,7 @@ export class ItemListComponent implements OnInit {
   itemDialogCreate: MatDialogRef<ItemCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private itemService: ItemService, public dialog: MatDialog) {}
   ngOnInit() {
-    this.itemService.getItems().subscribe(
+    this.itemService.list().subscribe(
       res => {
         this.itemList = res;
         this.loading = false;

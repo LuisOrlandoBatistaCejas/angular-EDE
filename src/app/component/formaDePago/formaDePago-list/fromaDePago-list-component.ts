@@ -16,7 +16,7 @@ export class FormaDePagoListComponent implements OnInit {
   formaDePagoDialogCreate: MatDialogRef<FormaDePagoCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private formaDePagoService: FormaDePagoService, public dialog: MatDialog) {}
   ngOnInit() {
-    this.formaDePagoService.getFormaDePagos().subscribe(
+    this.formaDePagoService.list().subscribe(
       res => {
         this.formaDePagoList = res;
         this.loading = false;

@@ -17,7 +17,7 @@ export class VehiculoCreateDialogComponent {
   ) {}
   onSubmit() {
     this.vehiculo = this.form.value;
-    this.vehiculoService.createVehiculo(this.vehiculo).subscribe(res => {
+    this.vehiculoService.create(this.vehiculo).subscribe(res => {
       this.dialogRef.close(res);
     }, (error) => {
       console.log(error.message);

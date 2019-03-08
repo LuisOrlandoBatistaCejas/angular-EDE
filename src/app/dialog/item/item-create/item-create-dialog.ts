@@ -30,7 +30,7 @@ export class ItemCreateDialogComponent {
     this.item = this.form.value;
     this.item.Venta = this.venta;
     this.item.Compra = this.compra;
-    this.itemService.createItem(this.item).subscribe(res => {
+    this.itemService.create(this.item).subscribe(res => {
       this.dialogRef.close(res);
     }, (error) => {
       console.log(error.message);

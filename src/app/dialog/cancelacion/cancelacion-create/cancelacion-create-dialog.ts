@@ -17,7 +17,7 @@ export class CancelacionCreateDialogComponent {
   ) {}
   onSubmit() {
     this.cancelacion = this.form.value;
-    this.cancelacionService.createCancelacion(this.cancelacion).subscribe(res => {
+    this.cancelacionService.create(this.cancelacion).subscribe(res => {
       this.dialogRef.close(res);
     });
   }

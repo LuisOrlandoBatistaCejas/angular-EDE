@@ -21,7 +21,7 @@ export class DocumentoCreateDialogComponent {
     this.documento = this.form.value;
     this.documento.Venta = this.venta;
     this.documento.Compra = this.compra;
-    this.documentoService.createDocumento(this.documento).subscribe(res => {
+    this.documentoService.create(this.documento).subscribe(res => {
       this.dialogRef.close(res);
     });
   }

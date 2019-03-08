@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { IdentificationTypeService } from '../../../service/identificationType-service';
-import {IdentificationTypeCreateDialogComponent} from '../../../dialog/identificationType/identificationType-create/identificationType-create-dialog';
-import {IdentificationTypeEditDialogComponent} from '../../../dialog/identificationType/identificationType-edit/identificationType-edit-dialog';
+import {
+  IdentificationTypeCreateDialogComponent
+} from '../../../dialog/identificationType/identificationType-create/identificationType-create-dialog';
+import {
+  IdentificationTypeEditDialogComponent
+} from '../../../dialog/identificationType/identificationType-edit/identificationType-edit-dialog';
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { filter } from 'rxjs/operators';
 
@@ -17,10 +21,8 @@ export class IdentificationTypeListComponent implements OnInit {
   identificationTypeDialogCreate: MatDialogRef<IdentificationTypeCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private idenTypeService: IdentificationTypeService, public dialog: MatDialog) {}
   ngOnInit() {
-    // this.identificationTypeList.push({Id: '01', Tipo: 'Tipo de Inde'});
-    this.idenTypeService.getTipoIdentificacion()
-      .subscribe(
-        res => {
+    this.idenTypeService.list()
+      .subscribe(res => {
         this.identificationTypeList = res;
         this.loading = false;
       },
@@ -42,6 +44,7 @@ export class IdentificationTypeListComponent implements OnInit {
         this.snackBar.open('Tipo de Identificación Creado');
       });
   }
+
   openDialogEdit(item) {
     this.identificationTypeDialogEdit = this.dialog.open(IdentificationTypeEditDialogComponent, {
       height: '300px',

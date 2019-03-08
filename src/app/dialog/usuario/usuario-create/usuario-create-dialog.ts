@@ -21,7 +21,7 @@ export class UsuarioCreateDialogComponent {
   onSubmit() {
     this.usuario = this.form.value;
     // this.usuario.Activo = this.activo;
-    this.usuarioService.createUsuario(this.usuario).subscribe(res => {
+    this.usuarioService.create(this.usuario).subscribe(res => {
       this.dialogRef.close(res);
     }, (error) => {
       console.log(error.message);

@@ -16,7 +16,7 @@ export class EmpresaListComponent implements OnInit {
   empresaDialogCreate: MatDialogRef<EmpresaCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private empresaService: EmpresaService, public dialog: MatDialog) {}
   ngOnInit() {
-    this.empresaService.getEmpresas().subscribe(
+    this.empresaService.list().subscribe(
       res => {
         this.empresaList = res;
         this.loading = false;

@@ -28,7 +28,7 @@ export class PersonaCreateDialogComponent implements OnInit{
     private personaService: PersonaService
   ) {}
   ngOnInit() {
-    this.cancelacionService.getCancelaciones().subscribe(
+    this.cancelacionService.list().subscribe(
       res => {
         // for (const it of res) {
         //   this.cancelacionIds.push(it.id);
@@ -36,7 +36,7 @@ export class PersonaCreateDialogComponent implements OnInit{
         this.cancelacionIds = res;
         this.loadingCancelacionIds = false;
       });
-    this.idenTypeService.getTipoIdentificacion().subscribe(
+    this.idenTypeService.list().subscribe(
       res => {
         this.idenTypeIds = res;
         this.loadingIdenTypeIds = false;
@@ -46,7 +46,7 @@ export class PersonaCreateDialogComponent implements OnInit{
     this.persona = this.form.value;
     this.persona.Activo = this.activo;
     this.persona.Placa = this.transformPlaca(this.persona.Placa);
-    this.personaService.createPersona(this.persona).subscribe(res => {
+    this.personaService.create(this.persona).subscribe(res => {
       this.dialogRef.close(res);
     });
   }
