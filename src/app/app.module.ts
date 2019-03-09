@@ -53,6 +53,15 @@ import {CancelacionService} from './service/cancelacion-service';
 import {DocumentoCreateDialogComponent} from './dialog/documento/documento-create/documento-create-dialog';
 import {CancelacionCreateDialogComponent} from './dialog/cancelacion/cancelacion-create/cancelacion-create-dialog';
 import {IdentificationTypeEditDialogComponent} from './dialog/identificationType/identificationType-edit/identificationType-edit-dialog';
+import {PersonaEditDialogComponent} from './dialog/persona/persona-edit/persona-edit-dialog';
+import {EmpresaEditDialogComponent} from './dialog/empresa/empresa-edit/empresa-edit-dialog';
+import {ConfirmDeleteDialogComponent} from './dialog/confirm-delete/confirm-delete-dialog';
+import {UsuarioDetaEditDialogComponent} from './dialog/usuarioDeta/usuarioDeta-edit/usuarioDeta-edit-dialog';
+import {ItemEditDialogComponent} from './dialog/item/item-edit/item-edit-dialog';
+import {VehiculoEditDialogComponent} from './dialog/vehiculo/vehiculo-edit/vehiculo-edit-dialog';
+import {FormDePagoEditDialogComponent} from './dialog/formaDePago/formDePago-edit/formaDePago-edit-dialog';
+import {DocumentoEditDialogComponent} from './dialog/documento/documento-edit/documento-edit-dialog';
+import {CancelacionEditDialogComponent} from './dialog/cancelacion/cancelacion-edit/cancelacion-edit-dialog';
 
 @NgModule({
   declarations: [
@@ -71,6 +80,7 @@ import {IdentificationTypeEditDialogComponent} from './dialog/identificationType
     DocumentoListComponent,
     CancelacionListComponent,
     // dialogs
+    ConfirmDeleteDialogComponent,
     PersonaCreateDialogComponent,
     EmpresaCreateDialogComponent,
     UsuarioCreateDialogComponent,
@@ -83,7 +93,15 @@ import {IdentificationTypeEditDialogComponent} from './dialog/identificationType
     DocumentoCreateDialogComponent,
     CancelacionCreateDialogComponent,
     // Edit
-    IdentificationTypeEditDialogComponent
+    IdentificationTypeEditDialogComponent,
+    PersonaEditDialogComponent,
+    EmpresaEditDialogComponent,
+    UsuarioDetaEditDialogComponent,
+    ItemEditDialogComponent,
+    VehiculoEditDialogComponent,
+    FormDePagoEditDialogComponent,
+    DocumentoEditDialogComponent,
+    CancelacionEditDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +114,9 @@ import {IdentificationTypeEditDialogComponent} from './dialog/identificationType
     MaterialModule
   ],
   entryComponents: [
+    //Generic
+    ConfirmDeleteDialogComponent,
+    //Resource
     PersonaCreateDialogComponent,
     EmpresaCreateDialogComponent,
     UsuarioCreateDialogComponent,
@@ -108,7 +129,15 @@ import {IdentificationTypeEditDialogComponent} from './dialog/identificationType
     DocumentoCreateDialogComponent,
     CancelacionCreateDialogComponent,
     // Edit
-    IdentificationTypeEditDialogComponent
+    IdentificationTypeEditDialogComponent,
+    PersonaEditDialogComponent,
+    EmpresaEditDialogComponent,
+    UsuarioDetaEditDialogComponent,
+    ItemEditDialogComponent,
+    VehiculoEditDialogComponent,
+    FormDePagoEditDialogComponent,
+    DocumentoEditDialogComponent,
+    CancelacionEditDialogComponent
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {

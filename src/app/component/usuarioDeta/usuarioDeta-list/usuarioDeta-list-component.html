@@ -8,10 +8,10 @@
       <p matLine class="demo-2"> Id del Tipo de Documento: {{userDeta.TipoDocId}} </p>
       <div fxLayout="row" fxLayoutGap="20px">
         <button mat-icon-button>
-          <mat-icon (click)="openDialogEdit()">edit</mat-icon>
+          <mat-icon (click)="openDialogEdit(userDeta)">edit</mat-icon>
         </button>
         <button mat-icon-button>
-          <mat-icon (click)="delete()">delete</mat-icon>
+          <mat-icon (click)="delete(userDeta)">delete</mat-icon>
         </button>
       </div>
     </a>

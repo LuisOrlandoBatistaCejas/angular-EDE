@@ -25,7 +25,7 @@ export class EmpresaCreateDialogComponent {
       this.dialogRef.close(res);
     });
   }
-  valueChange() {
+  changeActivo() {
     this.activo = !this.activo;
   }
   changeContaObligado() {

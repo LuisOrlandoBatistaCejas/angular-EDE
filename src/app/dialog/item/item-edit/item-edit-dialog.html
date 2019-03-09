@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>Editar Item</h2>
+<mat-dialog-content>
+  <form #f="ngForm" class="example-form">
+    <div fxLayout="column">
+
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput [ngModel]="item.Nombre" #Nombre="ngModel" name="Nombre" id="Nombre" placeholder="Nombre" required>
+        <mat-error *ngIf="!Nombre.valid && Nombre.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput [ngModel]="item.Descripcion" #Descripcion="ngModel" name="Descripcion" id="Descripcion" placeholder="Descripcion" required>
+        <mat-error *ngIf="!Descripcion.valid && Descripcion.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput [ngModel]="item.Codigo" #Codigo="ngModel" name="Codigo" id="Codigo" placeholder="Código" required>
+          <mat-error *ngIf="!Codigo.valid && Codigo.touched">
+            The content field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput [ngModel]="item.Precio" #Precio="ngModel" name="Precio" id="Precio" placeholder="Precio" required>
+          <mat-error *ngIf="!Precio.valid && Precio.touched">
+            The content field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput [ngModel]="item.PorcientoIva" #PorcientoIva="ngModel" name="PorcientoIva" id="PorcientoIva" placeholder="Porciento Iva" required>
+        <mat-error *ngIf="!PorcientoIva.valid && PorcientoIva.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div class="align-center">
+          <mat-checkbox fxFlex="50" [checked]="venta" [(ngModel)]="venta"
+                        (change)="changeVenta()">Venta</mat-checkbox>
+        </div>
+
+        <div class="align-center">
+          <mat-checkbox fxFlex="50" [checked]="compra" [(ngModel)]="compra"
+                        (change)="changeCompra()">Compra</mat-checkbox>
+        </div>
+      </div>
+
+      <div fxLayout="row" class="m-t-10" fxLayoutGap="10px" fxLayoutAlign="end center">
+        <button mat-button [mat-dialog-close]>Cancelar</button>
+        <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+
+

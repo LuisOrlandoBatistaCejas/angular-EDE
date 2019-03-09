@@ -1,0 +1,71 @@
+<h2 mat-dialog-title>Editar Empresa</h2>
+<mat-dialog-content>
+  <form #f="ngForm" class="example-form">
+    <div fxLayout="column">
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput [ngModel]="empresa.Ruc" #Ruc="ngModel" name="Ruc" id="Ruc" placeholder="Registro Único de Contribuyentes" required>
+          <mat-error *ngIf="!Ruc.valid && Ruc.touched">
+            The content field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput [ngModel]="empresa.CodigoContribuyenteEspecial" #CodigoContribuyenteEspecial="ngModel" name="CodigoContribuyenteEspecial" id="CodigoContribuyenteEspecial" placeholder="Codigo Contribuyente Especial" required>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput [ngModel]="empresa.Direccion" #Direccion="ngModel" name="Direccion" id="Direccion" placeholder="Dirección" required>
+        <mat-error *ngIf="!Direccion.valid && Direccion.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput [ngModel]="empresa.RazonSocial" #RazonSocial="ngModel" name="RazonSocial" id="RazonSocial" placeholder="Razón Social" required>
+          <mat-error *ngIf="!RazonSocial.valid && RazonSocial.touched">
+            The from field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput [ngModel]="empresa.NombreComercial" #NombreComercial="ngModel" name="NombreComercial" id="NombreComercial" placeholder="Nombre Comercial" required>
+          <mat-error *ngIf="!NombreComercial.valid && NombreComercial.touched">
+            The content field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput [ngModel]="empresa.Telfonos" #Telfonos="ngModel" name="Telfonos" id="Telfonos" placeholder="Teléfonos">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" class="example-full-width">
+          <input matInput [ngModel]="empresa.Email" #Email="ngModel" name="Email" id="Email" placeholder="Email">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-checkbox fxFlex="50" [checked]="contaObligado" [(ngModel)]="contaObligado"
+                      (change)="changeContaObligado()">Contabilidad Obligado</mat-checkbox>
+
+        <div class="align-center">
+          <mat-checkbox fxFlex="50" [checked]="activo" [(ngModel)]="activo"
+                        (change)="changeActivo()">Activo</mat-checkbox>
+        </div>
+      </div>
+      <div fxLayout="row" class="m-t-10" fxLayoutGap="10px" fxLayoutAlign="end center">
+        <button mat-button [mat-dialog-close]>Cancelar</button>
+        <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<!--<mat-dialog-actions align="end">-->
+<!--<button mat-button [mat-dialog-close]>Cancelar</button>-->
+<!--<button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>-->
+<!--</mat-dialog-actions>-->

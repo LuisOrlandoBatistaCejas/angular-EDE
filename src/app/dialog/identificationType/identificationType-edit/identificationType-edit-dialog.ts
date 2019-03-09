@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm } from '@angular/forms';
+import {IdentificationTypeService} from '../../../service/identificationType-service';
 
 @Component({
   selector: 'app-indetification-type-edit',
@@ -13,7 +14,8 @@ export class IdentificationTypeEditDialogComponent implements OnInit {
   idenTypeEdit: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<IdentificationTypeEditDialogComponent>
+    private dialogRef: MatDialogRef<IdentificationTypeEditDialogComponent>,
+    private identificationTypeService: IdentificationTypeService
   ) {}
 
   ngOnInit() {
@@ -21,6 +23,10 @@ export class IdentificationTypeEditDialogComponent implements OnInit {
   }
   onSubmit() {
     this.idenTypeEdit = this.form.value;
-    this.dialogRef.close(this.idenTypeEdit);
+    this.identificationTypeService.update(this.idenTypeEdit).subscribe( res => {
+      this.dialogRef.close(res);
+    }, (error) => {
+      console.log('Error!!', error.message);
+    });
   }
 }

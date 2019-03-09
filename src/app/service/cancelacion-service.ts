@@ -9,6 +9,15 @@ export class CancelacionService extends ApiService {
   url: string;
   constructor(protected http: HttpService) {
     super(http);
-    this.url = 'api/cancelacion';
+    this.url = 'api/forma-canc';
+  }
+  update(resource: any): Observable<any> {
+    const id = resource.id;
+    resource.id = null;
+    resource = this.serialize(resource);
+    return this.http.put(`${this.url}/${id}/`, resource);
+  }
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${this.url}/${id}/`);
   }
 }

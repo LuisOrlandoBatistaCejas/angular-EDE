@@ -3,6 +3,7 @@ import { filter } from 'rxjs/operators';
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { PersonaService } from '../../../service/persona-service';
 import {PersonaCreateDialogComponent} from '../../../dialog/persona/persona-create/persona-create-dialog';
+import {PersonaEditDialogComponent} from '../../../dialog/persona/persona-edit/persona-edit-dialog';
 // import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -13,7 +14,7 @@ import {PersonaCreateDialogComponent} from '../../../dialog/persona/persona-crea
 export class PersonaListComponent implements OnInit {
   loading = true;
   personaList: any[];
-  personaDialogEdit: MatDialogRef<PersonaCreateDialogComponent>;
+  personaDialogEdit: MatDialogRef<PersonaEditDialogComponent>;
   personaDialogCreate: MatDialogRef<PersonaCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private personaService: PersonaService, public dialog: MatDialog) {}
   ngOnInit() {
@@ -39,19 +40,19 @@ export class PersonaListComponent implements OnInit {
       });
   }
   openDialogEdit(item) {
-    // this.personaDialogEdit = this.dialog.open(PersonaCreateDialogComponent, {
-    //   height: '500px',
-    //   width: '600px',
-    //   data: item
-    // });
-    //
-    // this.personaDialogEdit
-    //   .afterClosed()
-    //   .pipe(filter(name => name))
-    //   .subscribe(persona => {
-    //     const index = this.personaList.findIndex(object => object.Id === persona.Id);
-    //     this.personaList[index] = persona;
-    //     // this.comprobanteList.push(message);
-    //   });
+    this.personaDialogEdit = this.dialog.open(PersonaEditDialogComponent, {
+      height: '550px',
+      width: '650px',
+      data: item
+    });
+
+    this.personaDialogEdit
+      .afterClosed()
+      .pipe(filter(name => name))
+      .subscribe(persona => {
+        const index = this.personaList.findIndex(object => object.Id === persona.Id);
+        this.personaList[index] = persona;
+        // this.comprobanteList.push(message);
+      });
   }
 }

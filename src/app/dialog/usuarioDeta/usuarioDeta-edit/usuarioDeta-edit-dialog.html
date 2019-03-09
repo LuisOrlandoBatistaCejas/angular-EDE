@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Editar Usuario Deta</h2>
+<mat-dialog-content>
+  <form #f="ngForm" class="example-form">
+    <div fxLayout="column">
+
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput [ngModel]="usuarioDeta.Codigo" #Codigo="ngModel" name="Codigo" id="Codigo" placeholder="Código" required>
+        <mat-error *ngIf="!Codigo.valid && Codigo.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput [ngModel]="usuarioDeta.EmpresaRuc" #EmpresaRuc="ngModel" name="EmpresaRuc" id="EmpresaRuc" placeholder="Empresa Ruc (select)" required>
+        <mat-error *ngIf="!EmpresaRuc.valid && EmpresaRuc.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput [ngModel]="usuarioDeta.UsuarioId" #UsuarioId="ngModel" type="number" name="UsuarioId" id="UsuarioId" placeholder="Id del Usuario (select)" required>
+        <mat-error *ngIf="!UsuarioId.valid && UsuarioId.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="50" class="example-full-width">
+        <input matInput [ngModel]="usuarioDeta.TipoDocId" #TipoDocId="ngModel" name="TipoDocId" id="TipoDocId" placeholder="Tipo Doc Id (select)" required>
+        <mat-error *ngIf="!TipoDocId.valid && TipoDocId.touched">
+          The content field is required
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]>Cancelar</button>
+  <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>
+</mat-dialog-actions>

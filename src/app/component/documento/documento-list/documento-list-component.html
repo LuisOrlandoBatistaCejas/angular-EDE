@@ -2,15 +2,15 @@
   <mat-nav-list>
     <h3 matSubheader>Documentos</h3>
     <a mat-list-item *ngFor="let documento of documentoList">
-      <mat-icon matListIcon>work</mat-icon>
+      <mat-icon matListIcon>description</mat-icon>
       <h3 matLine>ID: {{documento.Id}} </h3>
-      <p matLine class="demo-2"> Comprobante: {{documento.Comprobante}} </p>
+      <p matLine class="demo-2"> Documento: {{documento.Documento}} </p>
       <div fxLayout="row" fxLayoutGap="20px">
         <button mat-icon-button>
-          <mat-icon (click)="openDialogEdit()">edit</mat-icon>
+          <mat-icon (click)="openDialogEdit(documento)">edit</mat-icon>
         </button>
         <button mat-icon-button>
-          <mat-icon (click)="delete()">delete</mat-icon>
+          <mat-icon (click)="delete(documento)">delete</mat-icon>
         </button>
       </div>
     </a>

@@ -50,12 +50,12 @@
       </div>
 
       <div fxLayout="row" fxLayoutGap="10px">
-        <mat-checkbox fxFlex="50" [checked]="contaObligado" [(ngModel)]="activo"
+        <mat-checkbox fxFlex="50" [checked]="contaObligado" [(ngModel)]="contaObligado"
                       (change)="changeContaObligado()">Contabilidad Obligado</mat-checkbox>
 
         <div class="align-center">
           <mat-checkbox fxFlex="50" [checked]="activo" [(ngModel)]="activo"
-                        (change)="valueChange()">Activo</mat-checkbox>
+                        (change)="changeActivo()">Activo</mat-checkbox>
         </div>
       </div>
       <div fxLayout="row" class="m-t-10" fxLayoutGap="10px" fxLayoutAlign="end center">

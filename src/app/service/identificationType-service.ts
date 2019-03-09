@@ -11,4 +11,10 @@ export class IdentificationTypeService extends ApiService {
     super(http);
     this.url = 'api/tipo-ident';
   }
+  update(resource: any) {
+    const id = resource.Id;
+    // resource.Id = null;
+    resource = this.serialize(resource);
+    return this.http.put(`${this.url}/${id}`, resource);
+  }
 }

@@ -3,6 +3,8 @@ import { VehiculoService } from '../../../service/vehiculo-service';
 import {VehiculoCreateDialogComponent} from '../../../dialog/vehiculo/vehiculo-create/vehiculo-create-dialog';
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { filter } from 'rxjs/operators';
+import {VehiculoEditDialogComponent} from '../../../dialog/vehiculo/vehiculo-edit/vehiculo-edit-dialog';
+import {ConfirmDeleteDialogComponent} from '../../../dialog/confirm-delete/confirm-delete-dialog';
 
 @Component({
   selector: 'app-vehiculo-list-component',
@@ -12,7 +14,8 @@ import { filter } from 'rxjs/operators';
 export class VehiculoListComponent implements OnInit {
   loading = true;
   vehiculoList: any[];
-  vehiculoDialogEdit: MatDialogRef<VehiculoCreateDialogComponent>;
+  vehiculoDialogDelete: MatDialogRef<ConfirmDeleteDialogComponent>;
+  vehiculoDialogEdit: MatDialogRef<VehiculoEditDialogComponent>;
   vehiculoDialogCreate: MatDialogRef<VehiculoCreateDialogComponent>;
   constructor(private snackBar: MatSnackBar, private vehiculoService: VehiculoService, public dialog: MatDialog) {}
   ngOnInit() {
@@ -35,6 +38,42 @@ export class VehiculoListComponent implements OnInit {
       .subscribe(vehiculo => {
         this.vehiculoList.push(vehiculo);
         this.snackBar.open('Vehículo creado');
+      });
+  }
+  openDialogEdit(item) {
+    this.vehiculoDialogEdit = this.dialog.open(VehiculoEditDialogComponent, {
+      height: '300px',
+      width: '450px',
+      data: item
+    });
+
+    this.vehiculoDialogEdit
+      .afterClosed()
+      .pipe(filter(name => name))
+      .subscribe(vehiculo => {
+        const index = this.vehiculoList.findIndex(object => object.Placa === vehiculo.Placa);
+        this.vehiculoList[index] = vehiculo;
+      });
+  }
+  delete(item) {
+    this.vehiculoDialogDelete = this.dialog.open(ConfirmDeleteDialogComponent, {
+      height: '200px',
+      width: '400px',
+      data: {
+        title: 'Eliminar Vehículo',
+        content: 'Estás seguro de eliminar este Vehículo?'
+      }
+    });
+
+    this.vehiculoDialogDelete
+      .afterClosed()
+      .pipe(filter(name => name))
+      .subscribe(deleted => {
+        this.vehiculoService.delete(item.id).subscribe(
+          res => {
+            const index = this.vehiculoList.findIndex(object => object.id === item.id);
+            this.vehiculoList.splice(index, 1);
+          });
       });
   }
 }
