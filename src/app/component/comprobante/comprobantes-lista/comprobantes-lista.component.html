@@ -1,0 +1,27 @@
+<div class="page-container">
+  <h3>
+    Comprobantes Listado
+  </h3>
+  <mat-card>
+
+    <mat-card-content style="align-content: center">
+      <div fxLayout="row wrap">
+        <div fxFlex="100">
+          <app-comprobantes-list-header style="margin: 5px"
+                                        (create)="onCreate()"
+          ></app-comprobantes-list-header>
+        </div>
+      </div>
+      <div fxLayout="row wrap" *ngIf="!comprobantes">
+        <div fxFlex="100" fxLayoutAlign="center center">
+          <mat-spinner fxLayoutAlign="center center"></mat-spinner>
+        </div>
+      </div>
+      <app-comprobantes-datatable *ngIf="comprobante"
+                                  [data]="comprobantes" (update)="onUpdate($event)" (delete)="onDelete($event)"
+      ></app-comprobantes-datatable>
+    </mat-card-content>
+  </mat-card>
+
+
+</div>

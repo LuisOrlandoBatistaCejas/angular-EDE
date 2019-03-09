@@ -1,0 +1,53 @@
+<!-- Material Table BEGIN -->
+<mat-table [dataSource]="data">
+
+  <ng-container cdkColumnDef="nombre">
+    <mat-header-cell *cdkHeaderCellDef> Nombre</mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.nombre}}</mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="abreviatura">
+    <mat-header-cell *cdkHeaderCellDef> Abreviatura</mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.abreviatura}}</mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="provincia">
+    <mat-header-cell *cdkHeaderCellDef> Provincia</mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.empresa.municipio.provincia.nombre}}</mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="municipio">
+    <mat-header-cell *cdkHeaderCellDef> Municipio</mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.empresa.municipio.nombre}}</mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="unidad">
+    <mat-header-cell *cdkHeaderCellDef> Unidad</mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.unidad.nombre}}</mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="ettp">
+    <mat-header-cell *cdkHeaderCellDef> Ettp </mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.empresa.ettp.nombre}}</mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="empresa">
+    <mat-header-cell *cdkHeaderCellDef> Empresa</mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.empresa.nombre}}</mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="ueb">
+    <mat-header-cell *cdkHeaderCellDef> Ueb</mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.nombre}}</mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="acciones">
+    <mat-header-cell *cdkHeaderCellDef> Acciones</mat-header-cell>
+    <mat-cell *cdkCellDef="let row">
+      <div fxLayout="row" class="action-column">
+        <mat-icon matTooltip="Actualizar" color="accent" (click)="onUpdate(row.id)">edit</mat-icon>
+        <mat-icon matTooltip="Eliminar" color="warn" (click)="onDelete(row.id)">delete</mat-icon>
+
+      </div>
+    </mat-cell>
+  </ng-container>
+
+
+
+  <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+<div *ngIf="!data.length">No se encontraron resultados</div>
+
