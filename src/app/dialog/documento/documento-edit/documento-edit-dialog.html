@@ -5,7 +5,8 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput [ngModel]="documento.Id" #Id="ngModel" name="Id" id="Id" placeholder="Id" required>
+        <input matInput [ngModel]="documento.Id" #Id="ngModel" maxlength="10" name="Id" id="Id" placeholder="Id" required>
+        <mat-hint>Máximo 10 caracteres</mat-hint>
         <mat-error *ngIf="!Id.valid && Id.touched">
           The content field is required
         </mat-error>
