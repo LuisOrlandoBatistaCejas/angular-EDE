@@ -36,7 +36,7 @@ export class PersonaListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(persona => {
         this.personaList.push(persona);
-        this.snackBar.open('Persona creada');
+        this.snackBar.open('Persona creada satisfactoriamente');
       });
   }
   openDialogEdit(item) {
@@ -52,7 +52,7 @@ export class PersonaListComponent implements OnInit {
       .subscribe(persona => {
         const index = this.personaList.findIndex(object => object.Id === persona.Id);
         this.personaList[index] = persona;
-        // this.comprobanteList.push(message);
+        this.snackBar.open('Persona editada satisfactoriamente');
       });
   }
 }

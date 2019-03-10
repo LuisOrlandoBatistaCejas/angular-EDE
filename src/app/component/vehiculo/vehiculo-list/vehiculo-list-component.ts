@@ -37,7 +37,7 @@ export class VehiculoListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(vehiculo => {
         this.vehiculoList.push(vehiculo);
-        this.snackBar.open('Vehículo creado');
+        this.snackBar.open('Vehículo creado satisfactoriamente');
       });
   }
   openDialogEdit(item) {
@@ -53,6 +53,7 @@ export class VehiculoListComponent implements OnInit {
       .subscribe(vehiculo => {
         const index = this.vehiculoList.findIndex(object => object.Placa === vehiculo.Placa);
         this.vehiculoList[index] = vehiculo;
+        this.snackBar.open('Vehículo editado satisfactoriamente');
       });
   }
   delete(item) {
@@ -73,6 +74,7 @@ export class VehiculoListComponent implements OnInit {
           res => {
             const index = this.vehiculoList.findIndex(object => object.id === item.id);
             this.vehiculoList.splice(index, 1);
+            this.snackBar.open('Vehículo eliminado satisfactoriamente');
           });
       });
   }

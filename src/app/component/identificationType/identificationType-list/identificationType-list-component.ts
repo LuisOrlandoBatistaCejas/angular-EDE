@@ -43,7 +43,7 @@ export class IdentificationTypeListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(identificationType => {
         this.identificationTypeList.push(identificationType);
-        this.snackBar.open('Tipo de Identificación Creado');
+        this.snackBar.open('Tipo de Identificación creado satisfactoriamente');
       });
   }
   openDialogEdit(item) {
@@ -59,6 +59,7 @@ export class IdentificationTypeListComponent implements OnInit {
       .subscribe(idenType => {
         const index = this.identificationTypeList.findIndex(object => object.Id === idenType.Id);
         this.identificationTypeList[index] = idenType;
+        this.snackBar.open('Tipo de Identificación editado satisfactoriamente');
       });
   }
   delete(item) {
@@ -79,6 +80,7 @@ export class IdentificationTypeListComponent implements OnInit {
           res => {
             const index = this.identificationTypeList.findIndex(object => object.Id === item.Id);
             this.identificationTypeList.splice(index, 1);
+            this.snackBar.open('Tipo de Identificación eliminado satisfactoriamente');
           });
       });
   }
