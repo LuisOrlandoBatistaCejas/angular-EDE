@@ -38,7 +38,7 @@ export class DocumentoListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(documento => {
         this.documentoList.push(documento);
-        this.snackBar.open('Tipo de documento creado');
+        this.snackBar.open('Tipo de documento creado satisfactoriamente');
       });
   }
   openDialogEdit(item) {
@@ -54,6 +54,7 @@ export class DocumentoListComponent implements OnInit {
       .subscribe(idenType => {
         const index = this.documentoList.findIndex(object => object.Id === idenType.Id);
         this.documentoList[index] = idenType;
+        this.snackBar.open('Documento editado satisfactoriamente');
       });
   }
   delete(item) {
@@ -74,6 +75,7 @@ export class DocumentoListComponent implements OnInit {
           res => {
             const index = this.documentoList.findIndex(object => object.Id === item.Id);
             this.documentoList.splice(index, 1);
+            this.snackBar.open('Se ha eliminado un documento satisfactoriamente');
           });
       });
   }

@@ -39,7 +39,7 @@ export class ItemListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(usuarioDeta => {
         this.itemList.push(usuarioDeta);
-        this.snackBar.open('Item creado');
+        this.snackBar.open('Item creado satisfactoriamente');
       });
   }
   openDialogEdit(item) {
@@ -55,6 +55,7 @@ export class ItemListComponent implements OnInit {
       .subscribe(res => {
         const index = this.itemList.findIndex(object => object.Codigo === res.Codigo);
         this.itemList[index] = res;
+        this.snackBar.open('Item editado satisfactoriamente');
       });
   }
   delete(item) {
@@ -75,6 +76,7 @@ export class ItemListComponent implements OnInit {
           res => {
             const index = this.itemList.findIndex(object => object.Codigo === item.Codigo);
             this.itemList.splice(index, 1);
+            this.snackBar.open('Item eliminado satisfactoriamente');
           });
       });
   }

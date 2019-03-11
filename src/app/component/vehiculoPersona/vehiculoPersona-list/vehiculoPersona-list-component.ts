@@ -34,7 +34,7 @@ export class VehiculoPersonaListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(vehiculoPersona => {
         this.vehiculoPersonaList.push(vehiculoPersona);
-        this.snackBar.open('Relación vehículo-persona creada');
+        this.snackBar.open('Relación vehículo-persona creada satisfactoriamente');
       });
   }
 }

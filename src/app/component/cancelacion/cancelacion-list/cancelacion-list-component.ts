@@ -41,7 +41,7 @@ export class CancelacionListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(cancelacion => {
         this.cancelacionList.push(cancelacion);
-        this.snackBar.open('Forma de cancelación creada');
+        this.snackBar.open('Forma de cancelación creada satisfactoriamente');
       });
   }
   openDialogEdit(item) {
@@ -57,6 +57,7 @@ export class CancelacionListComponent implements OnInit {
       .subscribe(cancelacion => {
         const index = this.cancelacionList.findIndex(object => object.id === cancelacion.id);
         this.cancelacionList[index] = cancelacion;
+        this.snackBar.open('Forma de cancelación editada satisfactoriamente');
       });
   }
   delete(item) {
@@ -77,6 +78,7 @@ export class CancelacionListComponent implements OnInit {
           res => {
             const index = this.cancelacionList.findIndex(object => object.id === item.id);
             this.cancelacionList.splice(index, 1);
+            this.snackBar.open('Forma de cancelación eliminada satisfactoriamente');
           });
       });
   }

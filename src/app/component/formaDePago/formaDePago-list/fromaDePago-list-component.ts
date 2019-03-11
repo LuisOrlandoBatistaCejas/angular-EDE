@@ -38,7 +38,7 @@ export class FormaDePagoListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(formaDePago => {
         this.formaDePagoList.push(formaDePago);
-        this.snackBar.open('Forma de pago creada');
+        this.snackBar.open('Forma de pago creada satisfactoriamente');
       });
   }
   openDialogEdit(item) {
@@ -54,6 +54,7 @@ export class FormaDePagoListComponent implements OnInit {
       .subscribe(formaDePago => {
         const index = this.formaDePagoList.findIndex(object => object.Id === formaDePago.Id);
         this.formaDePagoList[index] = formaDePago;
+        this.snackBar.open('Forma de pago editada satisfactoriamente');
       });
   }
   delete(item) {
@@ -74,6 +75,7 @@ export class FormaDePagoListComponent implements OnInit {
           res => {
             const index = this.formaDePagoList.findIndex(object => object.Id === item.Id);
             this.formaDePagoList.splice(index, 1);
+            this.snackBar.open('Forma de pago eliminada satisfactoriamente');
           });
       });
   }

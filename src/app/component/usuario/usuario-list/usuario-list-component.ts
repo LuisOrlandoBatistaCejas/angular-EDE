@@ -35,7 +35,7 @@ export class UsuarioListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(usuario => {
         this.usuarioList.push(usuario);
-        this.snackBar.open('Usuario creado');
+        this.snackBar.open('Usuario creado satisfactoriamente');
       });
   }
 }

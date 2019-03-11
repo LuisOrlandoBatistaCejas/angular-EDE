@@ -38,7 +38,7 @@ export class UsuarioDetaListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(usuarioDeta => {
         this.usuarioDetaList.push(usuarioDeta);
-        this.snackBar.open('Usuario-Deta creado');
+        this.snackBar.open('Usuario-Deta creado satisfactoriamente');
       });
   }
   openDialogEdit(item) {
@@ -54,6 +54,7 @@ export class UsuarioDetaListComponent implements OnInit {
       .subscribe(usuarioDeta => {
         const index = this.usuarioDetaList.findIndex(object => object.Codigo === usuarioDeta.Codigo);
         this.usuarioDetaList[index] = usuarioDeta;
+        this.snackBar.open('Usuario-Deta editado satisfactoriamente');
       });
   }
   delete(item) {
@@ -74,6 +75,7 @@ export class UsuarioDetaListComponent implements OnInit {
           res => {
             const index = this.usuarioDetaList.findIndex(object => object.Codigo === item.Codigo);
             this.usuarioDetaList.splice(index, 1);
+            this.snackBar.open('Usuario-Deta eliminado satisfactoriamente');
           });
       });
   }

@@ -39,7 +39,7 @@ export class EmpresaListComponent implements OnInit {
       .pipe(filter(name => name))
       .subscribe(empresa => {
         this.empresaList.push(empresa);
-        this.snackBar.open('Empresa creada');
+        this.snackBar.open('Empresa creada satisfactoriamente');
       });
   }
   openDialogEdit(item) {
@@ -55,6 +55,7 @@ export class EmpresaListComponent implements OnInit {
       .subscribe(idenType => {
         const index = this.empresaList.findIndex(object => object.Ruc === idenType.Ruc);
         this.empresaList[index] = idenType;
+        this.snackBar.open('Se ha editado la empresa satisfactoriamente');
       });
   }
   delete(item) {
@@ -75,6 +76,7 @@ export class EmpresaListComponent implements OnInit {
           res => {
             const index = this.empresaList.findIndex(object => object.Ruc === item.Ruc);
             this.empresaList.splice(index, 1);
+            this.snackBar.open('Empresa eliminada satisfactoriamente');
           });
       });
   }

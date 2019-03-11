@@ -4,7 +4,8 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #Placa="ngModel" name="Placa" id="Placa" placeholder="Placa" required>
+        <input matInput ngModel #Placa="ngModel" name="Placa" id="Placa" maxlength="7" placeholder="Placa" required>
+        <mat-hint>Máximo 7 caracteres</mat-hint>
         <mat-error *ngIf="!Placa.valid && Placa.touched">
           The content field is required
         </mat-error>

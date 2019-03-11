@@ -5,14 +5,16 @@
 
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #Ruc="ngModel" name="Ruc" id="Ruc" placeholder="Registro Único de Contribuyentes" required>
+          <input matInput ngModel #Ruc="ngModel" name="Ruc" id="Ruc" maxlength="10" placeholder="Registro Único de Contribuyentes" required>
+          <mat-hint>Máximo 10 caracteres</mat-hint>
           <mat-error *ngIf="!Ruc.valid && Ruc.touched">
             The content field is required
           </mat-error>
         </mat-form-field>
 
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #CodigoContribuyenteEspecial="ngModel" name="CodigoContribuyenteEspecial" id="CodigoContribuyenteEspecial" placeholder="Codigo Contribuyente Especial" required>
+          <input matInput ngModel #CodigoContribuyenteEspecial="ngModel" maxlength="6" name="CodigoContribuyenteEspecial" id="CodigoContribuyenteEspecial" placeholder="Codigo Contribuyente Especial" required>
+          <mat-hint>Máximo 6 caracteres</mat-hint>
         </mat-form-field>
       </div>
 
@@ -41,7 +43,8 @@
 
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #Telfonos="ngModel" name="Telfonos" id="Telfonos" placeholder="Teléfonos">
+          <input matInput ngModel #Telfonos="ngModel" name="Telfonos" id="Telfonos" maxlength="25" placeholder="Teléfonos">
+          <mat-hint>Máximo 25 caracteres</mat-hint>
         </mat-form-field>
 
         <mat-form-field fxFlex="50" class="example-full-width">
