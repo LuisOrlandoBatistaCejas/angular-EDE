@@ -9,7 +9,8 @@
     <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm.value)">
       <mat-card-content style="margin-bottom: 8px">
         <mat-form-field style="width: 100%">
-          <input matInput type="text" name="username" placeholder="Usuario o email" #username="ngModel" [ngModel]="" required>
+          <input matInput type="text" name="username" placeholder="Usuario o email" #username="ngModel" [ngModel]=""
+                 required>
         </mat-form-field>
         <section *ngIf="username.invalid && username.dirty" class="bs">
           <p class="text-danger text-left" *ngIf="username.hasError('required')">
@@ -17,19 +18,33 @@
           </p>
         </section>
         <mat-form-field style="width: 100%;">
-          <input matInput type="password" name="password" placeholder="Contraseña" #password="ngModel" [ngModel]="" required>
+          <input matInput type="password" name="password" placeholder="Contraseña" #password="ngModel" [ngModel]=""
+                 required>
         </mat-form-field>
         <section *ngIf="password.invalid && password.dirty" class="bs">
           <p class="text-danger text-left" *ngIf="password.hasError('required')">
             Contraseña es requerido.
           </p>
         </section>
+        <div fxLayoutAlign="start start">
+          <mat-checkbox color="primary" name="remember_me" #remember_me="ngModel" ngModel>
+            Mantenerme Logueado
+          </mat-checkbox>
+        </div>
+
+
       </mat-card-content>
       <mat-card-actions style="margin: 0;padding: 0">
-        <button mat-raised-button color="primary" class="form-button"
-                [disabled]="signInForm.invalid && loading">
-          <mat-spinner [diameter]="20" *ngIf="loading" color="accent"></mat-spinner>Entrar
-        </button>
+        <div fxLayout="column">
+          <div fxFlex="100">
+            <button mat-raised-button color="primary" class="form-button"
+                    [disabled]="signInForm.invalid && loading">
+              <mat-spinner [diameter]="20" *ngIf="loading" color="accent"></mat-spinner>
+              Entrar
+            </button>
+          </div>
+
+        </div>
       </mat-card-actions>
     </form>
   </mat-card>
