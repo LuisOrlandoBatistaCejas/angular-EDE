@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { IdentificationTypeListComponent } from './component/identificationType/identificationType-list/identificationType-list-component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {IdentificationTypeListComponent} from './component/identificationType/identificationType-list/identificationType-list-component';
 import {PersonaListComponent} from './component/persona/persona-list/persona-list-component';
 import {EmpresaListComponent} from './component/empresa/empresa-list/empresa-list-component';
 import {UsuarioListComponent} from './component/usuario/usuario-list/usuario-list-component';
@@ -13,29 +13,29 @@ import {LoginComponent} from './login/login-component';
 import {HomeComponent} from './home/home-component';
 import {DocumentoListComponent} from './component/documento/documento-list/documento-list-component';
 import {CancelacionListComponent} from './component/cancelacion/cancelacion-list/cancelacion-list-component';
+import {ComprobantesListaComponent} from './component/comprobante/comprobantes-lista/comprobantes-lista.component';
+import {ComprobantesCreateComponent} from './component/comprobante/comprobantes-create/comprobantes-create.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/app/identification-types', pathMatch: 'full' },
-  { path: 'app', component: HomeComponent, children: [
-      { path: 'identification-types', component: IdentificationTypeListComponent },
-      { path: 'personas', component: PersonaListComponent },
-      { path: 'empresas', component: EmpresaListComponent },
-      { path: 'usuarios', component: UsuarioListComponent },
-      { path: 'usuarios-deta', component: UsuarioDetaListComponent },
-      { path: 'items', component: ItemListComponent },
-      { path: 'vehiculos', component: VehiculoListComponent },
-      { path: 'vehiculo-personas', component: VehiculoPersonaListComponent },
-      { path: 'forma-de-pagos', component: FormaDePagoListComponent },
-      { path: 'documentos', component: DocumentoListComponent },
-      { path: 'formas-cancelacion', component: CancelacionListComponent }
-    ]
-  },
-  { path: 'signup', component: LoginComponent },
-  { path: '**', component: HomeComponent }
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'identification-types', component: IdentificationTypeListComponent},
+  {path: 'personas', component: PersonaListComponent},
+  {path: 'empresas', component: EmpresaListComponent},
+  {path: 'usuarios', component: UsuarioListComponent},
+  {path: 'usuarios-deta', component: UsuarioDetaListComponent},
+  {path: 'items', component: ItemListComponent},
+  {path: 'vehiculos', component: VehiculoListComponent},
+  {path: 'vehiculo-personas', component: VehiculoPersonaListComponent},
+  {path: 'forma-de-pagos', component: FormaDePagoListComponent},
+  {path: 'documentos', component: DocumentoListComponent},
+  {path: 'formas-cancelacion', component: CancelacionListComponent},
+  {path: 'comprobantes', component: ComprobantesListaComponent},
+  {path: 'comprobantes/crear', component: ComprobantesCreateComponent}
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

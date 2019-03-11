@@ -3,6 +3,7 @@ import {isNullOrUndefined} from 'util';
 import {HttpService} from './http.service';
 import {Observable} from 'rxjs';
 import {HttpParams} from '@angular/common/http';
+import {DateFormatter} from '../helpers/date-formatter';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,12 @@ export class ApiService {
   /**
    * Gets a list of paginated items
    */
-  list(params?: any, responseType?: any): Observable<any> {
+  list(params?: any): Observable<any> {
     if (!params) {
       return this.http.get(this.url);
     }
     params = this.serialize(params);
-    return this.http.get(this.url, { params: this.object2Params(params), responseType: responseType });
+    return this.http.get(this.url, { params: this.object2Params(params)});
   }
 
 
@@ -69,6 +70,8 @@ export class ApiService {
         // Converts boolean params into binary int.
         serializedData[attr] = data[attr] ? 1 : 0;
       }  else if (typeof data[attr] === 'number' && data[attr] === -1) {
+      } else if (data[attr] instanceof Date) {
+          serializedData[attr] = DateFormatter.dateToString(data[attr]);
       } else if (data[attr] instanceof Object) {
         serializedData[attr] = this.serialize(data[attr]);
       } else {

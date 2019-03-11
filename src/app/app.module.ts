@@ -53,6 +53,14 @@ import {CancelacionService} from './service/cancelacion-service';
 import {DocumentoCreateDialogComponent} from './dialog/documento/documento-create/documento-create-dialog';
 import {CancelacionCreateDialogComponent} from './dialog/cancelacion/cancelacion-create/cancelacion-create-dialog';
 import {IdentificationTypeEditDialogComponent} from './dialog/identificationType/identificationType-edit/identificationType-edit-dialog';
+import {CommonModule} from '@angular/common';
+import {CdkTableModule} from '@angular/cdk/table';
+import {ComprobantesListaComponent} from './component/comprobante/comprobantes-lista/comprobantes-lista.component';
+import {ComprobantesListHeaderComponent} from './component/comprobante/comprobantes-list-header/comprobantes-list-header.component';
+import {ComprobantesDatatableComponent} from './component/comprobante/comprobantes-datatable/comprobantes-datatable.component';
+import {ComprobanteFormularioComponent} from './component/comprobante/comprobante-formulario/comprobante-formulario.component';
+import {UpdateComprobanteComponent} from './component/comprobante/update-comprobante/update-comprobante.component';
+import {ComprobantesCreateComponent} from './component/comprobante/comprobantes-create/comprobantes-create.component';
 import {PersonaEditDialogComponent} from './dialog/persona/persona-edit/persona-edit-dialog';
 import {EmpresaEditDialogComponent} from './dialog/empresa/empresa-edit/empresa-edit-dialog';
 import {ConfirmDeleteDialogComponent} from './dialog/confirm-delete/confirm-delete-dialog';
@@ -79,6 +87,13 @@ import {CancelacionEditDialogComponent} from './dialog/cancelacion/cancelacion-e
     FormaDePagoListComponent,
     DocumentoListComponent,
     CancelacionListComponent,
+    // Comprobantes
+    ComprobantesListaComponent,
+    ComprobantesListHeaderComponent,
+    ComprobantesDatatableComponent,
+    ComprobanteFormularioComponent,
+    UpdateComprobanteComponent,
+    ComprobantesCreateComponent,
     // dialogs
     ConfirmDeleteDialogComponent,
     PersonaCreateDialogComponent,
@@ -104,19 +119,21 @@ import {CancelacionEditDialogComponent} from './dialog/cancelacion/cancelacion-e
     CancelacionEditDialogComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    CdkTableModule,
     // Material
     MaterialModule
   ],
   entryComponents: [
-    //Generic
+    // Generic
     ConfirmDeleteDialogComponent,
-    //Resource
+    // Resource
     PersonaCreateDialogComponent,
     EmpresaCreateDialogComponent,
     UsuarioCreateDialogComponent,
