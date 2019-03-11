@@ -9,29 +9,33 @@ import {ItemListComponent} from './component/item/item-list/item-list-component'
 import {VehiculoListComponent} from './component/vehiculo/vehiculo-list/vehiculo-list-component';
 import {VehiculoPersonaListComponent} from './component/vehiculoPersona/vehiculoPersona-list/vehiculoPersona-list-component';
 import {FormaDePagoListComponent} from './component/formaDePago/formaDePago-list/fromaDePago-list-component';
-import {LoginComponent} from './login/login-component';
 import {HomeComponent} from './home/home-component';
 import {DocumentoListComponent} from './component/documento/documento-list/documento-list-component';
 import {CancelacionListComponent} from './component/cancelacion/cancelacion-list/cancelacion-list-component';
 import {ComprobantesListaComponent} from './component/comprobante/comprobantes-lista/comprobantes-lista.component';
 import {ComprobantesCreateComponent} from './component/comprobante/comprobantes-create/comprobantes-create.component';
+import {LoginComponent} from './authentication/login/login.component';
+import {LogoutComponent} from './authentication/logout/logout.component';
+import {AuthGuardService} from './authentication/auth-guard/auth-guard.service';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'identification-types', component: IdentificationTypeListComponent},
-  {path: 'personas', component: PersonaListComponent},
-  {path: 'empresas', component: EmpresaListComponent},
-  {path: 'usuarios', component: UsuarioListComponent},
-  {path: 'usuarios-deta', component: UsuarioDetaListComponent},
-  {path: 'items', component: ItemListComponent},
-  {path: 'vehiculos', component: VehiculoListComponent},
-  {path: 'vehiculo-personas', component: VehiculoPersonaListComponent},
-  {path: 'forma-de-pagos', component: FormaDePagoListComponent},
-  {path: 'documentos', component: DocumentoListComponent},
-  {path: 'formas-cancelacion', component: CancelacionListComponent},
-  {path: 'comprobantes', component: ComprobantesListaComponent},
-  {path: 'comprobantes/crear', component: ComprobantesCreateComponent}
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
+  {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent},
+  {path: 'identification-types', component: IdentificationTypeListComponent, canActivate: [AuthGuardService]},
+  {path: 'personas', component: PersonaListComponent, canActivate: [AuthGuardService]},
+  {path: 'empresas', component: EmpresaListComponent, canActivate: [AuthGuardService]},
+  {path: 'usuarios', component: UsuarioListComponent, canActivate: [AuthGuardService]},
+  {path: 'usuarios-deta', component: UsuarioDetaListComponent, canActivate: [AuthGuardService]},
+  {path: 'items', component: ItemListComponent, canActivate: [AuthGuardService]},
+  {path: 'vehiculos', component: VehiculoListComponent, canActivate: [AuthGuardService]},
+  {path: 'vehiculo-personas', component: VehiculoPersonaListComponent, canActivate: [AuthGuardService]},
+  {path: 'forma-de-pagos', component: FormaDePagoListComponent, canActivate: [AuthGuardService]},
+  {path: 'documentos', component: DocumentoListComponent, canActivate: [AuthGuardService]},
+  {path: 'formas-cancelacion', component: CancelacionListComponent, canActivate: [AuthGuardService]},
+  {path: 'comprobantes', component: ComprobantesListaComponent, canActivate: [AuthGuardService]},
+  {path: 'comprobantes/crear', component: ComprobantesCreateComponent, canActivate: [AuthGuardService]}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

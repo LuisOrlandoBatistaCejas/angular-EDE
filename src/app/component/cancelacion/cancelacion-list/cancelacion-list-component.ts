@@ -3,7 +3,9 @@ import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { filter } from 'rxjs/operators';
 import {CancelacionService} from '../../../service/cancelacion-service';
 import {CancelacionCreateDialogComponent} from '../../../dialog/cancelacion/cancelacion-create/cancelacion-create-dialog';
-import {IdentificationTypeEditDialogComponent} from '../../../dialog/identificationType/identificationType-edit/identificationType-edit-dialog';
+import {
+  IdentificationTypeEditDialogComponent
+} from '../../../dialog/identificationType/identificationType-edit/identificationType-edit-dialog';
 import {CancelacionEditDialogComponent} from '../../../dialog/cancelacion/cancelacion-edit/cancelacion-edit-dialog';
 import {ConfirmDeleteDialogComponent} from '../../../dialog/confirm-delete/confirm-delete-dialog';
 

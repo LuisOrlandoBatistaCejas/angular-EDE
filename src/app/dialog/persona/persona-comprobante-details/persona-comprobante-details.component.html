@@ -1,0 +1,29 @@
+<h2 mat-dialog-title="Datos del Cliente"></h2>
+<mat-dialog-content>
+  <div fxLayout="row wrap">
+    <mat-form-field fxFlex="100">
+      <input matInput [(ngModel)]="data.Direccion" placeholder="Direccion" required #Direccion="ngModel">
+      <mat-error *ngIf="!Direccion.valid && Direccion.touched">
+        La dirección es requerida
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <input matInput [(ngModel)]="data.Email" placeholder="Email" required #Email="ngModel">
+      <mat-error *ngIf="!Email.valid && Email.touched">
+        El email es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <input matInput [(ngModel)]="data.Telefonos" placeholder="Teléfono" required #Telefonos="ngModel">
+      <mat-error *ngIf="!Telefonos.valid && Telefonos.touched">
+        El teléfono es requerido
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onAceptar()">Aceptar</button>
+  <button mat-raised-button color="warn" (click)="onCancelar()">Cancelar</button>
+</mat-dialog-actions>

@@ -1,12 +1,21 @@
-<mat-toolbar>
-  <div class="row sidenav-header">
-    <span color="primary">EDE</span>
-    <mat-icon (click)="toggleSideNav()" color="primary">menu</mat-icon>
+<mat-toolbar *ngIf="appService.isLoggedIn">
+  <div fxLayout="row wrap" fxFlex="100">
+    <div class="sidenav-header" fxFlex="30">
+      <span color="primary">EDE</span>
+      <mat-icon (click)="toggleSideNav()" color="primary">menu</mat-icon>
+    </div>
+    <div fxFlex="65" fxLayoutAlign="end center">
+      <span>
+        <a class="text-warn text-link" routerLink="/logout">
+          Cerrar Sesión
+        </a>
+      </span>
+    </div>
   </div>
 </mat-toolbar>
 
 <mat-sidenav-container [style.height]="screenHeigth">
-  <mat-sidenav #sidenav [opened]="sidenavOpened" [mode]="sidenavMode" position="start">
+  <mat-sidenav #sidenav [opened]="sidenavOpened" [mode]="sidenavMode" position="start" *ngIf="appService.isLoggedIn">
     <mat-list>
       <div *ngFor="let menu of sideMenu">
         <mat-list-item (click)="onMenuClick(menu)">

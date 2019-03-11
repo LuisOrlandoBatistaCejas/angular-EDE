@@ -1,12 +1,19 @@
 <mat-card>
   <form #comprobantesForm="ngForm" (submit)="onSubmit(comprobantesForm.value)">
-
     <mat-card-content>
+      <div fxLayout="row wrap">
+        <div fxFlex="100" style="margin: 3px" fxLayoutAlign="end end">
+          <h4 class="text-warn">{{numeroComprobante}}</h4>
+        </div>
+      </div>
 
       <div fxLayout="row wrap" fxLayout.xs="column">
+
+        <div fxFlex="10" fxFlex.xs="100"></div>
+
         <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
           <mat-form-field class="input-form">
-            <mat-select placeholder="Tipo Comprobante" required
+            <mat-select placeholder="Concepto" required
                         name="tipodoc" [ngModel]="comprobante.tipodoc"
                         #tipodoc="ngModel">
               <mat-option *ngFor="let tipo of tipos" [value]="tipo.id" (click)="selectTipo(tipo.Documento)">
@@ -21,51 +28,39 @@
             </div>
           </mat-form-field>
         </div>
+      </div>
+      <div fxLayout="row wrap" fxLayout.xs="column">
 
+        <div fxFlex="10" fxFlex.xs="100"></div>
 
         <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="RUC" required
-                   name="Ruc" [ngModel]="comprobante.Ruc"
-                   #Ruc="ngModel">
-            <div class="validation-text" *ngIf="Ruc.invalid && (Ruc.dirty || Ruc.touched)">
-              <div *ngIf="Ruc.errors['required']">
-                El Ruc es requerido.
+          <div fxFlex="85">
+            <mat-form-field class="input-form">
+              <mat-select placeholder="Cliente" required
+                          name="Identificacion" [ngModel]="comprobante.Identificacion"
+                          #Identificacion="ngModel">
+                <mat-option *ngFor="let cliente of personas" [value]="cliente.Identificacion"
+                            (click)="selectCliente(cliente)">
+                  {{cliente.NombreComercial}}
+                </mat-option>
+
+              </mat-select>
+              <div class="validation-text"
+                   *ngIf="Identificacion.invalid && (Identificacion.dirty || Identificacion.touched)">
+                <div *ngIf="Identificacion.errors['required']">
+                  La Identificación es requerida.
+                </div>
               </div>
-            </div>
-          </mat-form-field>
+            </mat-form-field>
+          </div>
+          <div fxFlex="15" fxLayoutAlign="center end">
+              <mat-icon [class.text-accent]="Identificacion.valid" (click)="openClientDetailsDialog()"
+                        style="cursor: pointer">details</mat-icon>
+          </div>
 
         </div>
 
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Número" required
-                   name="Numero" [ngModel]="comprobante.Numero"
-                   #Numero="ngModel">
-            <div class="validation-text" *ngIf="Numero.invalid && (Numero.dirty || Numero.touched)">
-              <div *ngIf="Ruc.errors['required']">
-                El Numero es requerido.
-              </div>
-            </div>
-          </mat-form-field>
-
-        </div>
-
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Identificación" required
-                   name="Identificacion" [ngModel]="comprobante.Identificacion"
-                   #Identificacion="ngModel">
-            <div class="validation-text"
-                 *ngIf="Identificacion.invalid && (Identificacion.dirty || Identificacion.touched)">
-              <div *ngIf="Identificacion.errors['required']">
-                La Identificación es requerida.
-              </div>
-            </div>
-          </mat-form-field>
-
-        </div>
+        <div fxFlex="10" fxFlex.xs="100"></div>
 
         <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
           <mat-form-field>
@@ -76,218 +71,52 @@
           </mat-form-field>
 
         </div>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.xs="column">
+
+        <div fxFlex="10" fxFlex.xs="100"></div>
 
         <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
           <mat-form-field class="input-form">
-            <input matInput placeholder="Dirección"
-                   name="Direccion" [ngModel]="comprobante.Direccion"
-                   #Direccion="ngModel">
-          </mat-form-field>
+            <mat-select placeholder="Forma de Pago" required
+                        name="foma_pago" [ngModel]="comprobante.forma_pago"
+                        #forma_pago="ngModel">
+              <mat-option *ngFor="let formaPago of formasPago" [value]="formaPago.id">
+                {{formaPago.Nombre}}
+              </mat-option>
 
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Teléfono"
-                   name="Telefono" [ngModel]="comprobante.Telefono"
-                   #Telefono="ngModel">
-          </mat-form-field>
-
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Email"
-                   name="Email" [ngModel]="comprobante.Email"
-                   #Email="ngModel">
-          </mat-form-field>
-
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px"
-             *ngIf="tipoComprobante == 'Factura' || tipoComprobante == 'NC' || tipoComprobante == 'ND'">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Subtotal Iva" type="number"
-                   name="SubtotalIva" [ngModel]="comprobante.SubtotalIva"
-                   #SubtotalIva="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px"
-             *ngIf="tipoComprobante == 'Factura' || tipoComprobante == 'NC' || tipoComprobante == 'ND'">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Subtotal Iva 0" type="number"
-                   name="SubtotalIva0" [ngModel]="comprobante.SubtotalIva0"
-                   #SubtotalIva0="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px"
-             *ngIf="tipoComprobante == 'Factura' || tipoComprobante == 'NC' || tipoComprobante == 'ND'">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Subtotal No Iva" type="number"
-                   name="SubtotalNoIva" [ngModel]="comprobante.SubtotalNoIva"
-                   #SubtotalNoIva="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px"
-             *ngIf="tipoComprobante == 'Factura' || tipoComprobante == 'NC' || tipoComprobante == 'ND'">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Subtotal Exento Iva" type="number"
-                   name="SubtotalExentoIva" [ngModel]="comprobante.SubtotalExentoIva"
-                   #SubtotalExentoIva="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px"
-             *ngIf="tipoComprobante == 'Factura' || tipoComprobante == 'NC' || tipoComprobante == 'ND'">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Subtotal" type="number"
-                   name="Subtotal" [ngModel]="comprobante.Subtotal"
-                   #Subtotal="ngModel" required>
+            </mat-select>
             <div class="validation-text"
-                 *ngIf="Subtotal.invalid && (Subtotal.dirty || Subtotal.touched)">
-              <div *ngIf="Subtotal.errors['required']">
-                El Subtotal es requerida.
+                 *ngIf="forma_pago.invalid && (forma_pago.dirty || forma_pago.touched)">
+              <div *ngIf="forma_pago.errors['required']">
+                La forma pago es requerida.
               </div>
             </div>
           </mat-form-field>
         </div>
 
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px"
-             *ngIf="tipoComprobante == 'Factura' || tipoComprobante == 'NC' || tipoComprobante == 'ND'">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Descuento" type="number"
-                   name="Descuento" [ngModel]="comprobante.Descuento"
-                   #Descuento="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px"
-             *ngIf="tipoComprobante == 'Factura' || tipoComprobante == 'NC' || tipoComprobante == 'ND'">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="ICE" type="number"
-                   name="Ice" [ngModel]="comprobante.Ice"
-                   #Ice="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px"
-             *ngIf="tipoComprobante == 'Factura' || tipoComprobante == 'NC' || tipoComprobante == 'ND'">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="IRBPNR" type="number"
-                   name="Irbpnr" [ngModel]="comprobante.Irbpnr"
-                   #Irbpnr="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px"
-             *ngIf="tipoComprobante == 'Factura' || tipoComprobante == 'NC' || tipoComprobante == 'ND'">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="IVA" type="number"
-                   name="Iva" [ngModel]="comprobante.Iva"
-                   #Iva="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px"
-             *ngIf="tipoComprobante == 'Factura' || tipoComprobante == 'NC' || tipoComprobante == 'ND'">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Propina" type="number"
-                   name="Propina" [ngModel]="comprobante.Propina"
-                   #Propina="ngModel">
-          </mat-form-field>
-        </div>
+        <div fxFlex="10" fxFlex.xs="100"></div>
 
         <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
           <mat-form-field class="input-form">
-            <input matInput placeholder="Total" type="number"
-                   name="Total" [ngModel]="comprobante.Total"
-                   #Total="ngModel" required>
+            <mat-select placeholder="Vendedor" required
+                        name="vendedor" [ngModel]="comprobante.vendedor"
+                        #vendedor="ngModel">
+              <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">
+                {{usuario.first_name}} {{usuario.last_name}}
+              </mat-option>
+
+            </mat-select>
             <div class="validation-text"
-                 *ngIf="Total.invalid && (Total.dirty || Total.touched)">
-              <div *ngIf="Total.errors['required']">
-                El Total es requerido.
+                 *ngIf="vendedor.invalid && (vendedor.dirty || vendedor.touched)">
+              <div *ngIf="vendedor.errors['required']">
+               El Vendedor es requerido
               </div>
             </div>
           </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Anulada" type="number"
-                   name="Anulada" [ngModel]="comprobante.Anulada"
-                   #Anulada="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Xml"
-                   name="Xml" [ngModel]="comprobante.Xml"
-                   #Xml="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="XmlFirmado"
-                   name="XmlFirmado" [ngModel]="comprobante.XmlFirmado"
-                   #XmlFirmado="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="XmlSri"
-                   name="XmlSri" [ngModel]="comprobante.XmlSri"
-                   #XmlSri="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Clave de Acceso"
-                   name="ClaveAcceso" [ngModel]="comprobante.ClaveAcceso"
-                   #ClaveAcceso="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="No Autorización"
-                   name="NoAutorizacion" [ngModel]="comprobante.NoAutorizacion"
-                   #NoAutorizacion="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field>
-            <input matInput [matDatepicker]="fechaAutorizacionPicker" placeholder="Fecha de Autorizacion"
-                   name="FechaAutorizacion" #FechaAutorizacion="ngModel" [ngModel]="comprobante.FechaAutorizacion">
-            <mat-datepicker-toggle matSuffix [for]="fechaAutorizacionPicker"></mat-datepicker-toggle>
-            <mat-datepicker #fechaAutorizacionPicker></mat-datepicker>
-          </mat-form-field>
 
         </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Estado"
-                   name="Estado" [ngModel]="comprobante.Estado"
-                   #Estado="ngModel">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
-          <mat-form-field class="input-form">
-            <input matInput placeholder="Info"
-                   name="Info" [ngModel]="comprobante.Info"
-                   #Info="ngModel">
-          </mat-form-field>
-        </div>
-
       </div>
 
     </mat-card-content>

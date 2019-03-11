@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Material
@@ -32,7 +32,6 @@ import {VehiculoPersonaService} from './service/vehiculoPersona';
 import {VehiculoPersonaListComponent} from './component/vehiculoPersona/vehiculoPersona-list/vehiculoPersona-list-component';
 import {FormaDePagoListComponent} from './component/formaDePago/formaDePago-list/fromaDePago-list-component';
 import {FormaDePagoService} from './service/formaDePago-service';
-import {LoginComponent} from './login/login-component';
 import {HomeComponent} from './home/home-component';
 
 import {PersonaCreateDialogComponent} from './dialog/persona/persona-create/persona-create-dialog';
@@ -70,11 +69,17 @@ import {VehiculoEditDialogComponent} from './dialog/vehiculo/vehiculo-edit/vehic
 import {FormDePagoEditDialogComponent} from './dialog/formaDePago/formDePago-edit/formaDePago-edit-dialog';
 import {DocumentoEditDialogComponent} from './dialog/documento/documento-edit/documento-edit-dialog';
 import {CancelacionEditDialogComponent} from './dialog/cancelacion/cancelacion-edit/cancelacion-edit-dialog';
+import {PersonaComprobanteDetailsComponent} from './dialog/persona/persona-comprobante-details/persona-comprobante-details.component';
+import {LoginComponent} from './authentication/login/login.component';
+import {LogoutComponent} from './authentication/logout/logout.component';
+import {AuthService} from './authentication/auth-service/auth.service';
+import {HttpInterceptorService} from './authentication/http-interceptor/http-interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    LogoutComponent,
     HomeComponent,
     IdentificationTypeListComponent,
     PersonaListComponent,
@@ -94,6 +99,7 @@ import {CancelacionEditDialogComponent} from './dialog/cancelacion/cancelacion-e
     ComprobanteFormularioComponent,
     UpdateComprobanteComponent,
     ComprobantesCreateComponent,
+    PersonaComprobanteDetailsComponent,
     // dialogs
     ConfirmDeleteDialogComponent,
     PersonaCreateDialogComponent,
@@ -116,7 +122,7 @@ import {CancelacionEditDialogComponent} from './dialog/cancelacion/cancelacion-e
     VehiculoEditDialogComponent,
     FormDePagoEditDialogComponent,
     DocumentoEditDialogComponent,
-    CancelacionEditDialogComponent
+    CancelacionEditDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -154,7 +160,10 @@ import {CancelacionEditDialogComponent} from './dialog/cancelacion/cancelacion-e
     VehiculoEditDialogComponent,
     FormDePagoEditDialogComponent,
     DocumentoEditDialogComponent,
-    CancelacionEditDialogComponent
+    CancelacionEditDialogComponent,
+    // Comprobantes
+    PersonaComprobanteDetailsComponent
+
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
@@ -165,7 +174,9 @@ import {CancelacionEditDialogComponent} from './dialog/cancelacion/cancelacion-e
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
     {
       provide: 'API_URL',
-      useValue: 'http://code.rociosoft.com:8000/'
+      // useValue: 'http://code.rociosoft.com:8000/'
+      useValue: 'http://localhost:8000/'
+
     },
     IdentificationTypeService,
     PersonaService,
@@ -177,7 +188,13 @@ import {CancelacionEditDialogComponent} from './dialog/cancelacion/cancelacion-e
     VehiculoPersonaService,
     FormaDePagoService,
     DocumentoService,
-    CancelacionService
+    CancelacionService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

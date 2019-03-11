@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {MenuService} from './service/menu.service';
+import {isNullOrUndefined} from 'util';
+import {AppService} from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,8 @@ export class AppComponent implements OnInit{
   sidenavMode = 'side';
   sidenavOpened = true;
   constructor(public menuService: MenuService,
-              private router: Router) {
+              private router: Router,
+              public appService: AppService) {
     this.sideMenu =  this.menuService.sideMenu;
     this.screenWidth = window.innerWidth;
     this.screenHeigth = (window.innerHeight - 80) + 'px';
@@ -29,6 +32,9 @@ export class AppComponent implements OnInit{
     };
   }
   ngOnInit() {
+    if (!isNullOrUndefined(localStorage.getItem('token'))) {
+      this.appService.isLoggedIn = true;
+    }
   }
 
   /**

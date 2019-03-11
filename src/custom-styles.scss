@@ -147,3 +147,16 @@ html, body {
   height: 100%;
   padding: 0;
 }
+
+.text-warn {
+  color: mat-color($app-warn) !important;
+}
+
+.text-accent {
+  color: mat-color($app-accent) !important;
+}
+
+.text-primary {
+  color: mat-color($app-primary) !important;
+}
+
