@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, DoCheck, EventEmitter, Input, IterableDiffers, OnInit, Output} from '@angular/core';
 import {Comprobante} from '../../../model/comprobante.model';
 import {TipoDocService} from '../../../service/tipo-doc.service';
 import {PersonaService} from '../../../service/persona-service';
@@ -7,38 +7,73 @@ import {PersonaEditDialogComponent} from '../../../dialog/persona/persona-edit/p
 import {FormaDePagoService} from '../../../service/formaDePago-service';
 import {UsuarioService} from '../../../service/usuario-service';
 import {PersonaComprobanteDetailsComponent} from '../../../dialog/persona/persona-comprobante-details/persona-comprobante-details.component';
+import {UsuarioDetaService} from '../../../service/usuarioDeta-service';
+import {ItemService} from '../../../service/item-service';
 
 @Component({
   selector: 'app-comprobante-formulario',
   templateUrl: './comprobante-formulario.component.html',
   styleUrls: ['./comprobante-formulario.component.css']
 })
-export class ComprobanteFormularioComponent implements OnInit {
+export class ComprobanteFormularioComponent implements OnInit, DoCheck {
   @Input() comprobante: Comprobante;
   @Output() submitForm: EventEmitter<Comprobante> = new EventEmitter();
   @Output() cancel: EventEmitter<void> = new EventEmitter();
+  calculos: any = {
+    subtotalIva: 0,
+    subtotalIva0: 0,
+    subtotal: 0,
+    descuento: 0,
+    total: 0
+  }
+  detalles: any[] = [];
   numeroComprobante = '000023000020100001'
   tipoComprobante: '';
   tipos: any[] = [];
   personas: any = [];
   formasPago: any[] = [];
-  usuarios: any[] = [];
+  usuariosDeta: any[] = [];
+  items: any[] = [];
   isNew = false;
   selectedClient: any = null;
   constructor(private tipoDocService: TipoDocService,
+              private itemsService: ItemService,
               private personasService: PersonaService,
               private formasPagoService: FormaDePagoService,
-              private usuariosService: UsuarioService,
-              private dialog: MatDialog) { }
+              private usuariosDetaService: UsuarioDetaService,
+              private dialog: MatDialog) {
+  }
 
   ngOnInit() {
     this.getTipos();
     this.getPersonas();
     this.getFormasDePago();
+    this.getUsuariosDeta();
+    this.getItems();
     if (!this.comprobante) {
       this.isNew = true;
       this.comprobante = new Comprobante();
     }
+  }
+  ngDoCheck() {
+    this.calculos.descuento = 0;
+    this.calculos.subtotalIva = 0;
+    this.calculos.subtotalIva0 = 0;
+    this.calculos.total = 0;
+    this.calculos.subtotal = 0;
+    this.detalles.forEach( detalle => {
+      detalle.Subtotal = this.round(detalle.Cantidad * detalle.precio);
+      this.calculos.subtotal += detalle.Subtotal;
+      detalle.descuentoTotal = this.round(detalle.Subtotal * detalle.Descuento / 100);
+      this.calculos.descuento += detalle.descuentoTotal;
+      if (detalle.Iva > 0) {
+        this.calculos.subtotalIva += detalle.Subtotal + detalle.Subtotal * detalle.Iva / 100;
+      } else {
+        this.calculos.subtotalIva0 += detalle.Subtotal + detalle.Subtotal * detalle.Iva / 100;
+      }
+      detalle.Total = this.round(detalle.Subtotal + detalle.Subtotal * detalle.Iva / 100 - detalle.descuentoTotal);
+      this.calculos.total += detalle.Total;
+    });
   }
   getTipos() {
     this.tipoDocService.list().subscribe( tipos => {
@@ -62,9 +97,14 @@ export class ComprobanteFormularioComponent implements OnInit {
       this.formasPago = formasPago;
     });
   }
-  getUsuarios() {
-    this.usuariosService.list().subscribe(usuarios => {
-      this.usuarios = usuarios;
+  getUsuariosDeta() {
+    this.usuariosDetaService.list().subscribe(usuarios => {
+      this.usuariosDeta = usuarios;
+    });
+  }
+  getItems() {
+    this.itemsService.list().subscribe( items => {
+      this.items = items;
     });
   }
 
@@ -75,6 +115,7 @@ export class ComprobanteFormularioComponent implements OnInit {
     if (!this.isNew) {
       comprobante.id = this.comprobante.id;
     }
+    comprobante.detalles = this.detalles;
     this.submitForm.emit(comprobante);
   }
 
@@ -94,6 +135,30 @@ export class ComprobanteFormularioComponent implements OnInit {
         }
       });
     }
+  }
+  onAgregarDetalle() {
+    this.detalles.push({
+      ItemId: null,
+      Descripcion: null,
+      Cantidad: 1,
+      Descuento: 0,
+      Iva: 0,
+      Subtotal: 0,
+      Total: 0,
+      name: (new Date()).toDateString(),
+      precio: 0,
+      descuentoTotal: 0
+    });
+  }
+  removeDetail(i) {
+    this.detalles.splice(i, 1);
+  }
+  selectItem(item, detalle) {
+    detalle.precio = item.Precio;
+    detalle.Iva = item.PorcientoIva;
+  }
+  round(value) {
+    return Math.round(value * 100 ) / 100;
   }
 
 }

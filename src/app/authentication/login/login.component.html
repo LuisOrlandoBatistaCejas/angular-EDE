@@ -9,11 +9,11 @@
     <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm.value)">
       <mat-card-content style="margin-bottom: 8px">
         <mat-form-field style="width: 100%">
-          <input matInput type="text" name="username" placeholder="Usuario o email" #username="ngModel" [ngModel]=""
+          <input matInput type="text" name="email" placeholder="Email" #email="ngModel" [ngModel]=""
                  required>
         </mat-form-field>
-        <section *ngIf="username.invalid && username.dirty" class="bs">
-          <p class="text-danger text-left" *ngIf="username.hasError('required')">
+        <section *ngIf="email.invalid && email.dirty" class="bs">
+          <p class="text-danger text-left" *ngIf="email.hasError('required')">
             Usuario es requerido.
           </p>
         </section>

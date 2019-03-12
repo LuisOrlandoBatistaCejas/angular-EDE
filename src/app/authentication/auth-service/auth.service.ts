@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   login(data) {
-    this.httpService.post('api/auth-jwt/', {username: data.username, password: data.password}).subscribe(result => {
+    this.httpService.post('api/auth-jwt/', {email: data.email, password: data.password}).subscribe(result => {
       localStorage.setItem('token', result.token);
       localStorage.setItem('remember_me', data.remember_me);
       this.appService.isLoggedIn = true;

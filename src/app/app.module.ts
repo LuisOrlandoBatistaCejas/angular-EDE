@@ -174,8 +174,8 @@ import {HttpInterceptorService} from './authentication/http-interceptor/http-int
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
     {
       provide: 'API_URL',
-      // useValue: 'http://code.rociosoft.com:8000/'
-      useValue: 'http://localhost:8000/'
+       useValue: 'http://code.rociosoft.com:8000/'
+      // useValue: 'http://localhost:8000/'
 
     },
     IdentificationTypeService,

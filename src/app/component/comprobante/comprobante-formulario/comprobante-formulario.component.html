@@ -54,8 +54,9 @@
             </mat-form-field>
           </div>
           <div fxFlex="15" fxLayoutAlign="center end">
-              <mat-icon [class.text-accent]="Identificacion.valid" (click)="openClientDetailsDialog()"
-                        style="cursor: pointer">details</mat-icon>
+            <mat-icon [class.text-accent]="Identificacion.valid" (click)="openClientDetailsDialog()"
+                      style="cursor: pointer">details
+            </mat-icon>
           </div>
 
         </div>
@@ -73,7 +74,7 @@
         </div>
       </div>
 
-      <div fxLayout="row wrap" fxLayout.xs="column">
+      <div fxLayout="row wrap" fxLayout.xs="column" style="margin-bottom: 15px">
 
         <div fxFlex="10" fxFlex.xs="100"></div>
 
@@ -103,19 +104,180 @@
             <mat-select placeholder="Vendedor" required
                         name="vendedor" [ngModel]="comprobante.vendedor"
                         #vendedor="ngModel">
-              <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">
-                {{usuario.first_name}} {{usuario.last_name}}
+              <mat-option *ngFor="let usuario of usuariosDeta" [value]="usuario.Codigo">
+                {{usuario.Codigo}}
               </mat-option>
 
             </mat-select>
             <div class="validation-text"
                  *ngIf="vendedor.invalid && (vendedor.dirty || vendedor.touched)">
               <div *ngIf="vendedor.errors['required']">
-               El Vendedor es requerido
+                El Vendedor es requerido
               </div>
             </div>
           </mat-form-field>
 
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+      <div fxLayout="row wrap">
+        <div fxFlex="50">
+          <h4>Detalles</h4>
+        </div>
+        <div fxFlex="50" fxLayoutAlign="end end">
+          <button mat-raised-button color="primary" type="button"
+                  (click)="onAgregarDetalle()">Agregar</button>
+        </div>
+      </div>
+
+      <div style="margin-top: 30px">
+        <!-- Material Table BEGIN -->
+        <mat-table [dataSource]="detalles">
+
+          <ng-container cdkColumnDef="item">
+            <mat-header-cell *cdkHeaderCellDef> Item</mat-header-cell>
+            <mat-cell *cdkCellDef="let row">
+              <mat-form-field class="input-form">
+                <mat-select placeholder="Item" required
+                            [name]="row.name + '_item_'" [(ngModel)]="row.ItemId">
+                  <mat-option *ngFor="let item of items" [value]="item.Codigo" (click)="selectItem(item, row)">
+                    {{item.Nombre}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container cdkColumnDef="precio">
+            <mat-header-cell *cdkHeaderCellDef> Precio</mat-header-cell>
+            <mat-cell *cdkCellDef="let row" class="text-warn"> ${{row.precio}}</mat-cell>
+          </ng-container>
+
+          <ng-container cdkColumnDef="cantidad">
+            <mat-header-cell *cdkHeaderCellDef> Cantidad</mat-header-cell>
+            <mat-cell *cdkCellDef="let row">
+              <mat-form-field class="input-form">
+                <input matInput placeholder="Cantidad" type="number" [(ngModel)]="detalle.Cantidad"
+                       [name]="detalle.name + '_cantidad_'" [min]="1">
+              </mat-form-field>
+
+            </mat-cell>
+          </ng-container>
+
+          <ng-container cdkColumnDef="municipio">
+            <mat-header-cell *cdkHeaderCellDef> Municipio</mat-header-cell>
+            <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.empresa.municipio.nombre}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="unidad">
+            <mat-header-cell *cdkHeaderCellDef> Unidad</mat-header-cell>
+            <mat-cell *cdkCellDef="let row"> {{row.unidad.nombre}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="ettp">
+            <mat-header-cell *cdkHeaderCellDef> Ettp </mat-header-cell>
+            <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.empresa.ettp.nombre}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="empresa">
+            <mat-header-cell *cdkHeaderCellDef> Empresa</mat-header-cell>
+            <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.empresa.nombre}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="ueb">
+            <mat-header-cell *cdkHeaderCellDef> Ueb</mat-header-cell>
+            <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.nombre}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="acciones">
+            <mat-header-cell *cdkHeaderCellDef> Acciones</mat-header-cell>
+            <mat-cell *cdkCellDef="let row">
+              <div fxLayout="row" class="action-column">
+                <mat-icon matTooltip="Actualizar" color="accent" (click)="onUpdate(row.id)">edit</mat-icon>
+                <mat-icon matTooltip="Eliminar" color="warn" (click)="onDelete(row.id)">delete</mat-icon>
+
+              </div>
+            </mat-cell>
+          </ng-container>
+
+
+
+          <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <div fxLayout="row wrap" fxLayout.xs="column" *ngFor="let detalle of detalles; let i = index">
+          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
+
+          </div>
+          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
+            <mat-form-field class="input-form">
+              <input matInput placeholder="Subtotal" type="number" [(ngModel)]="detalle.Subtotal"
+                     [name]="detalle.name + '_subtotal_' + i" [min]="1" disabled>
+            </mat-form-field>
+
+          </div>
+
+          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
+            <mat-form-field class="input-form">
+              <input matInput placeholder="Descuento (%)" type="number" [(ngModel)]="detalle.Descuento"
+                     [name]="detalle.name + '_descuento_' + i" [min]="0">
+            </mat-form-field>
+
+          </div>
+          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
+            <mat-form-field class="input-form">
+              <input matInput placeholder="Descuento" type="number" [ngModel]="detalle.descuentoTotal"
+                     [name]="detalle.name + '_descuento1_' + i" [min]="0" disabled>
+            </mat-form-field>
+
+          </div>
+
+          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
+            <mat-form-field class="input-form">
+              <input matInput placeholder="IVA (%)" type="number" [(ngModel)]="detalle.Iva"
+                     [name]="detalle.name + '_iva_' + i" [min]="0">
+            </mat-form-field>
+
+          </div>
+
+          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
+            <mat-form-field class="input-form">
+              <input matInput placeholder="Total" type="number" [(ngModel)]="detalle.Total"
+                     [name]="detalle.name + '_total_' + i" [min]="0">
+            </mat-form-field>
+
+          </div>
+
+          <div fxFlex="5" fxFlex.xs="100" style="margin: 3px">
+            <mat-icon color="warn" (click)="removeDetail(i)" style="cursor: pointer;">close</mat-icon>
+
+          </div>
+
+        </div>
+        <div fxLayout="row wrap" fxLayout.xs="column">
+          <div fxFlex="60" fxFlex.xs="100"></div>
+          <div fxFlex="40" fxFlex.xs="100">
+            <mat-card>
+              <mat-card-content>
+                <div fxLayout="row wrap">
+                  <div fxFlex="50">Subtotal IVA</div>
+                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.subtotalIva}}</div>
+                </div>
+                <div fxLayout="row wrap">
+                  <div fxFlex="50">Subtotal IVA 0</div>
+                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.subtotalIva0}}</div>
+                </div>
+                <div fxLayout="row wrap">
+                  <div fxFlex="50">Subtotal</div>
+                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.subtotal}}</div>
+                </div>
+                <div fxLayout="row wrap">
+                  <div fxFlex="50">Descuento</div>
+                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.descuento}}</div>
+                </div>
+                <div fxLayout="row wrap">
+                  <div fxFlex="50">Total</div>
+                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.total}}</div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </div>
       </div>
 
