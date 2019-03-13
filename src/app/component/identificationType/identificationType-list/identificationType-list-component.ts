@@ -21,16 +21,21 @@ export class IdentificationTypeListComponent implements OnInit {
   identTypeDeleteDialogEdit: MatDialogRef<ConfirmDeleteDialogComponent>;
   identificationTypeDialogEdit: MatDialogRef<IdentificationTypeEditDialogComponent>;
   identificationTypeDialogCreate: MatDialogRef<IdentificationTypeCreateDialogComponent>;
+  displayedColumns = ['id', 'tipo', 'acciones'];
   constructor(private snackBar: MatSnackBar, private idenTypeService: IdentificationTypeService, public dialog: MatDialog) {}
   ngOnInit() {
+    this.getIdentificationTypes();
+  }
+  getIdentificationTypes() {
+    this.loading = true;
     this.idenTypeService.list()
       .subscribe(res => {
-        this.identificationTypeList = res;
-        this.loading = false;
-      },
-      (error) => {
-        this.loading = false;
-      });
+          this.identificationTypeList = res;
+          this.loading = false;
+        },
+        (error) => {
+          this.loading = false;
+        });
   }
   openDialogCreate() {
     this.identificationTypeDialogCreate = this.dialog.open(IdentificationTypeCreateDialogComponent, {
@@ -42,7 +47,7 @@ export class IdentificationTypeListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(identificationType => {
-        this.identificationTypeList.push(identificationType);
+       this.getIdentificationTypes();
         this.snackBar.open('Tipo de Identificación creado satisfactoriamente');
       });
   }
@@ -57,8 +62,7 @@ export class IdentificationTypeListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(idenType => {
-        const index = this.identificationTypeList.findIndex(object => object.Id === idenType.Id);
-        this.identificationTypeList[index] = idenType;
+        this.getIdentificationTypes();
         this.snackBar.open('Tipo de Identificación editado satisfactoriamente');
       });
   }
@@ -76,10 +80,9 @@ export class IdentificationTypeListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(deleted => {
-        this.idenTypeService.delete(item.Id).subscribe(
+        this.idenTypeService.delete(item.id).subscribe(
           res => {
-            const index = this.identificationTypeList.findIndex(object => object.Id === item.Id);
-            this.identificationTypeList.splice(index, 1);
+            this.getIdentificationTypes();
             this.snackBar.open('Tipo de Identificación eliminado satisfactoriamente');
           });
       });

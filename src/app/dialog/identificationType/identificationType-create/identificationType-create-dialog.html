@@ -4,10 +4,10 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #Id="ngModel" name="Id" id="Id" maxlength="10" placeholder="Id" required>
+        <input matInput ngModel #id="ngModel" name="id" id="id" maxlength="10" placeholder="Id" required>
         <mat-hint>Máximo 10 caracteres</mat-hint>
-        <mat-error *ngIf="!Id.valid && Id.touched">
-          The content field is required
+        <mat-error *ngIf="!id.valid && id.touched">
+          El Id es requerido
         </mat-error>
       </mat-form-field>
 
@@ -15,7 +15,7 @@
         <input matInput ngModel #Tipo="ngModel" maxlength="20" name="Tipo" id="Tipo" placeholder="Tipo de identificación" required>
         <mat-hint>Máximo 20 caracteres</mat-hint>
         <mat-error *ngIf="!Tipo.valid && Tipo.touched">
-          The content field is required
+          El Tipo es requerido
         </mat-error>
       </mat-form-field>
 

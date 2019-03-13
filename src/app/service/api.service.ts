@@ -39,7 +39,6 @@ export class ApiService {
    */
   update(resource: any): Observable<any> {
     const id = resource.id;
-    resource.id = null;
     resource = this.serialize(resource);
     return this.http.put(`${this.url}/${id}`, resource);
   }
