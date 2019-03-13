@@ -160,3 +160,15 @@ html, body {
   color: mat-color($app-primary) !important;
 }
 
+.mat-form-field--fit-width {
+  width: auto !important;
+  input {
+    width: 75px;
+  }
+  mat-select {
+    width: 115px;
+  }
+  .mat-form-field-infix {
+    width: auto !important;
+  }
+}

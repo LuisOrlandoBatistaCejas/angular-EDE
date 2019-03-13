@@ -73,7 +73,11 @@ export class ApiService {
       } else if (data[attr] instanceof Date) {
           serializedData[attr] = DateFormatter.dateToString(data[attr]);
       } else if (data[attr] instanceof Object) {
-        serializedData[attr] = this.serialize(data[attr]);
+        if (Array.isArray(data[attr])) {
+          serializedData[attr] = data[attr];
+        } else {
+          serializedData[attr] = this.serialize(data[attr]);
+        }
       } else {
         // Leaves it as is.
         serializedData[attr] = data[attr];

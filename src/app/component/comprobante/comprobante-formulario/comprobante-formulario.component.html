@@ -127,20 +127,21 @@
         </div>
         <div fxFlex="50" fxLayoutAlign="end end">
           <button mat-raised-button color="primary" type="button"
-                  (click)="onAgregarDetalle()">Agregar</button>
+                  (click)="onAgregarDetalle()">Agregar
+          </button>
         </div>
       </div>
 
       <div style="margin-top: 30px">
         <!-- Material Table BEGIN -->
-        <mat-table [dataSource]="detalles">
+        <mat-table [dataSource]="detallesDataSource">
 
           <ng-container cdkColumnDef="item">
             <mat-header-cell *cdkHeaderCellDef> Item</mat-header-cell>
-            <mat-cell *cdkCellDef="let row">
-              <mat-form-field class="input-form">
-                <mat-select placeholder="Item" required
-                            [name]="row.name + '_item_'" [(ngModel)]="row.ItemId">
+            <mat-cell *cdkCellDef="let row; let i = index">
+              <mat-form-field class="input-form mat-form-field--fit-width">
+                <mat-select  required
+                            [name]="row.name + '_item_' + i" [(ngModel)]="row.ItemId">
                   <mat-option *ngFor="let item of items" [value]="item.Codigo" (click)="selectItem(item, row)">
                     {{item.Nombre}}
                   </mat-option>
@@ -151,129 +152,96 @@
 
           <ng-container cdkColumnDef="precio">
             <mat-header-cell *cdkHeaderCellDef> Precio</mat-header-cell>
-            <mat-cell *cdkCellDef="let row" class="text-warn"> ${{row.precio}}</mat-cell>
+            <mat-cell *cdkCellDef="let row; let i = index" class="text-warn"> ${{row.precio | round: 2}}</mat-cell>
           </ng-container>
 
           <ng-container cdkColumnDef="cantidad">
             <mat-header-cell *cdkHeaderCellDef> Cantidad</mat-header-cell>
-            <mat-cell *cdkCellDef="let row">
-              <mat-form-field class="input-form">
-                <input matInput placeholder="Cantidad" type="number" [(ngModel)]="detalle.Cantidad"
-                       [name]="detalle.name + '_cantidad_'" [min]="1">
+            <mat-cell *cdkCellDef="let row; let i = index">
+              <mat-form-field class="input-form mat-form-field--fit-width">
+                <input matInput  type="number" [(ngModel)]="row.Cantidad"
+                       [name]="row.name + '_cantidad_' + i" [min]="1">
               </mat-form-field>
 
             </mat-cell>
           </ng-container>
 
-          <ng-container cdkColumnDef="municipio">
-            <mat-header-cell *cdkHeaderCellDef> Municipio</mat-header-cell>
-            <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.empresa.municipio.nombre}}</mat-cell>
+          <ng-container cdkColumnDef="subtotal">
+            <mat-header-cell *cdkHeaderCellDef> Subtotal</mat-header-cell>
+            <mat-cell *cdkCellDef="let row; let i = index"> {{row.Subtotal | round: 2}}</mat-cell>
           </ng-container>
-          <ng-container cdkColumnDef="unidad">
-            <mat-header-cell *cdkHeaderCellDef> Unidad</mat-header-cell>
-            <mat-cell *cdkCellDef="let row"> {{row.unidad.nombre}}</mat-cell>
+
+          <ng-container cdkColumnDef="descuento">
+            <mat-header-cell *cdkHeaderCellDef> Descuento (%)</mat-header-cell>
+            <mat-cell *cdkCellDef="let row; let i = index">
+              <mat-form-field class="input-form mat-form-field--fit-width">
+                <input matInput  type="number" [(ngModel)]="row.Descuento"
+                       [name]="row.name + '_descuento_' + i" [min]="0">
+              </mat-form-field>
+            </mat-cell>
           </ng-container>
-          <ng-container cdkColumnDef="ettp">
-            <mat-header-cell *cdkHeaderCellDef> Ettp </mat-header-cell>
-            <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.empresa.ettp.nombre}}</mat-cell>
+
+          <ng-container cdkColumnDef="descuentoTotal">
+            <mat-header-cell *cdkHeaderCellDef> Descuento</mat-header-cell>
+            <mat-cell *cdkCellDef="let row"> {{row.descuentoTotal | round: 2}}</mat-cell>
           </ng-container>
-          <ng-container cdkColumnDef="empresa">
-            <mat-header-cell *cdkHeaderCellDef> Empresa</mat-header-cell>
-            <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.empresa.nombre}}</mat-cell>
+
+          <ng-container cdkColumnDef="iva">
+            <mat-header-cell *cdkHeaderCellDef> IVA (%)</mat-header-cell>
+            <mat-cell *cdkCellDef="let row; let i = index">
+              <mat-form-field class="input-form mat-form-field--fit-width">
+                <mat-select  required
+                             [name]="row.name + '_iva_' + i" [(ngModel)]="row.Iva">
+                  <mat-option  [value]="0">0%</mat-option>
+                  <mat-option  [value]="12">12%</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-cell>
           </ng-container>
-          <ng-container cdkColumnDef="ueb">
-            <mat-header-cell *cdkHeaderCellDef> Ueb</mat-header-cell>
-            <mat-cell *cdkCellDef="let row"> {{row.unidad.ueb.nombre}}</mat-cell>
+
+          <ng-container cdkColumnDef="total">
+            <mat-header-cell *cdkHeaderCellDef>Total</mat-header-cell>
+            <mat-cell *cdkCellDef="let row"> {{row.Total | round: 2}}</mat-cell>
           </ng-container>
+
           <ng-container cdkColumnDef="acciones">
             <mat-header-cell *cdkHeaderCellDef> Acciones</mat-header-cell>
-            <mat-cell *cdkCellDef="let row">
+            <mat-cell *cdkCellDef="let row; let i = index">
               <div fxLayout="row" class="action-column">
-                <mat-icon matTooltip="Actualizar" color="accent" (click)="onUpdate(row.id)">edit</mat-icon>
-                <mat-icon matTooltip="Eliminar" color="warn" (click)="onDelete(row.id)">delete</mat-icon>
-
+                <mat-icon matTooltip="Eliminar" color="warn" (click)="removeDetail(i)">close</mat-icon>
               </div>
             </mat-cell>
           </ng-container>
 
 
-
           <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
         </mat-table>
-        <div fxLayout="row wrap" fxLayout.xs="column" *ngFor="let detalle of detalles; let i = index">
-          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
 
-          </div>
-          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
-            <mat-form-field class="input-form">
-              <input matInput placeholder="Subtotal" type="number" [(ngModel)]="detalle.Subtotal"
-                     [name]="detalle.name + '_subtotal_' + i" [min]="1" disabled>
-            </mat-form-field>
-
-          </div>
-
-          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
-            <mat-form-field class="input-form">
-              <input matInput placeholder="Descuento (%)" type="number" [(ngModel)]="detalle.Descuento"
-                     [name]="detalle.name + '_descuento_' + i" [min]="0">
-            </mat-form-field>
-
-          </div>
-          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
-            <mat-form-field class="input-form">
-              <input matInput placeholder="Descuento" type="number" [ngModel]="detalle.descuentoTotal"
-                     [name]="detalle.name + '_descuento1_' + i" [min]="0" disabled>
-            </mat-form-field>
-
-          </div>
-
-          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
-            <mat-form-field class="input-form">
-              <input matInput placeholder="IVA (%)" type="number" [(ngModel)]="detalle.Iva"
-                     [name]="detalle.name + '_iva_' + i" [min]="0">
-            </mat-form-field>
-
-          </div>
-
-          <div fxFlex="10" fxFlex.xs="100" style="margin: 3px">
-            <mat-form-field class="input-form">
-              <input matInput placeholder="Total" type="number" [(ngModel)]="detalle.Total"
-                     [name]="detalle.name + '_total_' + i" [min]="0">
-            </mat-form-field>
-
-          </div>
-
-          <div fxFlex="5" fxFlex.xs="100" style="margin: 3px">
-            <mat-icon color="warn" (click)="removeDetail(i)" style="cursor: pointer;">close</mat-icon>
-
-          </div>
-
-        </div>
-        <div fxLayout="row wrap" fxLayout.xs="column">
+        <div fxLayout="row wrap" fxLayout.xs="column" style="margin-top: 10px">
           <div fxFlex="60" fxFlex.xs="100"></div>
           <div fxFlex="40" fxFlex.xs="100">
             <mat-card>
               <mat-card-content>
                 <div fxLayout="row wrap">
                   <div fxFlex="50">Subtotal IVA</div>
-                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.subtotalIva}}</div>
+                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.subtotalIva | round: 2}}</div>
                 </div>
                 <div fxLayout="row wrap">
                   <div fxFlex="50">Subtotal IVA 0</div>
-                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.subtotalIva0}}</div>
+                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.subtotalIva0 | round: 2}}</div>
                 </div>
                 <div fxLayout="row wrap">
                   <div fxFlex="50">Subtotal</div>
-                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.subtotal}}</div>
+                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.subtotal | round: 2}}</div>
                 </div>
                 <div fxLayout="row wrap">
                   <div fxFlex="50">Descuento</div>
-                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.descuento}}</div>
+                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.descuento | round: 2}}</div>
                 </div>
                 <div fxLayout="row wrap">
                   <div fxFlex="50">Total</div>
-                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.total}}</div>
+                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.total | round: 2}}</div>
                 </div>
               </mat-card-content>
             </mat-card>
