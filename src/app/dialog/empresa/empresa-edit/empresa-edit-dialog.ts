@@ -11,10 +11,6 @@ import {EmpresaService} from '../../../service/empresa-service';
 })
 export class EmpresaEditDialogComponent implements OnInit {
   @ViewChild('f') form: NgForm;
-  contaObligado: boolean;
-  activo: boolean;
-  empresa: any;
-  empresaEdit: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<EmpresaEditDialogComponent>,
@@ -22,21 +18,11 @@ export class EmpresaEditDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.empresa = this.data;
-    this.activo = this.data.Activo;
-    this.contaObligado = this.data.ContabilidadObligado;
-  }
-  changeContaObligado() {
-    this.contaObligado = !this.contaObligado;
-  }
-  changeActivo() {
-    this.activo = !this.activo;
   }
   onSubmit() {
-    this.empresaEdit = this.form.value;
-    this.empresaEdit.ContabilidadObligado = this.contaObligado;
-    this.empresaEdit.Activo = this.activo;
-    this.empresaService.update(this.empresaEdit).subscribe( res => {
+    const empresa = this.form.value;
+    empresa.id = empresa.Ruc;
+    this.empresaService.update(empresa).subscribe( res => {
       this.dialogRef.close(res);
     }, (error) => {
       console.log('Error!!', error.message);

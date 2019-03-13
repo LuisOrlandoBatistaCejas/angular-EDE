@@ -40,7 +40,7 @@ export class ApiService {
   update(resource: any): Observable<any> {
     const id = resource.id;
     resource = this.serialize(resource);
-    return this.http.put(`${this.url}/${id}`, resource);
+    return this.http.put(`${this.url}/${id}/`, resource);
   }
 
   /**
@@ -48,9 +48,9 @@ export class ApiService {
    */
   delete(id: string | number, resource?: any): Observable<any> {
     if (!resource) {
-      return this.http.delete(`${this.url}/${id}`);
+      return this.http.delete(`${this.url}/${id}/`);
     } else {
-      return this.http.delete(`${this.url}/${id}`, { body: (resource) });
+      return this.http.delete(`${this.url}/${id}/`, { body: (resource) });
     }
   }
   /**

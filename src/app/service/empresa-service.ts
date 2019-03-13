@@ -11,13 +11,4 @@ export class EmpresaService extends ApiService {
     super(http);
     this.url = 'api/empresa';
   }
-  update(resource: any): Observable<any> {
-    const id = resource.Ruc;
-    // resource.id = null;
-    resource = this.serialize(resource);
-    return this.httpClient.put(`${this.url}/${id}/`, resource);
-  }
-  delete(id: string): Observable<any> {
-    return this.http.delete(`${this.url}/${id}/`);
-  }
 }

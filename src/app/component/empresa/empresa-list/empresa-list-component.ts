@@ -18,8 +18,13 @@ export class EmpresaListComponent implements OnInit {
   empresaDialogDelete: MatDialogRef<ConfirmDeleteDialogComponent>;
   empresaDialogEdit: MatDialogRef<EmpresaEditDialogComponent>;
   empresaDialogCreate: MatDialogRef<EmpresaCreateDialogComponent>;
+  displayedColumns = ['ruc', 'razonSocial', 'nombreComercial', 'telefono', 'email', 'activo', 'acciones'];
   constructor(private snackBar: MatSnackBar, private empresaService: EmpresaService, public dialog: MatDialog) {}
   ngOnInit() {
+    this.getEmpresas();
+  }
+  getEmpresas() {
+    this.loading = true;
     this.empresaService.list().subscribe(
       res => {
         this.empresaList = res;
@@ -38,7 +43,7 @@ export class EmpresaListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(empresa => {
-        this.empresaList.push(empresa);
+        this.getEmpresas();
         this.snackBar.open('Empresa creada satisfactoriamente');
       });
   }
@@ -53,8 +58,7 @@ export class EmpresaListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(idenType => {
-        const index = this.empresaList.findIndex(object => object.Ruc === idenType.Ruc);
-        this.empresaList[index] = idenType;
+        this.getEmpresas();
         this.snackBar.open('Se ha editado la empresa satisfactoriamente');
       });
   }
@@ -74,8 +78,7 @@ export class EmpresaListComponent implements OnInit {
       .subscribe(deleted => {
         this.empresaService.delete(item.Ruc).subscribe(
           res => {
-            const index = this.empresaList.findIndex(object => object.Ruc === item.Ruc);
-            this.empresaList.splice(index, 1);
+            this.getEmpresas();
             this.snackBar.open('Empresa eliminada satisfactoriamente');
           });
       });

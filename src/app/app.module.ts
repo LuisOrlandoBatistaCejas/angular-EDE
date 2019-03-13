@@ -176,8 +176,8 @@ import {CustomPipesModule} from './custom-pipes/custom-pipes.module';
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
     {
       provide: 'API_URL',
-        useValue: 'http://code.rociosoft.com:8000/'
-       // useValue: 'http://localhost:8000/'
+        // useValue: 'http://code.rociosoft.com:8000/'
+        useValue: 'http://localhost:8000/'
 
     },
     IdentificationTypeService,

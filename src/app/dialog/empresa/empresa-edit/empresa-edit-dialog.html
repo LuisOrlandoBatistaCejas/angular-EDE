@@ -5,65 +5,78 @@
 
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput [ngModel]="empresa.Ruc" #Ruc="ngModel" maxlength="10" name="Ruc" id="Ruc" placeholder="Registro Único de Contribuyentes" required>
+          <input matInput [ngModel]="data.Ruc" #Ruc="ngModel" maxlength="10" name="Ruc"
+                 placeholder="Registro Único de Contribuyentes" required>
           <mat-hint>Máximo 10 caracteres</mat-hint>
           <mat-error *ngIf="!Ruc.valid && Ruc.touched">
-            The content field is required
+            El RUC es requerido
           </mat-error>
         </mat-form-field>
 
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput [ngModel]="empresa.CodigoContribuyenteEspecial" #CodigoContribuyenteEspecial="ngModel" maxlength="6" name="CodigoContribuyenteEspecial" id="CodigoContribuyenteEspecial" placeholder="Codigo Contribuyente Especial" required>
-          <mat-hint>Máximo 6 caracteres</mat-hint>
+          <input matInput [ngModel]="data.CodigoContribuyenteEspecial" #CodigoContribuyenteEspecial="ngModel"
+                 maxlength="6" name="CodigoContribuyenteEspecial"  placeholder="Codigo Contribuyente Especial" required>
+          <mat-error *ngIf="!Ruc.valid && Ruc.touched">
+            El Código Contribuyente Especial es requerido
+          </mat-error>
         </mat-form-field>
       </div>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput [ngModel]="empresa.Direccion" #Direccion="ngModel" name="Direccion" id="Direccion" placeholder="Dirección" required>
+        <input matInput [ngModel]="data.Direccion" #Direccion="ngModel" name="Direccion"
+               placeholder="Dirección" required>
         <mat-error *ngIf="!Direccion.valid && Direccion.touched">
-          The content field is required
+          La Dirección es requerida
         </mat-error>
       </mat-form-field>
 
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput [ngModel]="empresa.RazonSocial" #RazonSocial="ngModel" name="RazonSocial" id="RazonSocial" placeholder="Razón Social" required>
+          <input matInput [ngModel]="data.RazonSocial" #RazonSocial="ngModel" name="RazonSocial"
+                 placeholder="Razón Social" required>
           <mat-error *ngIf="!RazonSocial.valid && RazonSocial.touched">
-            The from field is required
+            La Razón Social es requerida
           </mat-error>
         </mat-form-field>
 
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput [ngModel]="empresa.NombreComercial" #NombreComercial="ngModel" name="NombreComercial" id="NombreComercial" placeholder="Nombre Comercial" required>
+          <input matInput [ngModel]="data.NombreComercial" #NombreComercial="ngModel" name="NombreComercial"
+                 placeholder="Nombre Comercial" required>
           <mat-error *ngIf="!NombreComercial.valid && NombreComercial.touched">
-            The content field is required
+            El Nombre Comercial es requerido
           </mat-error>
         </mat-form-field>
       </div>
 
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput [ngModel]="empresa.Telfonos" #Telfonos="ngModel" maxlength="25" name="Telfonos" id="Telfonos" placeholder="Teléfonos">
+          <input matInput [ngModel]="data.Telefonos" #Telefonos="ngModel" maxlength="25" name="Telefonos"
+                 placeholder="Teléfono" required>
           <mat-hint>Máximo 25 caracteres</mat-hint>
+          <mat-error *ngIf="!Telefonos.valid && Telefonos.touched">
+            El Teléfono es requerido
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput [ngModel]="empresa.Email" #Email="ngModel" name="Email" id="Email" placeholder="Email">
+          <input matInput [ngModel]="data.Email" #Email="ngModel" name="Email" id="Email" placeholder="Email">
         </mat-form-field>
       </div>
 
       <div fxLayout="row" fxLayoutGap="10px">
-        <mat-checkbox fxFlex="50" [checked]="contaObligado" [(ngModel)]="contaObligado"
-                      (change)="changeContaObligado()">Contabilidad Obligado</mat-checkbox>
+        <mat-checkbox fxFlex="50"  [ngModel]="data.ContabilidadObligado"
+                      name="ContabilidadObligado" #ContabilidadObligado="ngModel">
+          Contabilidad Obligado
+        </mat-checkbox>
 
         <div class="align-center">
-          <mat-checkbox fxFlex="50" [checked]="activo" [(ngModel)]="activo"
-                        (change)="changeActivo()">Activo</mat-checkbox>
+          <mat-checkbox fxFlex="50" [ngModel]="data.Activo"
+                        name="Activo" #Activo="ngModel">Activo</mat-checkbox>
         </div>
       </div>
       <div fxLayout="row" class="m-t-10" fxLayoutGap="10px" fxLayoutAlign="end center">
         <button mat-button [mat-dialog-close]>Cancelar</button>
-        <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>
+        <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Actualizar</button>
       </div>
     </div>
   </form>

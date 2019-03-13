@@ -11,25 +11,14 @@ import {EmpresaService} from '../../../service/empresa-service';
 export class EmpresaCreateDialogComponent {
   @ViewChild('f') form: NgForm;
   activo = true;
-  contaObligado = true;
-  empresa: any;
   constructor(
     private dialogRef: MatDialogRef<EmpresaCreateDialogComponent>,
     private empresaService: EmpresaService
   ) {}
   onSubmit() {
-    this.empresa = this.form.value;
-    this.empresa.Activo = this.activo;
-    this.empresa.ContabilidadObligado = this.contaObligado;
-    this.empresaService.create(this.empresa).subscribe(res => {
+    this.empresaService.create(this.form.value).subscribe(res => {
       this.dialogRef.close(res);
     });
-  }
-  changeActivo() {
-    this.activo = !this.activo;
-  }
-  changeContaObligado() {
-    this.contaObligado = !this.contaObligado;
   }
   close() {
     this.dialogRef.close();
