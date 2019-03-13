@@ -10,27 +10,14 @@ import {ItemService} from '../../../service/item-service';
 })
 export class ItemCreateDialogComponent {
   @ViewChild('f') form: NgForm;
-  venta = true;
-  compra = true;
   item: any;
   constructor(
     private dialogRef: MatDialogRef<ItemCreateDialogComponent>,
     private itemService: ItemService
   ) {
-    this.venta = true;
-    this.compra = true;
-  }
-  changeVenta() {
-    this.venta = !this.venta;
-  }
-  changeCompra() {
-    this.compra = !this.compra;
   }
   onSubmit() {
-    this.item = this.form.value;
-    this.item.Venta = this.venta;
-    this.item.Compra = this.compra;
-    this.itemService.create(this.item).subscribe(res => {
+    this.itemService.create(this.form.value).subscribe(res => {
       this.dialogRef.close(res);
     }, (error) => {
       console.log(error.message);

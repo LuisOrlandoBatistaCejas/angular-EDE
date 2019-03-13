@@ -4,17 +4,17 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #Id="ngModel" name="Id" id="Id" maxlength="10" placeholder="Id" required>
+        <input matInput ngModel #id="ngModel" name="id" maxlength="10" placeholder="Id" required>
         <mat-hint>Máximo 10 caracteres</mat-hint>
-        <mat-error *ngIf="!Id.valid && Id.touched">
-          The content field is required
+        <mat-error *ngIf="!id.valid && id.touched">
+          El Id es requerido
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
         <input matInput ngModel #Nombre="ngModel" name="Nombre" id="Nombre" placeholder="Nombre" required>
         <mat-error *ngIf="!Nombre.valid && Nombre.touched">
-          The content field is required
+          El Nombre es requerido
         </mat-error>
       </mat-form-field>
 

@@ -4,51 +4,51 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #Nombre="ngModel" name="Nombre" id="Nombre" placeholder="Nombre" required>
+        <input matInput ngModel #Nombre="ngModel" name="Nombre"  placeholder="Nombre" required>
         <mat-error *ngIf="!Nombre.valid && Nombre.touched">
-          The content field is required
+          El Nombre es requerido
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #Descripcion="ngModel" name="Descripcion" id="Descripcion" placeholder="Descripcion" required>
+        <input matInput ngModel #Descripcion="ngModel" name="Descripcion"  placeholder="Descripcion" required>
         <mat-error *ngIf="!Descripcion.valid && Descripcion.touched">
-          The content field is required
+          La Descripcion es requerida
         </mat-error>
       </mat-form-field>
 
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #Codigo="ngModel" name="Codigo" id="Codigo" placeholder="Código" required>
+          <input matInput ngModel #Codigo="ngModel" name="Codigo"  placeholder="Código" required>
           <mat-error *ngIf="!Codigo.valid && Codigo.touched">
-            The content field is required
+            El Código es requerido
           </mat-error>
         </mat-form-field>
 
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #Precio="ngModel" name="Precio" id="Precio" placeholder="Precio" required>
+          <input matInput ngModel #Precio="ngModel" name="Precio" type="number" [min]="0"
+                 placeholder="Precio" required>
           <mat-error *ngIf="!Precio.valid && Precio.touched">
-            The content field is required
+            El Precio es requerido
           </mat-error>
         </mat-form-field>
       </div>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #PorcientoIva="ngModel" name="PorcientoIva" id="PorcientoIva" placeholder="Porciento Iva" required>
+        <input matInput ngModel #PorcientoIva="ngModel" name="PorcientoIva" type="number" [min]="0"
+               placeholder="Porciento Iva" required>
         <mat-error *ngIf="!PorcientoIva.valid && PorcientoIva.touched">
-          The content field is required
+          El Porciento Iva es requerido
         </mat-error>
       </mat-form-field>
 
       <div fxLayout="row" fxLayoutGap="10px">
         <div class="align-center">
-          <mat-checkbox fxFlex="50" [checked]="venta" [(ngModel)]="venta"
-                        (change)="changeVenta()">Venta</mat-checkbox>
+          <mat-checkbox fxFlex="50" [ngModel]="true" #Venta="ngModel" name="Venta">Venta</mat-checkbox>
         </div>
 
         <div class="align-center">
-          <mat-checkbox fxFlex="50" [checked]="compra" [(ngModel)]="compra"
-                        (change)="changeCompra()">Compra</mat-checkbox>
+          <mat-checkbox fxFlex="50" [ngModel]="true" #Compra="ngModel" name="Compra">Compra</mat-checkbox>
         </div>
       </div>
 

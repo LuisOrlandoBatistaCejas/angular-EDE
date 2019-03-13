@@ -18,8 +18,13 @@ export class ItemListComponent implements OnInit {
   itemDialogDelete: MatDialogRef<ConfirmDeleteDialogComponent>;
   itemDialogEdit: MatDialogRef<ItemEditDialogComponent>;
   itemDialogCreate: MatDialogRef<ItemCreateDialogComponent>;
+  displayedColumns = ['codigo', 'nombre', 'descripcion', 'precio', 'iva', 'acciones'];
   constructor(private snackBar: MatSnackBar, private itemService: ItemService, public dialog: MatDialog) {}
   ngOnInit() {
+    this.getItems();
+  }
+  getItems() {
+    this.loading = true;
     this.itemService.list().subscribe(
       res => {
         this.itemList = res;
@@ -38,7 +43,7 @@ export class ItemListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(usuarioDeta => {
-        this.itemList.push(usuarioDeta);
+        this.getItems();
         this.snackBar.open('Item creado satisfactoriamente');
       });
   }
@@ -53,8 +58,7 @@ export class ItemListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(res => {
-        const index = this.itemList.findIndex(object => object.Codigo === res.Codigo);
-        this.itemList[index] = res;
+        this.getItems();
         this.snackBar.open('Item editado satisfactoriamente');
       });
   }
@@ -74,8 +78,7 @@ export class ItemListComponent implements OnInit {
       .subscribe(deleted => {
         this.itemService.delete(item.Codigo).subscribe(
           res => {
-            const index = this.itemList.findIndex(object => object.Codigo === item.Codigo);
-            this.itemList.splice(index, 1);
+            this.getItems();
             this.snackBar.open('Item eliminado satisfactoriamente');
           });
       });

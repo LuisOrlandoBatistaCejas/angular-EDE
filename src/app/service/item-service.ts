@@ -11,12 +11,4 @@ export class ItemService extends ApiService {
     super(http);
     this.url = 'api/item';
   }
-  update(resource: any): Observable<any> {
-    const id = resource.Codigo;
-    resource = this.serialize(resource);
-    return this.http.put(`${this.url}/${id}/`, resource);
-  }
-  delete(id: string): Observable<any> {
-    return this.http.delete(`${this.url}/${id}/`);
-  }
 }

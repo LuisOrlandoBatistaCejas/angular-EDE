@@ -17,8 +17,13 @@ export class FormaDePagoListComponent implements OnInit {
   formaDePagoDialogDelete: MatDialogRef<ConfirmDeleteDialogComponent>;
   formaDePagoDialogEdit: MatDialogRef<FormDePagoEditDialogComponent>;
   formaDePagoDialogCreate: MatDialogRef<FormaDePagoCreateDialogComponent>;
+  displayedColumns = ['id', 'nombre', 'acciones'];
   constructor(private snackBar: MatSnackBar, private formaDePagoService: FormaDePagoService, public dialog: MatDialog) {}
   ngOnInit() {
+    this.getFormasDePago();
+  }
+  getFormasDePago() {
+    this.loading = true;
     this.formaDePagoService.list().subscribe(
       res => {
         this.formaDePagoList = res;
@@ -37,7 +42,7 @@ export class FormaDePagoListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(formaDePago => {
-        this.formaDePagoList.push(formaDePago);
+        this.getFormasDePago();
         this.snackBar.open('Forma de pago creada satisfactoriamente');
       });
   }
@@ -52,8 +57,7 @@ export class FormaDePagoListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(formaDePago => {
-        const index = this.formaDePagoList.findIndex(object => object.Id === formaDePago.Id);
-        this.formaDePagoList[index] = formaDePago;
+        this.getFormasDePago();
         this.snackBar.open('Forma de pago editada satisfactoriamente');
       });
   }
@@ -71,10 +75,9 @@ export class FormaDePagoListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(deleted => {
-        this.formaDePagoService.delete(item.Id).subscribe(
+        this.formaDePagoService.delete(item.id).subscribe(
           res => {
-            const index = this.formaDePagoList.findIndex(object => object.Id === item.Id);
-            this.formaDePagoList.splice(index, 1);
+            this.getFormasDePago();
             this.snackBar.open('Forma de pago eliminada satisfactoriamente');
           });
       });
