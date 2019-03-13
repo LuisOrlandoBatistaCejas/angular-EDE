@@ -17,8 +17,13 @@ export class DocumentoListComponent implements OnInit {
   documentoDialogDelete: MatDialogRef<ConfirmDeleteDialogComponent>;
   documentoDialogEdit: MatDialogRef<DocumentoEditDialogComponent>;
   documentoDialogCreate: MatDialogRef<DocumentoCreateDialogComponent>;
+  displayedColumns = ['id', 'documento', 'venta', 'compra', 'acciones'];
   constructor(private snackBar: MatSnackBar, private documentoService: DocumentoService, public dialog: MatDialog) {}
   ngOnInit() {
+    this.getDocumentos();
+  }
+  getDocumentos() {
+    this.loading = true;
     this.documentoService.list().subscribe(
       res => {
         this.documentoList = res;
@@ -37,7 +42,7 @@ export class DocumentoListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(documento => {
-        this.documentoList.push(documento);
+        this.getDocumentos();
         this.snackBar.open('Tipo de documento creado satisfactoriamente');
       });
   }
@@ -52,8 +57,7 @@ export class DocumentoListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(idenType => {
-        const index = this.documentoList.findIndex(object => object.Id === idenType.Id);
-        this.documentoList[index] = idenType;
+        this.getDocumentos();
         this.snackBar.open('Documento editado satisfactoriamente');
       });
   }
@@ -71,10 +75,9 @@ export class DocumentoListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(deleted => {
-        this.documentoService.delete(item.Id).subscribe(
+        this.documentoService.delete(item.id).subscribe(
           res => {
-            const index = this.documentoList.findIndex(object => object.Id === item.Id);
-            this.documentoList.splice(index, 1);
+            this.getDocumentos();
             this.snackBar.open('Se ha eliminado un documento satisfactoriamente');
           });
       });

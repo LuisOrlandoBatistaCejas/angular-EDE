@@ -6,26 +6,35 @@
       <mat-form-field fxFlex="50" class="example-full-width">
         <input matInput ngModel #Nombre="ngModel" name="Nombre" id="Nombre" placeholder="Nombre" required>
         <mat-error *ngIf="!Nombre.valid && Nombre.touched">
-          The content field is required
+          El Nombre es requerido
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
         <input matInput ngModel #Plazo="ngModel" type="number" name="Plazo" id="Plazo" placeholder="Plazo" required>
         <mat-error *ngIf="!Plazo.valid && Plazo.touched">
-          The content field is required
+          El Plazo es requerido
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #Unidad="ngModel" name="Unidad" id="Unidad" placeholder="Unidad" required>
+        <mat-select required placeholder="Unidad"
+                    name="Unidad" ngModel #Unidad="ngModel">
+          <mat-option value="DIA">Días</mat-option>
+          <mat-option value="MES">Meses</mat-option>
+        </mat-select>
         <mat-error *ngIf="!Unidad.valid && Unidad.touched">
-          The content field is required
+          La Unidad es requerida
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #FormaPagoId="ngModel" name="FormaPagoId" id="FormaPagoId" placeholder="FormaPagoId (select)" required>
+        <mat-select required placeholder="Forma de Pago"
+                    name="FormaPagoId" ngModel #FormaPagoId="ngModel">
+          <mat-option *ngFor="let formaPago of formasDePago" [value]="formaPago.id">
+            {{formaPago.Nombre}}
+          </mat-option>
+        </mat-select>
         <mat-error *ngIf="!FormaPagoId.valid && FormaPagoId.touched">
           The content field is required
         </mat-error>

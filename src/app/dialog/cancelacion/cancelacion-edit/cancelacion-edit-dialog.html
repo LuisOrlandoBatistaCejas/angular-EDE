@@ -4,28 +4,37 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput [ngModel]="cancelacion.Nombre" #Nombre="ngModel" name="Nombre" id="Nombre" placeholder="Nombre" required>
+        <input matInput [ngModel]="data.Nombre" #Nombre="ngModel" name="Nombre" placeholder="Nombre" required>
         <mat-error *ngIf="!Nombre.valid && Nombre.touched">
-          The content field is required
+         El Nombre es requerido
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput [ngModel]="cancelacion.Plazo" #Plazo="ngModel" type="number" name="Plazo" id="Plazo" placeholder="Plazo" required>
+        <input matInput [ngModel]="data.Plazo" #Plazo="ngModel" type="number" name="Plazo" placeholder="Plazo" required>
         <mat-error *ngIf="!Plazo.valid && Plazo.touched">
-          The content field is required
+          El Plazo es requerido
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput [ngModel]="cancelacion.Unidad" #Unidad="ngModel" name="Unidad" id="Unidad" placeholder="Unidad" required>
+        <mat-select required placeholder="Unidad"
+                    name="Unidad" [ngModel]="data.Unidad" #Unidad="ngModel">
+          <mat-option value="DIA">Días</mat-option>
+          <mat-option value="MES">Meses</mat-option>
+        </mat-select>
         <mat-error *ngIf="!Unidad.valid && Unidad.touched">
-          The content field is required
+          La Unidad es requerida
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput [ngModel]="cancelacion.FormaPagoId" #FormaPagoId="ngModel" name="FormaPagoId" id="FormaPagoId" placeholder="FormaPagoId (select)" required>
+        <mat-select required placeholder="Forma de Pago"
+                    name="FormaPagoId" [ngModel]="data.FormaPagoId" #FormaPagoId="ngModel">
+          <mat-option *ngFor="let formaPago of formasDePago" [value]="formaPago.id">
+            {{formaPago.Nombre}}
+          </mat-option>
+        </mat-select>
         <mat-error *ngIf="!FormaPagoId.valid && FormaPagoId.touched">
           The content field is required
         </mat-error>
@@ -33,7 +42,7 @@
 
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
         <button mat-button [mat-dialog-close]>Cancelar</button>
-        <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>
+        <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Actualizar</button>
       </div>
     </div>
   </form>

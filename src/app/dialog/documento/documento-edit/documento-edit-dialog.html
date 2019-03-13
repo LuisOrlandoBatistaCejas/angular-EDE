@@ -5,32 +5,33 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput [ngModel]="documento.Id" #Id="ngModel" maxlength="10" name="Id" id="Id" placeholder="Id" required>
+        <input matInput [ngModel]="data.id" #id="ngModel" maxlength="10" name="id" placeholder="Id" required>
         <mat-hint>Máximo 10 caracteres</mat-hint>
-        <mat-error *ngIf="!Id.valid && Id.touched">
-          The content field is required
+        <mat-error *ngIf="!id.valid && id.touched">
+          El Id es requerido
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput [ngModel]="documento.Documento" #Documento="ngModel" name="Documento" id="Documento" placeholder="Tipo de documento" required>
+        <input matInput [ngModel]="data.Documento" #Documento="ngModel" name="Documento"
+               placeholder="Tipo de documento" required>
         <mat-error *ngIf="!Documento.valid && Documento.touched">
-          The content field is required
+          El Tipo de Documento es requerido
         </mat-error>
       </mat-form-field>
 
       <div fxLayout="row" fxLayoutGap="10px">
-        <mat-checkbox fxFlex="50" [checked]="venta"
-                      (change)="changeVenta()">Venta</mat-checkbox>
+        <mat-checkbox fxFlex="50" [ngModel]="data.Venta" #Venta="ngModel" name="Venta"
+                      >Venta</mat-checkbox>
 
         <div class="align-center">
-          <mat-checkbox fxFlex="50" [checked]="compra"
-                        (change)="changeCompra()">Compra</mat-checkbox>
+          <mat-checkbox fxFlex="50" [ngModel]="data.Compra" #Compra="ngModel" name="Compra"
+                        >Compra</mat-checkbox>
         </div>
       </div>
       <div fxLayout="row" class="m-t-20" fxLayoutGap="10px" fxLayoutAlign="end center">
         <button mat-button [mat-dialog-close]>Cancelar</button>
-        <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>
+        <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Actualizar</button>
       </div>
     </div>
   </form>

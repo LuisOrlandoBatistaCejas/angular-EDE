@@ -10,26 +10,14 @@ import {DocumentoService} from '../../../service/documento-service';
 })
 export class DocumentoCreateDialogComponent {
   @ViewChild('f') form: NgForm;
-  documento: any;
-  venta = true;
-  compra = true;
   constructor(
     private dialogRef: MatDialogRef<DocumentoCreateDialogComponent>,
     private documentoService: DocumentoService
   ) {}
   onSubmit() {
-    this.documento = this.form.value;
-    this.documento.Venta = this.venta;
-    this.documento.Compra = this.compra;
-    this.documentoService.create(this.documento).subscribe(res => {
+    this.documentoService.create(this.form.value).subscribe(res => {
       this.dialogRef.close(res);
     });
-  }
-  changeVenta() {
-    this.venta = !this.venta;
-  }
-  changeCompra() {
-    this.compra = !this.compra;
   }
   close() {
     this.dialogRef.close();

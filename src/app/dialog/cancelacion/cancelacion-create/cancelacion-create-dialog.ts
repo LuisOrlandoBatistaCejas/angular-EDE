@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import {CancelacionService} from '../../../service/cancelacion-service';
+import {FormaDePagoService} from '../../../service/formaDePago-service';
 
 @Component({
   selector: 'app-cancelacion-create-dialog',
@@ -10,15 +11,24 @@ import {CancelacionService} from '../../../service/cancelacion-service';
 })
 export class CancelacionCreateDialogComponent {
   @ViewChild('f') form: NgForm;
+  formasDePago: any[];
   cancelacion: any;
   constructor(
     private dialogRef: MatDialogRef<CancelacionCreateDialogComponent>,
-    private cancelacionService: CancelacionService
-  ) {}
+    private cancelacionService: CancelacionService,
+    private formasPagoService: FormaDePagoService
+  ) {
+    this.getFormasDePago();
+  }
   onSubmit() {
     this.cancelacion = this.form.value;
     this.cancelacionService.create(this.cancelacion).subscribe(res => {
       this.dialogRef.close(res);
+    });
+  }
+  getFormasDePago() {
+    this.formasPagoService.list().subscribe(formasDePago => {
+      this.formasDePago = formasDePago;
     });
   }
   close() {

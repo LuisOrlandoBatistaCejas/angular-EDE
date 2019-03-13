@@ -8,6 +8,7 @@ import {
 } from '../../../dialog/identificationType/identificationType-edit/identificationType-edit-dialog';
 import {CancelacionEditDialogComponent} from '../../../dialog/cancelacion/cancelacion-edit/cancelacion-edit-dialog';
 import {ConfirmDeleteDialogComponent} from '../../../dialog/confirm-delete/confirm-delete-dialog';
+import {FormaDePagoService} from '../../../service/formaDePago-service';
 
 @Component({
   selector: 'app-cancelacion-list-component',
@@ -20,15 +21,28 @@ export class CancelacionListComponent implements OnInit {
   cancelacionDialogDelete: MatDialogRef<ConfirmDeleteDialogComponent>;
   cancelacionDialogEdit: MatDialogRef<CancelacionEditDialogComponent>;
   cancelacionDialogCreate: MatDialogRef<CancelacionCreateDialogComponent>;
-  constructor(private snackBar: MatSnackBar, private cancelacionService: CancelacionService, public dialog: MatDialog) {}
+  displayedColumns = ['nombre', 'plazo', 'unidad', 'formaPago', 'acciones'];
+  constructor(private snackBar: MatSnackBar, private cancelacionService: CancelacionService,
+              public dialog: MatDialog, private formaPagoService: FormaDePagoService) {}
   ngOnInit() {
+    this.getFormasCancelacion();
+  }
+  getFormasCancelacion() {
     this.cancelacionService.list().subscribe(
       res => {
         this.cancelacionList = res;
         this.loading = false;
+        this.cancelacionList.forEach( cancelacion => {
+          this.getFormaPago(cancelacion);
+        });
       },
-        error => this.loading = false
+      error => this.loading = false
     );
+  }
+  getFormaPago(formaCancelacion) {
+    this.formaPagoService.getById(formaCancelacion.FormaPagoId).subscribe( formaPago => {
+      formaCancelacion.formaPago = formaPago;
+    });
   }
   openDialogCreate() {
     this.cancelacionDialogCreate = this.dialog.open(CancelacionCreateDialogComponent, {
@@ -40,11 +54,12 @@ export class CancelacionListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(cancelacion => {
-        this.cancelacionList.push(cancelacion);
+        this.getFormasCancelacion()
         this.snackBar.open('Forma de cancelación creada satisfactoriamente');
       });
   }
   openDialogEdit(item) {
+    console.log(item);
     this.cancelacionDialogEdit = this.dialog.open(CancelacionEditDialogComponent, {
       height: '400px',
       width: '400px',
@@ -55,8 +70,7 @@ export class CancelacionListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(cancelacion => {
-        const index = this.cancelacionList.findIndex(object => object.id === cancelacion.id);
-        this.cancelacionList[index] = cancelacion;
+        this.getFormasCancelacion();
         this.snackBar.open('Forma de cancelación editada satisfactoriamente');
       });
   }
@@ -76,8 +90,7 @@ export class CancelacionListComponent implements OnInit {
       .subscribe(deleted => {
         this.cancelacionService.delete(item.id).subscribe(
           res => {
-            const index = this.cancelacionList.findIndex(object => object.id === item.id);
-            this.cancelacionList.splice(index, 1);
+            this.getFormasCancelacion();
             this.snackBar.open('Forma de cancelación eliminada satisfactoriamente');
           });
       });

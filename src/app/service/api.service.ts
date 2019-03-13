@@ -21,6 +21,7 @@ export class ApiService {
     if (!params) {
       return this.http.get(this.url);
     }
+    console.log(params);
     params = this.serialize(params);
     return this.http.get(this.url, { params: this.object2Params(params)});
   }
@@ -32,6 +33,13 @@ export class ApiService {
   create(resource?: any): Observable<any> {
     resource = this.serialize(resource);
     return this.http.post(this.url, resource);
+  }
+
+  /**
+   * gets an item by id
+   */
+  getById(id) {
+    return this.http.get(`${this.url}/${id}/`);
   }
 
   /**

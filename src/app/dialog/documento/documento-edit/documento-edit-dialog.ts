@@ -11,10 +11,6 @@ import {DocumentoService} from '../../../service/documento-service';
 })
 export class DocumentoEditDialogComponent implements OnInit {
   @ViewChild('f') form: NgForm;
-  venta: boolean;
-  compra: boolean;
-  documento: any;
-  documentoEdit: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DocumentoEditDialogComponent>,
@@ -22,21 +18,9 @@ export class DocumentoEditDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.documento = this.data;
-    this.compra = this.data.Compra;
-    this.venta = this.data.Venta;
-  }
-  changeVenta() {
-    this.venta = !this.venta;
-  }
-  changeCompra() {
-    this.compra = !this.compra;
   }
   onSubmit() {
-    this.documentoEdit = this.form.value;
-    this.documentoEdit.Compra = this.compra;
-    this.documentoEdit.Venta = this.venta;
-    this.documentoService.update(this.documentoEdit).subscribe( res => {
+    this.documentoService.update(this.form.value).subscribe( res => {
       this.dialogRef.close(res);
     }, (error) => {
       console.log('Error!!', error.message);

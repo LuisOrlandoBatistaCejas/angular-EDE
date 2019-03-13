@@ -11,12 +11,4 @@ export class DocumentoService extends ApiService {
     super(http);
     this.url = 'api/tipo-doc';
   }
-  update(resource: any): Observable<any> {
-    const id = resource.Id;
-    resource = this.serialize(resource);
-    return this.http.put(`${this.url}/${id}/`, resource);
-  }
-  delete(id: string): Observable<any> {
-    return this.http.delete(`${this.url}/${id}/`);
-  }
 }
