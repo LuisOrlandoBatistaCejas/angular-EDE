@@ -15,10 +15,11 @@ export class ComprobantesDatatableComponent implements OnInit {
   // The total number of filtered resources in db
   @Input() totalItems: number;
   // Array of name of columns to display
-  displayedColumns = ['nombre', 'abreviatura', 'provincia', 'municipio', 'unidad', 'ettp', 'empresa', 'ueb', 'acciones'];
+  displayedColumns = ['tipo', 'numero', 'fecha', 'vendedor', 'cliente', 'total', 'acciones'];
   constructor() { }
 
   ngOnInit() {
+    console.log(this.data);
   }
 
   /**

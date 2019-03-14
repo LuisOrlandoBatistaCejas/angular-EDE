@@ -17,7 +17,7 @@
           <mat-spinner fxLayoutAlign="center center"></mat-spinner>
         </div>
       </div>
-      <app-comprobantes-datatable *ngIf="comprobante"
+      <app-comprobantes-datatable *ngIf="comprobantes"
                                   [data]="comprobantes" (update)="onUpdate($event)" (delete)="onDelete($event)"
       ></app-comprobantes-datatable>
     </mat-card-content>
