@@ -21,11 +21,9 @@
               </mat-option>
 
             </mat-select>
-            <div class="validation-text" *ngIf="tipodoc.invalid && (tipodoc.dirty || tipodoc.touched)">
-              <div *ngIf="tipodoc.errors['required']">
-                El tipo de documento es requerido.
-              </div>
-            </div>
+            <mat-error *ngIf="!tipodoc.valid && tipodoc.touched">
+              El tipo de documento es requerido.
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -45,12 +43,9 @@
                 </mat-option>
 
               </mat-select>
-              <div class="validation-text"
-                   *ngIf="Identificacion.invalid && (Identificacion.dirty || Identificacion.touched)">
-                <div *ngIf="Identificacion.errors['required']">
-                  La Identificación es requerida.
-                </div>
-              </div>
+              <mat-error *ngIf="!Identificacion.valid && Identificacion.touched">
+                  El Cliente es requerido
+              </mat-error>
             </mat-form-field>
           </div>
           <div fxFlex="15" fxLayoutAlign="center end">
@@ -88,12 +83,9 @@
               </mat-option>
 
             </mat-select>
-            <div class="validation-text"
-                 *ngIf="FormadePago.invalid && (FormadePago.dirty || FormadePago.touched)">
-              <div *ngIf="FormadePago.errors['required']">
-                La forma pago es requerida.
-              </div>
-            </div>
+            <mat-error *ngIf="!FormadePago.valid && FormadePago.touched">
+              La forma pago es requerida.
+            </mat-error>
           </mat-form-field>
         </div>
 
@@ -109,12 +101,9 @@
               </mat-option>
 
             </mat-select>
-            <div class="validation-text"
-                 *ngIf="Vendedor.invalid && (Vendedor.dirty || Vendedor.touched)">
-              <div *ngIf="Vendedor.errors['required']">
-                El Vendedor es requerido
-              </div>
-            </div>
+            <mat-error *ngIf="!Vendedor.valid && Vendedor.touched">
+              El Vendedor es requerido.
+            </mat-error>
           </mat-form-field>
 
         </div>

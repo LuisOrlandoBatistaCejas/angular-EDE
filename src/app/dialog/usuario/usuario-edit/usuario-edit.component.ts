@@ -1,22 +1,24 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
-import { NgForm } from '@angular/forms';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {UsuarioService} from '../../../service/usuario-service';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {PersonaService} from '../../../service/persona-service';
+import {UsuarioCreateDialogComponent} from '../usuario-create/usuario-create-dialog';
+import {NgForm} from '@angular/forms';
 import {EmpresaService} from '../../../service/empresa-service';
 import {RolService} from '../../../service/rol.service';
 
 @Component({
-  selector: 'app-usuario-create-dialog',
-  templateUrl: './usuario-create-dialog.html',
-  styleUrls: ['./usuario-create-dialog.css']
+  selector: 'app-usuario-edit',
+  templateUrl: './usuario-edit.component.html',
+  styleUrls: ['./usuario-edit.component.css']
 })
-export class UsuarioCreateDialogComponent {
+export class UsuarioEditComponent {
   @ViewChild('f') form: NgForm;
   personas: any[] = [];
   empresas: any[] = [];
   roles: any[] = [];
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<UsuarioCreateDialogComponent>,
     private usuarioService: UsuarioService,
     private personasService: PersonaService,
@@ -43,7 +45,9 @@ export class UsuarioCreateDialogComponent {
     });
   }
   onSubmit() {
-    this.usuarioService.create(this.form.value).subscribe(res => {
+    const usuario = this.form.value;
+    usuario.id = this.data.id;
+    this.usuarioService.create(usuario).subscribe(res => {
       this.dialogRef.close(res);
     }, (error) => {
       console.log(error.message);

@@ -74,6 +74,7 @@ import {HttpInterceptorService} from './authentication/http-interceptor/http-int
 import {CustomPipesModule} from './custom-pipes/custom-pipes.module';
 import {PersonaVehiculoDialogComponent} from './dialog/persona/persona-vehiculo-dialog/persona-vehiculo-dialog.component';
 import {ItemComprobanteDetallesComponent} from './dialog/item/item-comprobante-detalles/item-comprobante-detalles.component';
+import {UsuarioEditComponent} from './dialog/usuario/usuario-edit/usuario-edit.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import {ItemComprobanteDetallesComponent} from './dialog/item/item-comprobante-d
     DocumentoEditDialogComponent,
     CancelacionEditDialogComponent,
     PersonaVehiculoDialogComponent,
-    ItemComprobanteDetallesComponent
+    ItemComprobanteDetallesComponent,
+    UsuarioEditComponent
   ],
   imports: [
     CommonModule,
@@ -161,6 +163,7 @@ import {ItemComprobanteDetallesComponent} from './dialog/item/item-comprobante-d
     FormDePagoEditDialogComponent,
     DocumentoEditDialogComponent,
     CancelacionEditDialogComponent,
+    UsuarioEditComponent,
     // Comprobantes
     PersonaComprobanteDetailsComponent,
     ItemComprobanteDetallesComponent,

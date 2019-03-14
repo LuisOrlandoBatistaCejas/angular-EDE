@@ -4,14 +4,13 @@ import { Observable } from 'rxjs';
 import {HttpService} from './http.service';
 import {ApiService} from './api.service';
 
-@Injectable()
-export class UsuarioService extends ApiService {
+@Injectable({
+  providedIn: 'root'
+})
+export class RolService extends ApiService {
   url: string;
   constructor(protected http: HttpService) {
     super(http);
-    this.url = 'api/usuario';
-  }
-  create(resource) {
-    return this.http.post(`api/rest-auth/registration/`, this.serialize(resource));
+    this.url = 'api/rol';
   }
 }

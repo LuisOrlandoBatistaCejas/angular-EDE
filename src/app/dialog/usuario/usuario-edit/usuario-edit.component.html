@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Crear Usuario</h2>
+<h2 mat-dialog-title>Editar Usuario</h2>
 <!--<div *ngIf="loading" class="m-t-10-p" fxLayoutAlign="center center">
   <mat-spinner strokeWidth="3" [diameter]="50"></mat-spinner>
 </div>-->
@@ -8,7 +8,7 @@
 
       <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
         <mat-form-field style="width: 100%">
-          <input matInput ngModel #email="ngModel" name="email"
+          <input matInput [ngModel]="data.email" #email="ngModel" name="email"
                  placeholder="Email" required>
           <mat-error *ngIf="!email.valid && email.touched">
             El Email es requerido
@@ -18,7 +18,7 @@
 
       <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
         <mat-form-field style="width: 100%">
-          <input matInput ngModel #username="ngModel" name="username"
+          <input matInput [ngModel]="data.username" #username="ngModel" name="username"
                  placeholder="Nombre de Usuario" required>
           <mat-error *ngIf="!username.valid && username.touched">
             El Nombre de Usuario es requerido
@@ -28,7 +28,7 @@
 
       <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
         <mat-form-field style="width: 100%;">
-          <mat-select placeholder="Persona" name="persona" required ngModel #persona="ngModel">
+          <mat-select placeholder="Persona" name="persona" required [ngModel]="data.PersonaId.id" #persona="ngModel">
             <mat-option *ngFor="let person of personas" [value]="person.id">
               {{person.Identificacion}}
             </mat-option>
@@ -41,7 +41,7 @@
 
       <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
         <mat-form-field style="width: 100%;">
-          <mat-select placeholder="Empresa" name="empresa" required ngModel #empresa="ngModel">
+          <mat-select placeholder="Empresa" name="empresa" required [ngModel]="data.EmpresaRuc.Ruc" #empresa="ngModel">
             <mat-option *ngFor="let emp of empresas" [value]="emp.Ruc">
               {{emp.NombreComercial}}
             </mat-option>
@@ -55,7 +55,7 @@
 
       <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
         <mat-form-field style="width: 100%">
-          <input matInput ngModel #first_name="ngModel" name="first_name" placeholder="Nombre">
+          <input matInput [ngModel]="data.first_name" #first_name="ngModel" name="first_name" placeholder="Nombre">
           <mat-error *ngIf="!first_name.valid && first_name.touched">
             El Nombre es requerido
           </mat-error>
@@ -64,7 +64,7 @@
 
       <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
         <mat-form-field style="width: 100%">
-          <input matInput ngModel #last_name="ngModel" name="last_name"
+          <input matInput [ngModel]="data.last_name" #last_name="ngModel" name="last_name"
                  placeholder="Apellido" required>
           <mat-error *ngIf="!last_name.valid && last_name.touched">
             El Apellido es requerido
@@ -74,7 +74,7 @@
 
       <div fxFlex="100" style="margin: 3px">
         <mat-form-field style="width: 100%">
-          <mat-select placeholder="Roles" ngModel #rol="ngModel" multiple name="rol">
+          <mat-select placeholder="Roles" [ngModel]="data.RolId" #rol="ngModel" multiple name="rol">
             <mat-option *ngFor="let role of roles" [value]="role.Rol">
               {{role.Rol}}
             </mat-option>
