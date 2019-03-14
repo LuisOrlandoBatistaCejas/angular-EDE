@@ -18,12 +18,16 @@ export class UsuarioDetaListComponent implements OnInit {
   usuarioDetaDialogDelete: MatDialogRef<ConfirmDeleteDialogComponent>;
   usuarioDetaDialogEdit: MatDialogRef<UsuarioDetaEditDialogComponent>;
   usuarioDetaDialogCreate: MatDialogRef<UsuarioDetaCreateDialogComponent>;
+  displayedColumns = ['codigo', 'nombre', 'identificacion', 'email', 'usuario', 'empresa', 'acciones'];
   constructor(private snackBar: MatSnackBar, private usuarioDetaService: UsuarioDetaService, public dialog: MatDialog) {}
   ngOnInit() {
+   this.getUsuarios();
+  }
+  getUsuarios() {
     this.usuarioDetaService.list().subscribe(res => {
-      this.usuarioDetaList = res;
-      this.loading = false;
-    },
+        this.usuarioDetaList = res;
+        this.loading = false;
+      },
       error => this.loading = false
     );
   }
@@ -37,7 +41,7 @@ export class UsuarioDetaListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(usuarioDeta => {
-        this.usuarioDetaList.push(usuarioDeta);
+        this.getUsuarios();
         this.snackBar.open('Usuario-Deta creado satisfactoriamente');
       });
   }
@@ -52,8 +56,7 @@ export class UsuarioDetaListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(usuarioDeta => {
-        const index = this.usuarioDetaList.findIndex(object => object.Codigo === usuarioDeta.Codigo);
-        this.usuarioDetaList[index] = usuarioDeta;
+        this.getUsuarios();
         this.snackBar.open('Usuario-Deta editado satisfactoriamente');
       });
   }
@@ -73,8 +76,7 @@ export class UsuarioDetaListComponent implements OnInit {
       .subscribe(deleted => {
         this.usuarioDetaService.delete(item.Codigo).subscribe(
           res => {
-            const index = this.usuarioDetaList.findIndex(object => object.Codigo === item.Codigo);
-            this.usuarioDetaList.splice(index, 1);
+            this.getUsuarios();
             this.snackBar.open('Usuario-Deta eliminado satisfactoriamente');
           });
       });

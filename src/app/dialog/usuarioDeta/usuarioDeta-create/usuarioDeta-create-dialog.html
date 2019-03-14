@@ -7,30 +7,48 @@
         <input matInput ngModel #Codigo="ngModel" name="Codigo" id="Codigo" maxlength="10" placeholder="Código" required>
         <mat-hint>Máximo 10 caracteres</mat-hint>
         <mat-error *ngIf="!Codigo.valid && Codigo.touched">
-          The content field is required
+         El Código es requerido
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #EmpresaRuc="ngModel" name="EmpresaRuc" id="EmpresaRuc" placeholder="Empresa Ruc (select)" required>
-        <mat-error *ngIf="!EmpresaRuc.valid && EmpresaRuc.touched">
-          The content field is required
-        </mat-error>
-      </mat-form-field>
+      <div fxFlex="100" style="margin: 3px">
+        <mat-form-field style="width: 100%">
+          <mat-select placeholder="Empresa" ngModel #EmpresaRuc="ngModel" name="EmpresaRuc" required>
+            <mat-option *ngFor="let empresa of empresas" [value]="empresa.Ruc">
+              {{empresa.NombreComercial}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!EmpresaRuc.valid && EmpresaRuc.touched">
+            La Empresa es requerida
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-      <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #UsuarioId="ngModel" type="number" name="UsuarioId" id="UsuarioId" placeholder="Id del Usuario (select)" required>
-        <mat-error *ngIf="!UsuarioId.valid && UsuarioId.touched">
-          The content field is required
-        </mat-error>
-      </mat-form-field>
+      <div fxFlex="100" style="margin: 3px">
+        <mat-form-field style="width: 100%">
+          <mat-select placeholder="Usuario" ngModel #usuario="ngModel" name="usuario" required>
+            <mat-option *ngFor="let user of usuarios" [value]="user.id">
+              {{user.nombre}} {{user.apellidos}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!usuario.valid && usuario.touched">
+            El usuario es requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-      <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #TipoDocId="ngModel" name="TipoDocId" id="TipoDocId" placeholder="Tipo Doc Id (select)" required>
-        <mat-error *ngIf="!TipoDocId.valid && TipoDocId.touched">
-          The content field is required
-        </mat-error>
-      </mat-form-field>
+      <div fxFlex="100" style="margin: 3px">
+        <mat-form-field style="width: 100%">
+          <mat-select placeholder="Tipo de Documento" ngModel #TipoDoc="ngModel" name="TipoDoc" required>
+            <mat-option *ngFor="let tipo of tiposDocumentos" [value]="tipo.id">
+              {{tipo.Documento}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!TipoDoc.valid && TipoDoc.touched">
+            El Tipo de Documento es requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
 
     </div>
   </form>
