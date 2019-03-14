@@ -22,7 +22,7 @@ import {ItemComprobanteDetallesComponent} from '../../../dialog/item/item-compro
   styleUrls: ['./comprobante-formulario.component.css']
 })
 export class ComprobanteFormularioComponent implements OnInit, DoCheck {
-  @Input() comprobante: Comprobante;
+  @Input() comprobante: any;
   @Output() submitForm: EventEmitter<Comprobante> = new EventEmitter();
   @Output() cancel: EventEmitter<void> = new EventEmitter();
   calculos: any = {
@@ -43,7 +43,7 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
   items: any[] = [];
   isNew = false;
   selectedClient: any = null;
-  displayedColumns = ['item', 'precio', 'cantidad', 'subtotal', 'descuento', 'descuentoTotal', 'iva', 'total', 'acciones'];
+  displayedColumns = ['item', 'Precio', 'cantidad', 'subtotal', 'descuento', 'descuentoTotal', 'iva', 'total', 'acciones'];
 
   constructor(private tipoDocService: TipoDocService,
               private itemsService: ItemService,
@@ -65,6 +65,15 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
     if (!this.comprobante) {
       this.isNew = true;
       this.comprobante = new Comprobante();
+      this.comprobante.TipoComprobanteId = {};
+      this.comprobante.VendedorId = {};
+    } else {
+      this.selectedClient = {
+        Identificacion: this.comprobante.Identificacion,
+        Direccion: this.comprobante.Direccion,
+        Email: this.comprobante.Email
+      };
+      this.detalles = this.comprobante.detalles;
     }
 
   }
@@ -76,7 +85,7 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
     this.calculos.total = 0;
     this.calculos.subtotal = 0;
     this.detalles.forEach(detalle => {
-      detalle.Subtotal = this.round(detalle.Cantidad * detalle.precio);
+      detalle.Subtotal = this.round(detalle.Cantidad * detalle.Precio);
       this.calculos.subtotal += detalle.Subtotal;
       detalle.descuentoTotal = this.round(detalle.Subtotal * detalle.Descuento / 100);
       this.calculos.descuento += detalle.descuentoTotal;
@@ -146,6 +155,7 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
     comprobante.detalles = this.detalles;
     comprobante.Telefono = this.selectedClient.Telefono;
     comprobante.Email = this.selectedClient.Email;
+    comprobante.Direccion = this.selectedClient.Direccion;
     this.submitForm.emit(comprobante);
   }
 
@@ -178,7 +188,7 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
       Subtotal: 0,
       Total: 0,
       name: (new Date()).toDateString(),
-      precio: 0,
+      Precio: 0,
       descuentoTotal: 0
     });
   }
@@ -188,7 +198,7 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
   }
 
   selectItem(item, detalle) {
-    detalle.precio = item.Precio;
+    detalle.Precio = item.Precio;
     detalle.Iva = item.PorcientoIva;
     detalle.Descripcion = item.Descripcion;
     detalle.Marca = 'M';

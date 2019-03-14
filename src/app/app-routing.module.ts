@@ -16,6 +16,7 @@ import {ComprobantesCreateComponent} from './component/comprobante/comprobantes-
 import {LoginComponent} from './authentication/login/login.component';
 import {LogoutComponent} from './authentication/logout/logout.component';
 import {AuthGuardService} from './authentication/auth-guard/auth-guard.service';
+import {UpdateComprobanteComponent} from './component/comprobante/update-comprobante/update-comprobante.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -32,8 +33,10 @@ const routes: Routes = [
   {path: 'forma-de-pagos', component: FormaDePagoListComponent, canActivate: [AuthGuardService]},
   {path: 'documentos', component: DocumentoListComponent, canActivate: [AuthGuardService]},
   {path: 'formas-cancelacion', component: CancelacionListComponent, canActivate: [AuthGuardService]},
+  // Comprobantes
   {path: 'comprobantes', component: ComprobantesListaComponent, canActivate: [AuthGuardService]},
-  {path: 'comprobantes/crear', component: ComprobantesCreateComponent, canActivate: [AuthGuardService]}
+  {path: 'comprobantes/crear', component: ComprobantesCreateComponent, canActivate: [AuthGuardService]},
+  {path: 'comprobantes/:id/actualizar', component: UpdateComprobanteComponent, canActivate: [AuthGuardService]}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

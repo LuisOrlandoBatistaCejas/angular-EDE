@@ -14,7 +14,7 @@
         <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
           <mat-form-field class="input-form">
             <mat-select placeholder="Concepto" required
-                        name="tipodoc" [ngModel]="comprobante.tipodoc"
+                        name="tipodoc" [ngModel]="comprobante.TipoComprobanteId.id"
                         #tipodoc="ngModel">
               <mat-option *ngFor="let tipo of tipos" [value]="tipo.id" (click)="selectTipo(tipo.Documento)">
                 {{tipo.Documento}}
@@ -102,7 +102,7 @@
         <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
           <mat-form-field class="input-form">
             <mat-select placeholder="Vendedor" required
-                        name="Vendedor" [ngModel]="comprobante.Vendedor"
+                        name="Vendedor" [ngModel]="comprobante.VendedorId.Codigo"
                         #Vendedor="ngModel">
               <mat-option *ngFor="let usuario of usuariosDeta" [value]="usuario.Codigo">
                 {{usuario.Codigo}}
@@ -162,9 +162,9 @@
             </mat-cell>
           </ng-container>
 
-          <ng-container cdkColumnDef="precio">
+          <ng-container cdkColumnDef="Precio">
             <mat-header-cell *cdkHeaderCellDef> Precio</mat-header-cell>
-            <mat-cell *cdkCellDef="let row; let i = index" class="text-warn"> ${{row.precio | round: 2}}</mat-cell>
+            <mat-cell *cdkCellDef="let row; let i = index" class="text-warn"> ${{row.Precio | round: 2}}</mat-cell>
           </ng-container>
 
           <ng-container cdkColumnDef="cantidad">

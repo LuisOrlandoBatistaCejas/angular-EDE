@@ -18,7 +18,7 @@
         </div>
       </div>
       <app-comprobantes-datatable *ngIf="comprobantes"
-                                  [data]="comprobantes" (update)="onUpdate($event)" (delete)="onDelete($event)"
+                                  [data]="comprobantes" (update)="onUpdate($event)" (delete)="delete($event)"
       ></app-comprobantes-datatable>
     </mat-card-content>
   </mat-card>
