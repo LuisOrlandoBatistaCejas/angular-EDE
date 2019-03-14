@@ -4,6 +4,11 @@ import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { PersonaService } from '../../../service/persona-service';
 import {PersonaCreateDialogComponent} from '../../../dialog/persona/persona-create/persona-create-dialog';
 import {PersonaEditDialogComponent} from '../../../dialog/persona/persona-edit/persona-edit-dialog';
+import {IdentificationTypeService} from '../../../service/identificationType-service';
+import {VehiculoService} from '../../../service/vehiculo-service';
+import {CancelacionService} from '../../../service/cancelacion-service';
+import {PersonaVehiculoDialogComponent} from '../../../dialog/persona/persona-vehiculo-dialog/persona-vehiculo-dialog.component';
+import {ConfirmDeleteDialogComponent} from '../../../dialog/confirm-delete/confirm-delete-dialog';
 // import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -16,14 +21,37 @@ export class PersonaListComponent implements OnInit {
   personaList: any[];
   personaDialogEdit: MatDialogRef<PersonaEditDialogComponent>;
   personaDialogCreate: MatDialogRef<PersonaCreateDialogComponent>;
-  constructor(private snackBar: MatSnackBar, private personaService: PersonaService, public dialog: MatDialog) {}
+  displayedColumns = [
+    'tipoIdentificacion', 'identificacion', 'razonSocial', 'nombreComercial', 'email', 'formaCancelacion', 'vehiculos', 'acciones'
+  ];
+  constructor(private snackBar: MatSnackBar, private personaService: PersonaService,
+              public dialog: MatDialog, private tipoIdentificacionService: IdentificationTypeService,
+              private tipoCancelacionService: CancelacionService) {}
   ngOnInit() {
+   this.getPersonas();
+  }
+  getPersonas() {
+    this.loading = true;
     this.personaService.list().subscribe(res => {
-      this.personaList = res;
-      this.loading = false;
-    },
+        this.personaList = res;
+        this.personaList.forEach(persona => {
+          this.getTipoIdentificacion(persona);
+          this.getFormaCancelacion(persona);
+        });
+        this.loading = false;
+      },
       error => this.loading = false
     );
+  }
+  getTipoIdentificacion(persona) {
+    this.tipoIdentificacionService.getById(persona.TipoIdenId).subscribe(tipoIdent => {
+      persona.tipoIdentificacion = tipoIdent;
+    });
+  }
+  getFormaCancelacion(persona) {
+    this.tipoCancelacionService.getById(persona.FormaCancId).subscribe(formaCancelacion => {
+      persona.formaCancelacion = formaCancelacion;
+    });
   }
   openDialogCreate() {
     this.personaDialogCreate = this.dialog.open(PersonaCreateDialogComponent, {
@@ -35,7 +63,7 @@ export class PersonaListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(persona => {
-        this.personaList.push(persona);
+        this.getPersonas();
         this.snackBar.open('Persona creada satisfactoriamente');
       });
   }
@@ -50,9 +78,33 @@ export class PersonaListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(persona => {
-        const index = this.personaList.findIndex(object => object.Id === persona.Id);
-        this.personaList[index] = persona;
+        this.getPersonas();
         this.snackBar.open('Persona editada satisfactoriamente');
       });
+  }
+
+  delete(item) {
+    this.dialog.open(ConfirmDeleteDialogComponent, {
+      height: '200px',
+      width: '400px',
+      data: {
+        title: 'Eliminar Persona',
+        content: 'Estás seguro de eliminar esta Persona?'
+      }
+    }).afterClosed()
+      .pipe(filter(name => name))
+      .subscribe(deleted => {
+        this.personaService.delete(item.id).subscribe(
+          res => {
+            this.getPersonas();
+            this.snackBar.open('Persona eliminada satisfactoriamente');
+          });
+      });
+  }
+
+  openPersonaVehiculosDialog(vehiculos) {
+    this.dialog.open(PersonaVehiculoDialogComponent, {
+      data: vehiculos
+    });
   }
 }

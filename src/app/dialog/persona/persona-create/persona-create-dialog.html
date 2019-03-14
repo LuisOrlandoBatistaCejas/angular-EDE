@@ -3,111 +3,101 @@
   <mat-spinner strokeWidth="3" [diameter]="50"></mat-spinner>
 </div>-->
 <mat-dialog-content>
-  <form #f="ngForm" class="example-form">
-    <div fxLayout="column">
-      <div fxLayout="row" fxLayoutGap="10px">
-        <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #Identificacion="ngModel" name="Identificacion" id="Identificacion" placeholder="Identificacion" required>
-          <mat-error *ngIf="!Identificacion.valid && Identificacion.touched">
-            The content field is required
-          </mat-error>
-        </mat-form-field>
-
-        <div class="align-center">
-          <mat-checkbox fxFlex="50" [checked]="activo" [(ngModel)]="activo"
-                        (change)="valueChange()">Activo</mat-checkbox>
-        </div>
-      </div>
-
-      <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput ngModel #Direccion="ngModel" name="Direccion" id="Direccion" placeholder="Direccion" required>
-        <mat-error *ngIf="!Direccion.valid && Direccion.touched">
-          The content field is required
-        </mat-error>
-      </mat-form-field>
-
-      <div fxLayout="row" fxLayoutGap="10px">
-        <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #Email="ngModel" name="Email" id="Email" placeholder="Email" required>
-          <mat-error *ngIf="!Email.valid && Email.touched">
-            The from field is required
-          </mat-error>
-        </mat-form-field>
-
-        <div fxFlex="50" *ngIf="loadingCancelacionIds" fxLayoutAlign="center center">
-          <mat-spinner strokeWidth="3" [diameter]="30"></mat-spinner>
-        </div>
-
-        <mat-form-field *ngIf="!loadingCancelacionIds" fxFlex="50" class="example-full-width">
-          <input matInput ngModel #FormaCancId="ngModel" type="number" name="FormaCancId" id="FormaCancId" placeholder="FormaCancId (select)" required>
-          <mat-error *ngIf="!FormaCancId.valid && FormaCancId.touched">
-            The content field is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <!--<div fxLayout="row">
-        <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #PlacaModel="ngModel" name="PlacaModel" id="PlacaModel" placeholder="Add Placa">
-        </mat-form-field>
-        <button mat-icon-button>
-          <mat-icon (click)="addPlaca()">add</mat-icon>
-        </button>
-      </div>
-      <mat-chip-list>
-        <mat-chip *ngFor="let placa of Placa">{{placa}}</mat-chip>
-      </mat-chip-list>-->
-
-      <div fxLayout="row">
-        <mat-form-field fxFlex class="example-full-width">
-          <input matInput ngModel #Placa="ngModel" name="Placa" id="Placa" placeholder="Adicionar Placas">
-        </mat-form-field>
-        <button mat-icon-button
-                [matTooltipPosition]="'above'"
-                matTooltip="Entre las placas separadas por comas ',' ejemplo: placa1, placa2, placa3">
-          <mat-icon>help</mat-icon>
-        </button>
-      </div>
-
-      <div fxLayout="row" fxLayoutGap="10px">
-        <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #RazonSocial="ngModel" name="RazonSocial" id="RazonSocial" placeholder="Razón Social">
-          <mat-error *ngIf="!RazonSocial.valid && RazonSocial.touched">
-            The content field is required
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #NombreComercial="ngModel" name="NombreComercial" id="NombreComercial" placeholder="Nombre Comercial" required>
-          <mat-error *ngIf="!NombreComercial.valid && NombreComercial.touched">
-            The content field is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <div fxLayout="row" fxLayoutGap="10px">
-        <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput ngModel #Telfonos="ngModel" name="Telfonos" id="Telfonos" placeholder="Teléfonos" required>
-        </mat-form-field>
-
-        <div fxFlex="50" *ngIf="loadingIdenTypeIds" fxLayoutAlign="center center">
-          <mat-spinner strokeWidth="3" [diameter]="30"></mat-spinner>
-        </div>
-
-        <!--<mat-form-field *ngIf="!loadingIdenTypeIds" fxFlex="50">
-          <mat-select placeholder="Favorite food" name="TipoIdenId" id="TipoIdenId">
-            <mat-option *ngFor="let cancId of (loadingIdenTypeIds | async)" value="cancId.id">
-              {{cancId.id}}
+  <form #f="ngForm">
+    <div fxLayout="row wrap" fxLayout.xs="column">
+      <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
+        <mat-form-field style="width: 100%;">
+          <mat-select placeholder="Tipo de Identificación" name="TipoIdenId"  required ngModel #TipoIdenId="ngModel">
+            <mat-option *ngFor="let tipo of tiposIdentificacion" [value]="tipo.id">
+              {{tipo.Tipo}}
             </mat-option>
           </mat-select>
-        </mat-form-field>-->
-
-        <mat-form-field *ngIf="!loadingIdenTypeIds" fxFlex="50" class="example-full-width">
-          <input matInput ngModel #TipoIdenId="ngModel" name="TipoIdenId" id="TipoIdenId" placeholder="TipoIdenId (select)" required>
+          <mat-error *ngIf="!TipoIdenId.valid && TipoIdenId.touched">
+            El Tipo de Identificación es requerido
+          </mat-error>
         </mat-form-field>
       </div>
-    </div>
 
+      <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
+        <mat-form-field style="width: 100%">
+          <input matInput ngModel #Identificacion="ngModel" name="Identificacion"
+                 placeholder="Identificacion" required>
+          <mat-error *ngIf="!Identificacion.valid && Identificacion.touched">
+            La Identificación es requerida
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
+        <mat-form-field style="width: 100%">
+          <input matInput ngModel #RazonSocial="ngModel" name="RazonSocial" placeholder="Razón Social">
+          <mat-error *ngIf="!RazonSocial.valid && RazonSocial.touched">
+            La Razón Social es requerida
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
+        <mat-form-field style="width: 100%">
+          <input matInput ngModel #NombreComercial="ngModel" name="NombreComercial"
+                 placeholder="Nombre Comercial" required>
+          <mat-error *ngIf="!NombreComercial.valid && NombreComercial.touched">
+            El Nombre Comercial es requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
+        <mat-form-field style="width: 100%">
+          <input matInput ngModel #Telefonos="ngModel" name="Telefonos" placeholder="Teléfono" required>
+          <mat-error *ngIf="!Telefonos.valid && Telefonos.touched">
+            El Teléfono Comercial es requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
+        <mat-form-field style="width: 100%">
+          <input matInput ngModel #Email="ngModel" name="Email" placeholder="Email" required>
+          <mat-error *ngIf="!Email.valid && Email.touched">
+            El Email es requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
+        <mat-form-field style="width: 100%">
+          <input matInput ngModel #Direccion="ngModel" name="Direccion" id="Direccion" placeholder="Direccion" required>
+          <mat-error *ngIf="!Direccion.valid && Direccion.touched">
+            La Dirección es requerida
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
+        <mat-form-field style="width: 100%">
+          <mat-select placeholder="Forma de Cancelación" name="FormaCancId" required ngModel #FormaCancId="ngModel">
+            <mat-option *ngFor="let formaCancelacion of formasCancelacion" [value]="formaCancelacion.id">
+              {{formaCancelacion.Nombre}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!FormaCancId.valid && FormaCancId.touched">
+            La Forma de Cancelación es requerida
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="100" style="margin: 3px">
+        <mat-form-field style="width: 100%">
+          <mat-select placeholder="Vehículos" ngModel #vehiculos="ngModel" multiple name="vehiculos">
+            <mat-option *ngFor="let vehiculo of cars" [value]="vehiculo.id">
+              {{vehiculo.Nombre}} {{vehiculo.Placa}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="47" fxFlex.xs="100" style="margin: 3px">
+        <mat-checkbox [ngModel]="true" #Activo="ngModel" name="Activo" style="width: 100%">Activo
+        </mat-checkbox>
+      </div>
+    </div>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

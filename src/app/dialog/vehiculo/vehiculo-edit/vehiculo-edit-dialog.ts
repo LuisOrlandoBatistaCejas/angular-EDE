@@ -10,8 +10,6 @@ import {VehiculoService} from '../../../service/vehiculo-service';
 })
 export class VehiculoEditDialogComponent implements OnInit {
   @ViewChild('f') form: NgForm;
-  vehiculo: any;
-  vehiculoEdit: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<VehiculoEditDialogComponent>,
@@ -19,11 +17,11 @@ export class VehiculoEditDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.vehiculo = this.data;
   }
   onSubmit() {
-    this.vehiculoEdit = this.form.value;
-    this.vehiculoService.update(this.vehiculoEdit).subscribe( res => {
+    const vehiculo = this.form.value;
+    vehiculo.id = this.data.id;
+    this.vehiculoService.update(vehiculo).subscribe( res => {
       this.dialogRef.close(res);
     }, (error) => {
       console.log('Error!!', error.message);

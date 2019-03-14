@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   login(data) {
-    this.httpService.post('api/auth-jwt/', {email: data.email, password: data.password}).subscribe(result => {
+    this.httpService.post('api/auth-jwt/', {username: data.username, password: data.password}).subscribe(result => {
       localStorage.setItem('token', result.token);
       localStorage.setItem('remember_me', data.remember_me);
       this.appService.isLoggedIn = true;
@@ -32,10 +32,7 @@ export class AuthService {
 
   refreshToken(): Observable<string> {
     const body = {
-      grant_type: 'refresh_token',
-      client_id: 'G-AppFront',
-      client_secret: '52f880e3480840e1b65b36e0e242abb1',
-      refresh_token: localStorage.getItem('refresh_token')
+     token: localStorage.getItem('token')
     };
     return this.httpService.post('oauth2/token', body).pipe(
       share(), // <========== YOU HAVE TO SHARE THIS OBSERVABLE TO AVOID MULTIPLE REQUEST BEING SENT SIMULTANEOUSLY

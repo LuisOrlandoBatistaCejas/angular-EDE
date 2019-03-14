@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import {PersonaService} from '../../../service/persona-service';
 import {CancelacionService} from '../../../service/cancelacion-service';
 import {IdentificationTypeService} from '../../../service/identificationType-service';
+import {VehiculoService} from '../../../service/vehiculo-service';
 
 @Component({
   selector: 'app-persona-create-dialog',
@@ -12,60 +13,44 @@ import {IdentificationTypeService} from '../../../service/identificationType-ser
 })
 export class PersonaCreateDialogComponent implements OnInit{
   @ViewChild('f') form: NgForm;
-  cancelacionIds: any[];
-  idenTypeIds: any[];
-  loadingCancelacionIds = true;
-  loadingIdenTypeIds = true;
-  activo = true;
-  persona: any;
-  placas: any[];
-  placa = '';
-  identificacion = 'ident';
+  formasCancelacion: any[] = [];
+  tiposIdentificacion: any[] = [];
+  cars: any[] = [];
   constructor(
     private idenTypeService: IdentificationTypeService,
     private cancelacionService: CancelacionService,
+    private vehiculosService: VehiculoService,
     private dialogRef: MatDialogRef<PersonaCreateDialogComponent>,
     private personaService: PersonaService
   ) {}
   ngOnInit() {
-    this.cancelacionService.list().subscribe(
-      res => {
-        // for (const it of res) {
-        //   this.cancelacionIds.push(it.id);
-        // }
-        this.cancelacionIds = res;
-        this.loadingCancelacionIds = false;
-      });
+    this.getTiposIdentificacion();
+    this.getFormasCancelacion();
+    this.getVehiculos();
+  }
+  getTiposIdentificacion() {
     this.idenTypeService.list().subscribe(
       res => {
-        this.idenTypeIds = res;
-        this.loadingIdenTypeIds = false;
+        this.tiposIdentificacion = res;
       });
   }
+  getFormasCancelacion() {
+    this.cancelacionService.list().subscribe(
+      res => {
+        this.formasCancelacion = res;
+      });
+  }
+  getVehiculos() {
+    this.vehiculosService.list().subscribe( vehiculos => {
+      this.cars = vehiculos;
+    });
+  }
   onSubmit() {
-    this.persona = this.form.value;
-    this.persona.Activo = this.activo;
-    this.persona.Placa = this.transformPlaca(this.persona.Placa);
-    this.personaService.create(this.persona).subscribe(res => {
+    this.personaService.create(this.form.value).subscribe(res => {
       this.dialogRef.close(res);
     });
   }
   close() {
     this.dialogRef.close();
-  }
-  valueChange() {
-    this.activo = !this.activo;
-  }
-  transformPlaca(text) {
-    if (text) {
-      const result = [];
-      const textSplit = text.split(',');
-      for (const item of textSplit) {
-        result.push(item.trim());
-      }
-      return result;
-    } else {
-      return [];
-    }
   }
 }

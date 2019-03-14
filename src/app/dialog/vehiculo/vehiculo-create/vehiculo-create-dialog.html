@@ -7,14 +7,14 @@
         <input matInput ngModel #Placa="ngModel" name="Placa" id="Placa" maxlength="7" placeholder="Placa" required>
         <mat-hint>Máximo 7 caracteres</mat-hint>
         <mat-error *ngIf="!Placa.valid && Placa.touched">
-          The content field is required
+          La Placa es requerida
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
         <input matInput ngModel #Nombre="ngModel" name="Nombre" id="Nombre" placeholder="Nombre" required>
         <mat-error *ngIf="!Nombre.valid && Nombre.touched">
-          The content field is required
+          El nombre es requerido
         </mat-error>
       </mat-form-field>
 

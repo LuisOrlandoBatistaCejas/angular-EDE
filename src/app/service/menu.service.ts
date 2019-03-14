@@ -61,11 +61,6 @@ export class MenuService {
           link: '/vehiculos'
         },
         {
-          title: 'Vehículos Personas',
-          icon: 'directions_car',
-          link: '/vehiculo-personas'
-        },
-        {
           title: 'Formas de Pago',
           icon: 'attach_money',
           link: '/forma-de-pagos'

@@ -2,6 +2,9 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import {PersonaService} from '../../../service/persona-service';
+import {IdentificationTypeService} from '../../../service/identificationType-service';
+import {CancelacionService} from '../../../service/cancelacion-service';
+import {VehiculoService} from '../../../service/vehiculo-service';
 
 @Component({
   selector: 'app-persona-edit-edit',
@@ -10,30 +13,45 @@ import {PersonaService} from '../../../service/persona-service';
 })
 export class PersonaEditDialogComponent implements OnInit {
   @ViewChild('f') form: NgForm;
-  active: boolean;
-  persona: any;
-  personaEdit: any;
-  constructor(
+  tiposIdentificacion: any[] = [];
+  formasCancelacion: any[] = [];
+  cars: any[] = [];
+ constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<PersonaEditDialogComponent>,
-    private personaService: PersonaService
+    private personaService: PersonaService,
+    private tiposIdentificacionService: IdentificationTypeService,
+    private formasCancelacionService: CancelacionService,
+    private vehiculosService: VehiculoService
   ) {}
 
   ngOnInit() {
-    this.persona = this.data;
-    this.active = this.data.Activo;
+   this.data.Vehiculos = this.data.Vehiculos.map(vehiculo => {
+     return vehiculo.id;
+   });
+   this.getFormasCancelacion();
+   this.getTiposIdentificacion();
+   this.getVehiculos();
   }
-  changeActivo() {
-    this.active = !this.active;
+  getVehiculos() {
+   this.vehiculosService.list().subscribe(vehiculos => {
+     this.cars = vehiculos;
+   });
+  }
+  getTiposIdentificacion() {
+   this.tiposIdentificacionService.list().subscribe(tiposIdentificacion => {
+     this.tiposIdentificacion = tiposIdentificacion;
+   });
+  }
+  getFormasCancelacion() {
+   this.formasCancelacionService.list().subscribe( formasCancelacion => {
+     this.formasCancelacion = formasCancelacion;
+   });
   }
   onSubmit() {
-    this.personaEdit = this.form.value;
-    this.personaEdit.Activo = this.active;
-    this.personaEdit.id = this.persona.id;
-    if (this.personaEdit.Placa.length === 0) {
-      this.personaEdit.Placa = null;
-    }
-    this.personaService.update(this.personaEdit).subscribe( res => {
+    const persona = this.form.value;
+    persona.id = this.data.id;
+    this.personaService.update(persona).subscribe( res => {
       this.dialogRef.close(res);
     }, (error) => {
       console.log('Error!!', error.message);

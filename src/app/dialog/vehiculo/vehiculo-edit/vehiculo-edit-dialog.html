@@ -4,17 +4,17 @@
     <div fxLayout="column">
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput [ngModel]="item.Placa" #Placa="ngModel" name="Placa" maxlength="7" id="Placa" placeholder="Placa" required>
+        <input matInput [ngModel]="data.Placa" #Placa="ngModel" name="Placa" maxlength="7" id="Placa" placeholder="Placa" required>
         <mat-hint>Máximo 7 caracteres</mat-hint>
         <mat-error *ngIf="!Placa.valid && Placa.touched">
-          The content field is required
+          La Placa es requerida
         </mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex="50" class="example-full-width">
-        <input matInput [ngModel]="item.Nombre" #Nombre="ngModel" name="Nombre" id="Nombre" placeholder="Nombre" required>
+        <input matInput [ngModel]="data.Nombre" #Nombre="ngModel" name="Nombre" id="Nombre" placeholder="Nombre" required>
         <mat-error *ngIf="!Nombre.valid && Nombre.touched">
-          The content field is required
+          El Nombre es requerido
         </mat-error>
       </mat-form-field>
 
@@ -23,5 +23,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button [mat-dialog-close]>Cancelar</button>
-  <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Adicionar</button>
+  <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Actualizar</button>
 </mat-dialog-actions>

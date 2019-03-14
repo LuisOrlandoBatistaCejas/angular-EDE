@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { filter } from 'rxjs/operators';
 import {VehiculoEditDialogComponent} from '../../../dialog/vehiculo/vehiculo-edit/vehiculo-edit-dialog';
 import {ConfirmDeleteDialogComponent} from '../../../dialog/confirm-delete/confirm-delete-dialog';
+import {PersonaVehiculoDialogComponent} from '../../../dialog/persona/persona-vehiculo-dialog/persona-vehiculo-dialog.component';
 
 @Component({
   selector: 'app-vehiculo-list-component',
@@ -17,12 +18,16 @@ export class VehiculoListComponent implements OnInit {
   vehiculoDialogDelete: MatDialogRef<ConfirmDeleteDialogComponent>;
   vehiculoDialogEdit: MatDialogRef<VehiculoEditDialogComponent>;
   vehiculoDialogCreate: MatDialogRef<VehiculoCreateDialogComponent>;
+  displayedColumns = ['placa', 'nombre', 'acciones'];
   constructor(private snackBar: MatSnackBar, private vehiculoService: VehiculoService, public dialog: MatDialog) {}
   ngOnInit() {
+   this.getVehiculos();
+  }
+  getVehiculos() {
     this.vehiculoService.list().subscribe(res => {
-      this.vehiculoList = res;
-      this.loading = false;
-    },
+        this.vehiculoList = res;
+        this.loading = false;
+      },
       error => this.loading = false
     );
   }
@@ -36,7 +41,7 @@ export class VehiculoListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(vehiculo => {
-        this.vehiculoList.push(vehiculo);
+        this.getVehiculos();
         this.snackBar.open('Vehículo creado satisfactoriamente');
       });
   }
@@ -51,8 +56,7 @@ export class VehiculoListComponent implements OnInit {
       .afterClosed()
       .pipe(filter(name => name))
       .subscribe(vehiculo => {
-        const index = this.vehiculoList.findIndex(object => object.Placa === vehiculo.Placa);
-        this.vehiculoList[index] = vehiculo;
+        this.getVehiculos();
         this.snackBar.open('Vehículo editado satisfactoriamente');
       });
   }
@@ -72,10 +76,10 @@ export class VehiculoListComponent implements OnInit {
       .subscribe(deleted => {
         this.vehiculoService.delete(item.id).subscribe(
           res => {
-            const index = this.vehiculoList.findIndex(object => object.id === item.id);
-            this.vehiculoList.splice(index, 1);
+            this.getVehiculos();
             this.snackBar.open('Vehículo eliminado satisfactoriamente');
           });
       });
   }
+
 }

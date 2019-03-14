@@ -1,0 +1,15 @@
+<mat-table [dataSource]="data" *ngIf="!loading">
+
+  <ng-container cdkColumnDef="placa">
+    <mat-header-cell *cdkHeaderCellDef> Placa</mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.Placa}}</mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="nombre">
+    <mat-header-cell *cdkHeaderCellDef> Nombre</mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.Nombre}}</mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

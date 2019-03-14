@@ -7,7 +7,6 @@ import {UsuarioListComponent} from './component/usuario/usuario-list/usuario-lis
 import {UsuarioDetaListComponent} from './component/usuarioDeta/usuarioDeta-list/usuarioDeta-list-component';
 import {ItemListComponent} from './component/item/item-list/item-list-component';
 import {VehiculoListComponent} from './component/vehiculo/vehiculo-list/vehiculo-list-component';
-import {VehiculoPersonaListComponent} from './component/vehiculoPersona/vehiculoPersona-list/vehiculoPersona-list-component';
 import {FormaDePagoListComponent} from './component/formaDePago/formaDePago-list/fromaDePago-list-component';
 import {HomeComponent} from './home/home-component';
 import {DocumentoListComponent} from './component/documento/documento-list/documento-list-component';
@@ -30,7 +29,6 @@ const routes: Routes = [
   {path: 'usuarios-deta', component: UsuarioDetaListComponent, canActivate: [AuthGuardService]},
   {path: 'items', component: ItemListComponent, canActivate: [AuthGuardService]},
   {path: 'vehiculos', component: VehiculoListComponent, canActivate: [AuthGuardService]},
-  {path: 'vehiculo-personas', component: VehiculoPersonaListComponent, canActivate: [AuthGuardService]},
   {path: 'forma-de-pagos', component: FormaDePagoListComponent, canActivate: [AuthGuardService]},
   {path: 'documentos', component: DocumentoListComponent, canActivate: [AuthGuardService]},
   {path: 'formas-cancelacion', component: CancelacionListComponent, canActivate: [AuthGuardService]},

@@ -8,15 +8,15 @@
     </div>
 
   </div>
-  <mat-table [dataSource]="identificationTypeList" *ngIf="!loading">
+  <mat-table [dataSource]="vehiculoList" *ngIf="!loading">
 
-    <ng-container cdkColumnDef="id">
-      <mat-header-cell *cdkHeaderCellDef> Id</mat-header-cell>
-      <mat-cell *cdkCellDef="let row"> {{row.id}}</mat-cell>
+    <ng-container cdkColumnDef="placa">
+      <mat-header-cell *cdkHeaderCellDef> Placa</mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{row.Placa}}</mat-cell>
     </ng-container>
-    <ng-container cdkColumnDef="tipo">
-      <mat-header-cell *cdkHeaderCellDef> Tipo</mat-header-cell>
-      <mat-cell *cdkCellDef="let row"> {{row.Tipo}}</mat-cell>
+    <ng-container cdkColumnDef="nombre">
+      <mat-header-cell *cdkHeaderCellDef> Nombre</mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{row.Nombre}}</mat-cell>
     </ng-container>
     <ng-container cdkColumnDef="acciones">
       <mat-header-cell *cdkHeaderCellDef> Acciones</mat-header-cell>

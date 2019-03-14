@@ -28,8 +28,6 @@ import {ItemListComponent} from './component/item/item-list/item-list-component'
 import {ItemService} from './service/item-service';
 import {VehiculoListComponent} from './component/vehiculo/vehiculo-list/vehiculo-list-component';
 import {VehiculoService} from './service/vehiculo-service';
-import {VehiculoPersonaService} from './service/vehiculoPersona';
-import {VehiculoPersonaListComponent} from './component/vehiculoPersona/vehiculoPersona-list/vehiculoPersona-list-component';
 import {FormaDePagoListComponent} from './component/formaDePago/formaDePago-list/fromaDePago-list-component';
 import {FormaDePagoService} from './service/formaDePago-service';
 import {HomeComponent} from './home/home-component';
@@ -40,7 +38,6 @@ import {UsuarioCreateDialogComponent} from './dialog/usuario/usuario-create/usua
 import {UsuarioDetaCreateDialogComponent} from './dialog/usuarioDeta/usuarioDeta-create/usuarioDeta-create-dialog';
 import {ItemCreateDialogComponent} from './dialog/item/item-create/item-create-dialog';
 import {VehiculoCreateDialogComponent} from './dialog/vehiculo/vehiculo-create/vehiculo-create-dialog';
-import {VehiculoPersonaCreateDialogComponent} from './dialog/vehiculoPersona/vehiculoPersona-create/vehiculoPersona-create-dialog';
 import {FormaDePagoCreateDialogComponent} from './dialog/formaDePago/formaDePago-create/formaDePago-create-dialog';
 import {
   IdentificationTypeCreateDialogComponent
@@ -75,6 +72,7 @@ import {LogoutComponent} from './authentication/logout/logout.component';
 import {AuthService} from './authentication/auth-service/auth.service';
 import {HttpInterceptorService} from './authentication/http-interceptor/http-interceptor.service';
 import {CustomPipesModule} from './custom-pipes/custom-pipes.module';
+import {PersonaVehiculoDialogComponent} from './dialog/persona/persona-vehiculo-dialog/persona-vehiculo-dialog.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +87,6 @@ import {CustomPipesModule} from './custom-pipes/custom-pipes.module';
     UsuarioDetaListComponent,
     ItemListComponent,
     VehiculoListComponent,
-    VehiculoPersonaListComponent,
     FormaDePagoListComponent,
     DocumentoListComponent,
     CancelacionListComponent,
@@ -109,7 +106,6 @@ import {CustomPipesModule} from './custom-pipes/custom-pipes.module';
     UsuarioDetaCreateDialogComponent,
     ItemCreateDialogComponent,
     VehiculoCreateDialogComponent,
-    VehiculoPersonaCreateDialogComponent,
     FormaDePagoCreateDialogComponent,
     IdentificationTypeCreateDialogComponent,
     DocumentoCreateDialogComponent,
@@ -124,6 +120,7 @@ import {CustomPipesModule} from './custom-pipes/custom-pipes.module';
     FormDePagoEditDialogComponent,
     DocumentoEditDialogComponent,
     CancelacionEditDialogComponent,
+    PersonaVehiculoDialogComponent
   ],
   imports: [
     CommonModule,
@@ -148,7 +145,6 @@ import {CustomPipesModule} from './custom-pipes/custom-pipes.module';
     UsuarioDetaCreateDialogComponent,
     ItemCreateDialogComponent,
     VehiculoCreateDialogComponent,
-    VehiculoPersonaCreateDialogComponent,
     FormaDePagoCreateDialogComponent,
     IdentificationTypeCreateDialogComponent,
     DocumentoCreateDialogComponent,
@@ -164,7 +160,9 @@ import {CustomPipesModule} from './custom-pipes/custom-pipes.module';
     DocumentoEditDialogComponent,
     CancelacionEditDialogComponent,
     // Comprobantes
-    PersonaComprobanteDetailsComponent
+    PersonaComprobanteDetailsComponent,
+    // Personas
+    PersonaVehiculoDialogComponent
 
   ],
   providers: [
@@ -187,7 +185,6 @@ import {CustomPipesModule} from './custom-pipes/custom-pipes.module';
     UsuarioDetaService,
     ItemService,
     VehiculoService,
-    VehiculoPersonaService,
     FormaDePagoService,
     DocumentoService,
     CancelacionService,
