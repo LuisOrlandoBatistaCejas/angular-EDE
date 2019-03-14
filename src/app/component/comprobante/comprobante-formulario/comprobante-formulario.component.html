@@ -14,7 +14,7 @@
         <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
           <mat-form-field class="input-form">
             <mat-select placeholder="Concepto" required
-                        name="tipodoc" [ngModel]="comprobante.TipoComprobanteId.id"
+                        name="Tipodoc" [ngModel]="comprobante.TipoComprobanteId.id"
                         #tipodoc="ngModel">
               <mat-option *ngFor="let tipo of tipos" [value]="tipo.id" (click)="selectTipo(tipo.Documento)">
                 {{tipo.Documento}}
@@ -35,16 +35,16 @@
           <div fxFlex="85">
             <mat-form-field class="input-form">
               <mat-select placeholder="Cliente" required
-                          name="Identificacion" [ngModel]="comprobante.Identificacion"
+                          name="Persona" [ngModel]="comprobante.PersonaId.id"
                           #Identificacion="ngModel">
-                <mat-option *ngFor="let cliente of personas" [value]="cliente.Identificacion"
+                <mat-option *ngFor="let cliente of personas" [value]="cliente.id"
                             (click)="selectCliente(cliente)">
                   {{cliente.NombreComercial}}
                 </mat-option>
 
               </mat-select>
               <mat-error *ngIf="!Identificacion.valid && Identificacion.touched">
-                  El Cliente es requerido
+                El Cliente es requerido
               </mat-error>
             </mat-form-field>
           </div>
@@ -75,29 +75,29 @@
 
         <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
           <mat-form-field class="input-form">
-            <mat-select placeholder="Forma de Pago" required
-                        name="FormadePago" [ngModel]="comprobante.FormadePago"
-                        #FormadePago="ngModel">
-              <mat-option *ngFor="let formaPago of formasPago" [value]="formaPago.id">
-                {{formaPago.Nombre}}
+            <mat-select placeholder="Forma de Cancelación" required
+                        name="FormaCanc" [ngModel]="comprobante.FormaCancId.id"
+                        #FormaCanc="ngModel">
+              <mat-option *ngFor="let formaCancelacion of formasCancelacion" [value]="formaCancelacion.id">
+                {{formaCancelacion.Nombre}}
               </mat-option>
 
             </mat-select>
-            <mat-error *ngIf="!FormadePago.valid && FormadePago.touched">
-              La forma pago es requerida.
+            <mat-error *ngIf="!FormaCanc.valid && FormaCanc.touched">
+              La forma cancelación es requerida.
             </mat-error>
           </mat-form-field>
         </div>
 
         <div fxFlex="10" fxFlex.xs="100"></div>
 
-        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px">
+        <div fxFlex="32" fxFlex.xs="100" style="margin: 3px" *ngIf="userOperativo">
           <mat-form-field class="input-form">
             <mat-select placeholder="Vendedor" required
                         name="Vendedor" [ngModel]="comprobante.VendedorId.Codigo"
                         #Vendedor="ngModel">
-              <mat-option *ngFor="let usuario of usuariosDeta" [value]="usuario.Codigo">
-                {{usuario.Codigo}}
+              <mat-option *ngFor="let usuario of usuariosDeta" [value]="usuario.Codigo" (click)="getNumero(usuario.Codigo)">
+                {{usuario.Usuario.nombre}} {{usuario.Usuario.apellidos}}
               </mat-option>
 
             </mat-select>
@@ -138,10 +138,10 @@
         <mat-table [dataSource]="detallesDataSource">
 
           <ng-container cdkColumnDef="item">
-            <mat-header-cell *cdkHeaderCellDef> Item</mat-header-cell>
-            <mat-cell *cdkCellDef="let row; let i = index">
+            <mat-header-cell *cdkHeaderCellDef style="min-width: 200px"> Item</mat-header-cell>
+            <mat-cell *cdkCellDef="let row; let i = index" style="min-width: 200px">
               <mat-form-field class="input-form mat-form-field--fit-width">
-                <mat-select required
+                <mat-select required style="width: 190px !important;"
                             [name]="row.name + '_item_' + i" [(ngModel)]="row.ItemId">
                   <mat-option *ngFor="let item of items" [value]="item.Codigo" (click)="selectItem(item, row)">
                     {{item.Nombre}}
@@ -153,7 +153,12 @@
 
           <ng-container cdkColumnDef="Precio">
             <mat-header-cell *cdkHeaderCellDef> Precio</mat-header-cell>
-            <mat-cell *cdkCellDef="let row; let i = index" class="text-warn"> ${{row.Precio | round: 2}}</mat-cell>
+            <mat-cell *cdkCellDef="let row; let i = index">
+              <mat-form-field class="input-form mat-form-field--fit-width">
+                <input matInput type="number" [(ngModel)]="row.Precio"
+                       [name]="row.name + '_precio_' + i" [min]="1">
+              </mat-form-field>
+            </mat-cell>
           </ng-container>
 
           <ng-container cdkColumnDef="cantidad">
@@ -241,6 +246,10 @@
                 <div fxLayout="row wrap">
                   <div fxFlex="50">Descuento</div>
                   <div fxFlex="50" fxLayoutAlign="center end">{{calculos.descuento | round: 2}}</div>
+                </div>
+                <div fxLayout="row wrap">
+                  <div fxFlex="50">IVA</div>
+                  <div fxFlex="50" fxLayoutAlign="center end">{{calculos.subtotalIva + calculos.subtotalIva0 | round: 2}}</div>
                 </div>
                 <div fxLayout="row wrap">
                   <div fxFlex="50">Total</div>

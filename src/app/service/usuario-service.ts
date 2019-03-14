@@ -14,4 +14,7 @@ export class UsuarioService extends ApiService {
   create(resource) {
     return this.http.post(`api/rest-auth/registration/`, this.serialize(resource));
   }
+  getPerfil() {
+    return this.http.get('api/perfil');
+  }
 }

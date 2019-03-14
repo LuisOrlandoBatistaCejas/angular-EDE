@@ -34,6 +34,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     if (!isNullOrUndefined(localStorage.getItem('token'))) {
       this.appService.isLoggedIn = true;
+      this.appService.getPerfil();
     }
   }
 

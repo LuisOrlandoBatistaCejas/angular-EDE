@@ -24,6 +24,7 @@ export class AuthService {
       localStorage.setItem('remember_me', data.remember_me);
       this.appService.isLoggedIn = true;
       this.router.navigate([this.returnUrl]);
+      this.appService.getPerfil();
     }, error => {
       if (error.error.status === 401) {
       }

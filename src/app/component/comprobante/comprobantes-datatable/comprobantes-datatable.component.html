@@ -19,7 +19,7 @@
   </ng-container>
   <ng-container cdkColumnDef="cliente">
     <mat-header-cell *cdkHeaderCellDef> Cliente</mat-header-cell>
-    <mat-cell *cdkCellDef="let row"> {{row.Identificacion}}</mat-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.PersonaId?.NombreComercial}}</mat-cell>
   </ng-container>
   <ng-container cdkColumnDef="total">
     <mat-header-cell *cdkHeaderCellDef>Total  </mat-header-cell>

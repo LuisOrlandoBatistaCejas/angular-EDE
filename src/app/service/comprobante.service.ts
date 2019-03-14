@@ -11,7 +11,7 @@ export class ComprobanteService extends ApiService {
     super(http);
     this.url = 'api/factura'; // TODO Cambiar a /comprobante
   }
-  getNumero() {
-    return this.http.get('api/numero');
+  getNumero(codigoCajero) {
+    return this.http.get('api/numero/' + codigoCajero);
   }
 }

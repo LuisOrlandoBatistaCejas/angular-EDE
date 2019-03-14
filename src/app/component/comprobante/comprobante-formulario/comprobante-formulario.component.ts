@@ -15,6 +15,8 @@ import {DataSource} from '@angular/cdk/table';
 import {Observable, of} from 'rxjs';
 import {ComprobanteService} from '../../../service/comprobante.service';
 import {ItemComprobanteDetallesComponent} from '../../../dialog/item/item-comprobante-detalles/item-comprobante-detalles.component';
+import {CancelacionService} from '../../../service/cancelacion-service';
+import {AppService} from '../../../app.service';
 
 @Component({
   selector: 'app-comprobante-formulario',
@@ -22,6 +24,8 @@ import {ItemComprobanteDetallesComponent} from '../../../dialog/item/item-compro
   styleUrls: ['./comprobante-formulario.component.css']
 })
 export class ComprobanteFormularioComponent implements OnInit, DoCheck {
+  userCajero = false;
+  userOperativo = false;
   @Input() comprobante: any;
   @Output() submitForm: EventEmitter<Comprobante> = new EventEmitter();
   @Output() cancel: EventEmitter<void> = new EventEmitter();
@@ -34,11 +38,11 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
   };
   detalles: any[] = [];
   detallesDataSource: MatTableDataSource<any>;
-  numeroComprobante = '000023000020100002';
+  numeroComprobante = null;
   tipoComprobante: '';
   tipos: any[] = [];
   personas: any = [];
-  formasPago: any[] = [];
+  formasCancelacion: any[] = [];
   usuariosDeta: any[] = [];
   items: any[] = [];
   isNew = false;
@@ -46,9 +50,10 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
   displayedColumns = ['item', 'Precio', 'cantidad', 'subtotal', 'descuento', 'descuentoTotal', 'iva', 'total', 'acciones'];
 
   constructor(private tipoDocService: TipoDocService,
+              private appService: AppService,
               private itemsService: ItemService,
               private personasService: PersonaService,
-              private formasPagoService: FormaDePagoService,
+              private formasCancelacionService: CancelacionService,
               private usuariosDetaService: UsuarioDetaService,
               private comprobanteService: ComprobanteService,
               private dialog: MatDialog) {
@@ -58,15 +63,17 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
   ngOnInit() {
     this.getTipos();
     this.getPersonas();
-    this.getFormasDePago();
+    this.getFormasDeCancelacion();
     this.getUsuariosDeta();
     this.getItems();
-    this.getNumero();
     if (!this.comprobante) {
       this.isNew = true;
       this.comprobante = new Comprobante();
       this.comprobante.TipoComprobanteId = {};
       this.comprobante.VendedorId = {};
+      this.comprobante.FormaCancId = {};
+      this.comprobante.Fecha = new Date();
+      this.comprobante.PersonaId = {};
     } else {
       this.selectedClient = {
         Identificacion: this.comprobante.Identificacion,
@@ -79,6 +86,17 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
+    if (this.appService.user) {
+      if (this.appService.user.RolId.indexOf('Operativo') !== -1) {
+        this.userOperativo = true;
+      }
+      if (this.appService.user.RolId.indexOf('Cajero') !== -1) {
+        this.userCajero = true;
+        if (!this.numeroComprobante) {
+          this.getNumero(this.appService.user.detalle);
+        }
+      }
+    }
     this.calculos.descuento = 0;
     this.calculos.subtotalIva = 0;
     this.calculos.subtotalIva0 = 0;
@@ -100,8 +118,8 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
     this.detallesDataSource = new MatTableDataSource<any>(this.detalles);
   }
 
-  getNumero() {
-    this.comprobanteService.getNumero().subscribe(numero => {
+  getNumero(codigo) {
+    this.comprobanteService.getNumero(codigo).subscribe(numero => {
       this.numeroComprobante = numero;
     });
   }
@@ -127,9 +145,9 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
     this.selectedClient = client;
   }
 
-  getFormasDePago() {
-    this.formasPagoService.list().subscribe(formasPago => {
-      this.formasPago = formasPago;
+  getFormasDeCancelacion() {
+    this.formasCancelacionService.list().subscribe(formasCancelacion => {
+      this.formasCancelacion = formasCancelacion;
     });
   }
 

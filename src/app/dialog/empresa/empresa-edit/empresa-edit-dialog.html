@@ -5,9 +5,9 @@
 
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="50" class="example-full-width">
-          <input matInput [ngModel]="data.Ruc" #Ruc="ngModel" maxlength="10" name="Ruc"
+          <input matInput [ngModel]="data.Ruc" #Ruc="ngModel" maxlength="13" name="Ruc"
                  placeholder="Registro Único de Contribuyentes" required>
-          <mat-hint>Máximo 10 caracteres</mat-hint>
+          <mat-hint>Máximo 13 caracteres</mat-hint>
           <mat-error *ngIf="!Ruc.valid && Ruc.touched">
             El RUC es requerido
           </mat-error>
@@ -15,10 +15,7 @@
 
         <mat-form-field fxFlex="50" class="example-full-width">
           <input matInput [ngModel]="data.CodigoContribuyenteEspecial" #CodigoContribuyenteEspecial="ngModel"
-                 maxlength="6" name="CodigoContribuyenteEspecial"  placeholder="Codigo Contribuyente Especial" required>
-          <mat-error *ngIf="!Ruc.valid && Ruc.touched">
-            El Código Contribuyente Especial es requerido
-          </mat-error>
+                 maxlength="6" name="CodigoContribuyenteEspecial"  placeholder="Codigo Contribuyente Especial">
         </mat-form-field>
       </div>
 
