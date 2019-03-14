@@ -73,6 +73,7 @@ import {AuthService} from './authentication/auth-service/auth.service';
 import {HttpInterceptorService} from './authentication/http-interceptor/http-interceptor.service';
 import {CustomPipesModule} from './custom-pipes/custom-pipes.module';
 import {PersonaVehiculoDialogComponent} from './dialog/persona/persona-vehiculo-dialog/persona-vehiculo-dialog.component';
+import {ItemComprobanteDetallesComponent} from './dialog/item/item-comprobante-detalles/item-comprobante-detalles.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import {PersonaVehiculoDialogComponent} from './dialog/persona/persona-vehiculo-
     FormDePagoEditDialogComponent,
     DocumentoEditDialogComponent,
     CancelacionEditDialogComponent,
-    PersonaVehiculoDialogComponent
+    PersonaVehiculoDialogComponent,
+    ItemComprobanteDetallesComponent
   ],
   imports: [
     CommonModule,
@@ -161,6 +163,7 @@ import {PersonaVehiculoDialogComponent} from './dialog/persona/persona-vehiculo-
     CancelacionEditDialogComponent,
     // Comprobantes
     PersonaComprobanteDetailsComponent,
+    ItemComprobanteDetallesComponent,
     // Personas
     PersonaVehiculoDialogComponent
 

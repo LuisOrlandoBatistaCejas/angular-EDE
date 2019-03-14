@@ -1,0 +1,17 @@
+<h2 mat-dialog-title="Datos del Item"></h2>
+<mat-dialog-content>
+  <div fxLayout="row wrap">
+    <mat-form-field fxFlex="100">
+      <textarea matInput [(ngModel)]="data.Descripcion" placeholder="Descripcion" required #Descripcion="ngModel"></textarea>
+      <mat-error *ngIf="!Descripcion.valid && Descripcion.touched">
+        La Descripcion es requerida
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onAceptar()">Aceptar</button>
+  <button mat-raised-button color="warn" (click)="onCancelar()">Cancelar</button>
+</mat-dialog-actions>

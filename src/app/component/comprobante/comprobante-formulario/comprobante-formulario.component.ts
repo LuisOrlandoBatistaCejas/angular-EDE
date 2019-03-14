@@ -13,6 +13,8 @@ import {UsuarioDetaService} from '../../../service/usuarioDeta-service';
 import {ItemService} from '../../../service/item-service';
 import {DataSource} from '@angular/cdk/table';
 import {Observable, of} from 'rxjs';
+import {ComprobanteService} from '../../../service/comprobante.service';
+import {ItemComprobanteDetallesComponent} from '../../../dialog/item/item-comprobante-detalles/item-comprobante-detalles.component';
 
 @Component({
   selector: 'app-comprobante-formulario',
@@ -32,7 +34,7 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
   };
   detalles: any[] = [];
   detallesDataSource: MatTableDataSource<any>;
-  numeroComprobante = '000023000020100001';
+  numeroComprobante = '000023000020100002';
   tipoComprobante: '';
   tipos: any[] = [];
   personas: any = [];
@@ -48,6 +50,7 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
               private personasService: PersonaService,
               private formasPagoService: FormaDePagoService,
               private usuariosDetaService: UsuarioDetaService,
+              private comprobanteService: ComprobanteService,
               private dialog: MatDialog) {
     this.detallesDataSource = new MatTableDataSource<any>(this.detalles);
   }
@@ -58,11 +61,12 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
     this.getFormasDePago();
     this.getUsuariosDeta();
     this.getItems();
-    this.onAgregarDetalle();
+    this.getNumero();
     if (!this.comprobante) {
       this.isNew = true;
       this.comprobante = new Comprobante();
     }
+
   }
 
   ngDoCheck() {
@@ -85,6 +89,12 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
       this.calculos.total += detalle.Total;
     });
     this.detallesDataSource = new MatTableDataSource<any>(this.detalles);
+  }
+
+  getNumero() {
+    this.comprobanteService.getNumero().subscribe(numero => {
+      this.numeroComprobante = numero;
+    });
   }
 
   getTipos() {
@@ -186,6 +196,17 @@ export class ComprobanteFormularioComponent implements OnInit, DoCheck {
 
   round(value) {
     return Math.round(value * 100) / 100;
+  }
+
+  openComprobanteItemDetalles(detalle) {
+    this.dialog.open(ItemComprobanteDetallesComponent, {
+      data: detalle
+    }).afterClosed().subscribe(result => {
+      if (result) {
+        detalle.Descripcion = result.Descripcion;
+      }
+    });
+
   }
 
 }
