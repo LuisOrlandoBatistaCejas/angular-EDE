@@ -1,0 +1,24 @@
+<div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+  <mat-card>
+    <div class="gene-card-title">
+      <div fxLayout="row wrap">
+        <div fxFlex="50" fxLayoutAlign="start center">
+          <h4>Formas de Pago</h4>
+        </div>
+        <div fxFlex="47" fxLayoutAlign="end center">
+          <button mat-raised-button color="primary" (click)="onCreate()">Crear</button>
+        </div>
+
+
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="gene-card-content pad-t-none">
+      <ms-forma-pago-datatable
+              [data]="data" *ngIf="!loading"
+              (delete)="delete($event)"
+              (update)="onUpdate($event)"
+      ></ms-forma-pago-datatable>
+    </div>
+  </mat-card>
+</div>

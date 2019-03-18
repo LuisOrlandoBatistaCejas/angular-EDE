@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {ItemService} from '../../../service/item-service';
+import {ItemService} from '../../../../../../EDE-Front/src/app/service/item-service';
 
 @Component({
   selector: 'app-item-create-dialog',

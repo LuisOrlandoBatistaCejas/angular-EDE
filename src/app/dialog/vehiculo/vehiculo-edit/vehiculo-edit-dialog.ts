@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {VehiculoService} from '../../../service/vehiculo-service';
+import {VehiculoService} from '../../../../../../EDE-Front/src/app/service/vehiculo-service';
 
 @Component({
   selector: 'app-vehiculo-edit',

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {isNullOrUndefined} from 'util';
 import {HttpService} from './http.service';
 import {Observable} from 'rxjs';
 import {HttpParams} from '@angular/common/http';
@@ -71,7 +70,7 @@ export class ApiService {
   protected serialize(data: any) {
     const serializedData = {};
     Object.getOwnPropertyNames(data).forEach((attr) => {
-      if (isNullOrUndefined(data[attr])) {
+      if (data[attr] === null || data[attr] === undefined) {
         // Does not include it if null or undefined
       } else if (typeof data[attr] === 'boolean') {
         // Converts boolean params into binary int.
@@ -79,6 +78,7 @@ export class ApiService {
       }  else if (typeof data[attr] === 'number' && data[attr] === -1) {
       } else if (data[attr] instanceof Date) {
           serializedData[attr] = DateFormatter.dateToString(data[attr]);
+      } else if (typeof data[attr] === 'string' && data[attr].length === 0) {
       } else if (data[attr] instanceof Object) {
         if (Array.isArray(data[attr])) {
           serializedData[attr] = data[attr];

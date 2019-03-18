@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {FormaDePagoService} from '../../../service/formaDePago-service';
+import {FormaDePagoService} from '../../../../../../EDE-Front/src/app/service/formaDePago-service';
 
 @Component({
   selector: 'app-forma-de-pago-create-dialog',

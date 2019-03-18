@@ -1,0 +1,29 @@
+<table class="table table-hover table-middle th-fw-light mb-0">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Documento</th>
+    <th>Venta</th>
+    <th>Compra</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tipoDocumento of data">
+    <td>{{tipoDocumento.id}}</td>
+    <td>{{tipoDocumento.Documento}}</td>
+    <td>
+      <mat-icon color="primary" *ngIf="tipoDocumento.Venta">check</mat-icon>
+      <mat-icon color="warn" *ngIf="!tipoDocumento.Venta">close</mat-icon>
+    </td>
+    <td>
+      <mat-icon color="primary" *ngIf="tipoDocumento.Compra">check</mat-icon>
+      <mat-icon color="warn" *ngIf="!tipoDocumento.Compra">close</mat-icon>
+    </td>
+    <td>
+      <mat-icon color="accent" (click)="onUpdate(tipoDocumento)" style="cursor: pointer">edit</mat-icon>
+      <mat-icon color="warn" (click)="onDelete(tipoDocumento.id)" style="cursor: pointer">delete</mat-icon>
+    </td>
+  </tr>
+  </tbody>
+</table>

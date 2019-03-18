@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {IdentificationTypeService} from '../../../service/identificationType-service';
+import {IdentificationTypeService} from '../../../../../../EDE-Front/src/app/service/identificationType-service';
 
 @Component({
   selector: 'app-identification-type-create-dialog',
-  templateUrl: './IdentificationType-create-dialog.html',
-  styleUrls: ['./IdentificationType-create-dialog.css']
+  templateUrl: './identificationType-create-dialog.html',
+  styleUrls: ['./identificationType-create-dialog.css']
 })
 export class IdentificationTypeCreateDialogComponent {
   @ViewChild('f') form: NgForm;

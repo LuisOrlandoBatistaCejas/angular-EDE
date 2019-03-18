@@ -1,11 +1,11 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {UsuarioDetaService} from '../../../service/usuarioDeta-service';
-import {UsuarioService} from '../../../service/usuario-service';
+import {UsuarioDetaService} from '../../../../../../EDE-Front/src/app/service/usuarioDeta-service';
+import {UsuarioService} from '../../../../../../EDE-Front/src/app/service/usuario-service';
 import {UsuarioDetaCreateDialogComponent} from '../usuarioDeta-create/usuarioDeta-create-dialog';
-import {EmpresaService} from '../../../service/empresa-service';
-import {DocumentoService} from '../../../service/documento-service';
+import {EmpresaService} from '../../../../../../EDE-Front/src/app/service/empresa-service';
+import {DocumentoService} from '../../../../../../EDE-Front/src/app/service/documento-service';
 
 @Component({
   selector: 'app-usuario-deta-edit',

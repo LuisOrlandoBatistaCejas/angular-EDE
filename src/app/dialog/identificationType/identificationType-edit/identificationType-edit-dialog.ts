@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {IdentificationTypeService} from '../../../service/identificationType-service';
+import {IdentificationTypeService} from '../../../../../../EDE-Front/src/app/service/identificationType-service';
 
 @Component({
   selector: 'app-indetification-type-edit',

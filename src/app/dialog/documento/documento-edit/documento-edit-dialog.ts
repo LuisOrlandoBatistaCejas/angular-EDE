@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {ItemService} from '../../../service/item-service';
-import {DocumentoService} from '../../../service/documento-service';
+import {ItemService} from '../../../../../../EDE-Front/src/app/service/item-service';
+import {DocumentoService} from '../../../../../../EDE-Front/src/app/service/documento-service';
 
 @Component({
   selector: 'app-documento-edit',

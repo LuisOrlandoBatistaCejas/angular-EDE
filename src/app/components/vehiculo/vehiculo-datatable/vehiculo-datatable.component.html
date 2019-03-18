@@ -1,0 +1,19 @@
+<table class="table table-hover table-middle th-fw-light mb-0">
+  <thead>
+  <tr>
+    <th>Placa</th>
+    <th>Nombre</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let vehiculo of data">
+    <td>{{vehiculo.Placa}}</td>
+    <td>{{vehiculo.Nombre}}</td>
+    <td>
+      <mat-icon color="accent" (click)="onUpdate(vehiculo)" style="cursor: pointer">edit</mat-icon>
+      <mat-icon color="warn" (click)="onDelete(vehiculo.id)" style="cursor: pointer">delete</mat-icon>
+    </td>
+  </tr>
+  </tbody>
+</table>

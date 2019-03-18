@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {DocumentoService} from '../../../service/documento-service';
+import {DocumentoService} from '../../../../../../EDE-Front/src/app/service/documento-service';
 
 @Component({
   selector: 'app-documento-create-dialog',

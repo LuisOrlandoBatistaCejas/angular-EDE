@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {PersonaService} from '../../../service/persona-service';
-import {IdentificationTypeService} from '../../../service/identificationType-service';
-import {CancelacionService} from '../../../service/cancelacion-service';
-import {VehiculoService} from '../../../service/vehiculo-service';
+import {PersonaService} from '../../../../../../EDE-Front/src/app/service/persona-service';
+import {IdentificationTypeService} from '../../../../../../EDE-Front/src/app/service/identificationType-service';
+import {CancelacionService} from '../../../../../../EDE-Front/src/app/service/cancelacion-service';
+import {VehiculoService} from '../../../../../../EDE-Front/src/app/service/vehiculo-service';
 
 @Component({
   selector: 'app-persona-edit-edit',

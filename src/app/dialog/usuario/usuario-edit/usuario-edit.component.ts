@@ -1,11 +1,11 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {UsuarioService} from '../../../service/usuario-service';
+import {UsuarioService} from '../../../../../../EDE-Front/src/app/service/usuario-service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {PersonaService} from '../../../service/persona-service';
+import {PersonaService} from '../../../../../../EDE-Front/src/app/service/persona-service';
 import {UsuarioCreateDialogComponent} from '../usuario-create/usuario-create-dialog';
 import {NgForm} from '@angular/forms';
-import {EmpresaService} from '../../../service/empresa-service';
-import {RolService} from '../../../service/rol.service';
+import {EmpresaService} from '../../../../../../EDE-Front/src/app/service/empresa-service';
+import {RolService} from '../../../../../../EDE-Front/src/app/service/rol.service';
 
 @Component({
   selector: 'app-usuario-edit',

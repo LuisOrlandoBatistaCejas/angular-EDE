@@ -1,0 +1,17 @@
+<div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+  <mat-card>
+    <div class="gene-card-title">
+      <div fxLayout="row wrap">
+        <div fxFlex="50" fxLayoutAlign="start center">
+          <h4>Actualizar Comprobante</h4>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="gene-card-content pad-t-none">
+      <ms-comprobante-formulario [comprobante]="comprobante"
+                                 *ngIf="comprobante"
+                                 (submitForm)="updateComprobante($event)"></ms-comprobante-formulario>
+    </div>
+  </mat-card>
+</div>

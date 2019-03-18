@@ -1,0 +1,25 @@
+<table class="table table-hover table-middle th-fw-light mb-0">
+  <thead>
+  <tr>
+    <th>Código</th>
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Precio</th>
+    <th>IVA (%)</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of data">
+    <td>{{item.Codigo}}</td>
+    <td>{{item.Nombre}}</td>
+    <td>{{item.Descripcion}}</td>
+    <td>{{item.Precio}}</td>
+    <td>{{item.PorcientoIva}}</td>
+    <td>
+      <mat-icon color="accent" (click)="onUpdate(item)" style="cursor: pointer">edit</mat-icon>
+      <mat-icon color="warn" (click)="onDelete(item.Codigo)" style="cursor: pointer">delete</mat-icon>
+    </td>
+  </tr>
+  </tbody>
+</table>

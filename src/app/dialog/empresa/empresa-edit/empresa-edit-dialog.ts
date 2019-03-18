@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {IdentificationTypeService} from '../../../service/identificationType-service';
-import {EmpresaService} from '../../../service/empresa-service';
+import {IdentificationTypeService} from '../../../../../../EDE-Front/src/app/service/identificationType-service';
+import {EmpresaService} from '../../../../../../EDE-Front/src/app/service/empresa-service';
 
 @Component({
   selector: 'app-empresa-edit',

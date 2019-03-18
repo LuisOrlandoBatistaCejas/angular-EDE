@@ -1,0 +1,33 @@
+<table class="table table-hover table-middle th-fw-light mb-0">
+  <thead>
+  <tr>
+    <th>Tipo de Identificación</th>
+    <th>Identificación</th>
+    <th>Razón Social</th>
+    <th>Teléfono</th>
+    <th>Email</th>
+    <th>Forma de Cancelación</th>
+    <th>Vehículos</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let persona of data">
+    <td>{{persona.tipoIdentificacion?.Tipo}}</td>
+    <td>{{persona.Identificacion}}</td>
+    <td>{{persona.RazonSocial}}</td>
+    <td>{{persona.Telefonos}}</td>
+    <td>{{persona.Email}}</td>
+    <td>{{persona.formaCancelacion?.Nombre}}</td>
+    <td> <span class="text-accent" style="cursor: pointer" matTooltip="Ver Vehículos"
+               (click)="openPersonaVehiculosDialog(persona.Vehiculos)">
+          {{persona.Vehiculos.length}}
+        </span>
+    </td>
+    <td>
+      <mat-icon color="accent" (click)="onUpdate(persona)" style="cursor: pointer">edit</mat-icon>
+      <mat-icon color="warn" (click)="onDelete(persona.id)" style="cursor: pointer">delete</mat-icon>
+    </td>
+  </tr>
+  </tbody>
+</table>

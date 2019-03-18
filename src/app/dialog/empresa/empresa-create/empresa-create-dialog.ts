@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {EmpresaService} from '../../../service/empresa-service';
+import {EmpresaService} from '../../../../../../EDE-Front/src/app/service/empresa-service';
 
 @Component({
   selector: 'app-empresa-create-dialog',

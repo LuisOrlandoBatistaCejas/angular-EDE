@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {UsuarioService} from './service/usuario-service';
+import {UsuarioService} from '../../../EDE-Front/src/app/service/usuario-service';
 
 @Injectable({
   providedIn: 'root'

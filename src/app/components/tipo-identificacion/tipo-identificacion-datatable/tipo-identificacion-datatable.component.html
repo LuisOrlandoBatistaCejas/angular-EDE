@@ -1,0 +1,19 @@
+<table class="table table-hover table-middle th-fw-light mb-0">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Tipo</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tipoIdentificacion of data">
+    <td>{{tipoIdentificacion.id}}</td>
+    <td>{{tipoIdentificacion.Tipo}}</td>
+    <td>
+      <mat-icon color="accent" (click)="onUpdate(tipoIdentificacion)" style="cursor: pointer">edit</mat-icon>
+      <mat-icon color="warn" (click)="onDelete(tipoIdentificacion.id)" style="cursor: pointer">delete</mat-icon>
+    </td>
+  </tr>
+  </tbody>
+</table>

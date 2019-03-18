@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import {HttpService} from './http.service';
 import {ApiService} from './api.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class VehiculoService extends ApiService {
   url: string;
   constructor(protected http: HttpService) {

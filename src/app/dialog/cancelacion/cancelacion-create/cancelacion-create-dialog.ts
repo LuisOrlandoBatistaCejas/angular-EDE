@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {CancelacionService} from '../../../service/cancelacion-service';
-import {FormaDePagoService} from '../../../service/formaDePago-service';
+import {CancelacionService} from '../../../../../../EDE-Front/src/app/service/cancelacion-service';
+import {FormaDePagoService} from '../../../../../../EDE-Front/src/app/service/formaDePago-service';
 
 @Component({
   selector: 'app-cancelacion-create-dialog',

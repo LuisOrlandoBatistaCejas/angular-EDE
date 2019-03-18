@@ -1,0 +1,31 @@
+<table class="table table-hover table-middle th-fw-light mb-0">
+  <thead>
+  <tr>
+    <th>Nombre</th>
+    <th>Identificación</th>
+    <th>Email</th>
+    <th>Nombre de Usuario</th>
+    <th>Empresa</th>
+    <th>Rol</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let usuario of data">
+    <td>{{usuario.nombre}} {{usuario.apellidos}}</td>
+    <td>{{usuario.PersonaId?.Identificacion}}</td>
+    <td>{{usuario.email}}</td>
+    <td>{{usuario.username}}</td>
+    <td>{{usuario.EmpresaRuc?.NombreComercial}}</td>
+    <td>
+      <div *ngFor="let rol of usuario.RolId">
+        <span>{{rol}}</span><br>
+      </div>
+    </td>
+    <td>
+      <mat-icon color="accent" (click)="onUpdate(usuario)" style="cursor: pointer">edit</mat-icon>
+      <mat-icon color="warn" (click)="onDelete(usuario.id)" style="cursor: pointer">delete</mat-icon>
+    </td>
+  </tr>
+  </tbody>
+</table>

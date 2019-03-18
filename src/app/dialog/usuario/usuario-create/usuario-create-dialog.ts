@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import {UsuarioService} from '../../../service/usuario-service';
-import {PersonaService} from '../../../service/persona-service';
-import {EmpresaService} from '../../../service/empresa-service';
-import {RolService} from '../../../service/rol.service';
+import {UsuarioService} from '../../../../../../EDE-Front/src/app/service/usuario-service';
+import {PersonaService} from '../../../../../../EDE-Front/src/app/service/persona-service';
+import {EmpresaService} from '../../../../../../EDE-Front/src/app/service/empresa-service';
+import {RolService} from '../../../../../../EDE-Front/src/app/service/rol.service';
 
 @Component({
   selector: 'app-usuario-create-dialog',
